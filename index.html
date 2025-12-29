@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighthouse Portal | Public Design System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --lhp-orange: #f79420;
+            --lhp-dark: #121212;
+            --lhp-card: #1e1e1e;
+            --lhp-text: #ffffff;
+            --lhp-text-muted: #888;
+            --lhp-glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--lhp-dark);
+            color: var(--lhp-text);
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: radial-gradient(circle at top, #2a2a2a 0%, #121212 100%);
+            border-bottom: 1px solid var(--lhp-glass);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 0%, var(--lhp-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--lhp-text-muted);
+            max-width: 700px;
+            margin: 20px auto;
+            font-size: 1.2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--lhp-orange);
+            padding-left: 15px;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .component-card {
+            background: var(--lhp-card);
+            border: 1px solid var(--lhp-glass);
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.3s, border-color 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--lhp-orange);
+            background: rgba(247, 148, 32, 0.05);
+        }
+
+        .component-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .component-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+        }
+
+        .component-card p {
+            color: var(--lhp-text-muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--lhp-glass);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 15px;
+            color: var(--lhp-orange);
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--lhp-glass);
+            color: var(--lhp-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .btn-main {
+            display: inline-block;
+            background: var(--lhp-orange);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-main:hover {
+            opacity: 0.9;
+        }
+
+        /* Branding badge */
+        .lhp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000;
+            border: 1px solid #444;
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+
+        .lhp-badge span { color: var(--lhp-orange); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="lhp-badge"><span>🕯️</span> Public Design System</div>
+        <h1>Lighthouse Portal</h1>
+        <p>A high-performance design system for holistic wellness, focused on body awareness, nutrient density, and behavioral tracking.</p>
+        <a href="#explore" class="btn-main">Explore Components</a>
+    </section>
+
+    <div class="container" id="explore">
+        <h2 class="section-title">Visual Ecosystem</h2>
+        
+        <div class="component-grid">
+            <!-- Vice Tracking -->
+            <a href="ui-components/vice-tracking/examples/example-usage.html" class="component-card">
+                <span class="icon">🗜️</span>
+                <h3>Vice Management</h3>
+                <p>Behavioral modification tools with savings trackers and reflection prompts.</p>
+                <span class="tag">Behavioral UX</span>
+            </a>
+
+            <!-- Hydration -->
+            <a href="ui-components/hydration-monitoring/examples/example-usage.html" class="component-card">
+                <span class="icon">💧</span>
+                <h3>Hydration UI</h3>
+                <p>High-contrast fluid intake tracking with dynamic goal visualization.</p>
+                <span class="tag">Bio-Feedback</span>
+            </a>
+
+            <!-- Food & Nutrition -->
+            <a href="ui-components/food-nutrition/examples/example-usage.html" class="component-card">
+                <span class="icon">🥗</span>
+                <h3>Nutrient Density</h3>
+                <p>Food-as-medicine search patterns focusing on seasonal and local synthesis.</p>
+                <span class="tag">Nutrition UX</span>
+            </a>
+
+            <!-- Workouts -->
+            <a href="ui-components/workouts/examples/example-usage.html" class="component-card">
+                <span class="icon">🏋️</span>
+                <h3>Physical Exercise</h3>
+                <p>Vibrant movement planning and progression tracking for metabolic health.</p>
+                <span class="tag">Performance UI</span>
+            </a>
+
+            <!-- Achievements -->
+            <a href="ui-components/achievements/examples/example-usage.html" class="component-card">
+                <span class="icon">🏆</span>
+                <h3>Badges & Rewards</h3>
+                <p>Premium achievement visualizations and silver-glow milestone displays.</p>
+                <span class="tag">Gamification</span>
+            </a>
+
+            <!-- Tokens -->
+            <div class="component-card">
+                <span class="icon">🎨</span>
+                <h3>Design Tokens</h3>
+                <p>The core building blocks: color palettes, typography, and spacing scales.</p>
+                <span class="tag">Foundation</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Lighthouse Portal Inc. • Designed for clarity, health, and synthesis.</p>
+        <p style="font-size: 0.7rem; margin-top: 10px;">Licensed under PolyForm Noncommercial 1.0.0</p>
+    </footer>
+
+</body>
+</html>
+

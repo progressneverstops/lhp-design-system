@@ -3,31 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hydration Monitoring - Example Usage</title>
+    <title>Hydration Showcase | LHP Design System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/hydration-components.css">
     <style>
-        body { font-family: 'Poppins', sans-serif; background: #f4faf9; padding: 40px; }
-        .hydration-dashboard { max-width: 450px; margin: 0 auto; }
-        .header { text-align: center; margin-bottom: 40px; color: #00796b; }
+        :root {
+            --bg-deep: #0a0a0a;
+            --bg-panel: #141414;
+            --accent: #f79420;
+            --text: #ffffff;
+            --text-muted: #888;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .showcase-header {
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 60px;
+        }
+
+        .showcase-header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--accent);
+        }
+
+        .showcase-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .component-section {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 80px;
+            padding: 30px;
+            background: var(--bg-panel);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .section-label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 30px;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(247, 148, 32, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        /* Override basic spacing */
+        .lhp-hydration-container, 
+        .lhp-water-intake-form,
+        .lhp-goal-setting-form {
+            margin: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
     </style>
 </head>
 <body>
-    <div class="hydration-dashboard">
-        <div class="header">
-            <h1>Stay Hydrated</h1>
-            <p>Example of Hydration Monitoring Components</p>
-        </div>
 
-        <!-- 1. Progress -->
+    <a href="../../../index.html" class="back-link">← Design System Home</a>
+
+    <div class="showcase-header">
+        <h1>Hydration Monitoring</h1>
+        <p>Visual bio-feedback systems for tracking fluid synthesis and metabolic hydration goals.</p>
+    </div>
+
+    <!-- 1. Progress -->
+    <div class="component-section">
+        <span class="section-label">Component: Intake Progress</span>
         <div id="progress-container"></div>
+    </div>
 
-        <!-- 2. Logging -->
+    <!-- 2. Logging -->
+    <div class="component-section">
+        <span class="section-label">Component: Rapid Logging Form</span>
         <div id="log-container"></div>
+    </div>
 
-        <!-- 3. Stats -->
-        <div id="stats-container"></div>
-
-        <!-- 4. Goal Setting -->
+    <!-- 3. Goal Setting -->
+    <div class="component-section">
+        <span class="section-label">Component: Predictive Goal Setting</span>
         <div id="goal-container"></div>
     </div>
 
@@ -36,14 +126,17 @@
             const components = [
                 { id: 'progress-container', path: '../components/ProgressCircle.html' },
                 { id: 'log-container', path: '../components/WaterIntakeForm.html' },
-                { id: 'stats-container', path: '../components/StatsCard.html' },
                 { id: 'goal-container', path: '../components/GoalSettingForm.html' }
             ];
 
             for (const comp of components) {
-                const response = await fetch(comp.path);
-                const html = await response.text();
-                document.getElementById(comp.id).innerHTML = html;
+                try {
+                    const response = await fetch(comp.path);
+                    const html = await response.text();
+                    document.getElementById(comp.id).innerHTML = html;
+                } catch (e) {
+                    console.error("Error loading component:", comp.id);
+                }
             }
         }
 
@@ -51,4 +144,3 @@
     </script>
 </body>
 </html>
-
