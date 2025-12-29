@@ -1,96 +1,363 @@
 <!--
-  FoodSearch Component
+  FoodSearch Component (Enhanced)
   Part of the Lighthouse Portal Design System
   
-  Description: A high-contrast, accessible food search interface.
+  Description: High-contrast food search with category filtering.
   Features:
-  - Accessible search input with clear labels.
-  - Group filtering (Seasonal, Local, Macro-focused).
-  - Mock results display.
-  - Theme-aware styling (Light/Dark).
+  - Accessible search input
+  - Category-based filtering
+  - Nutrient density focus
+  - Seasonal food highlighting
 -->
 
-<div class="lhp-food-search-container">
+<div class="lhp-food-search">
     <div class="lhp-search-header">
-        <h2>Explore Nourishment</h2>
-        <p class="lhp-tip">🌱 Tip: Choose seasonal foods for optimal nutrient density and body synthesis.</p>
+        <h3>Explore Nourishment</h3>
+        <p class="lhp-subtitle">🌱 Prioritize seasonal, local foods for optimal nutrient synthesis</p>
     </div>
 
-    <form class="lhp-search-form" onsubmit="return false;">
-        <div class="lhp-input-group">
-            <label for="food-query" class="sr-only">Search for food</label>
-            <input 
-                type="text" 
-                id="food-query" 
-                class="lhp-search-input" 
-                placeholder="Search: 'Wild Blueberries' or 'Organic Kale'..."
-                aria-label="Search for food"
-            >
-            <button type="submit" class="lhp-search-btn">
-                <span class="lhp-icon">🔍</span> Search
+    <form class="lhp-search-form" role="search">
+        <div class="lhp-search-bar">
+            <div class="lhp-search-input-wrapper">
+                <span class="lhp-search-icon">🔍</span>
+                <input 
+                    type="search" 
+                    id="food-query" 
+                    class="lhp-search-input" 
+                    placeholder="Search foods..."
+                    aria-label="Search for foods"
+                    autocomplete="off"
+                >
+            </div>
+            <button type="submit" class="lhp-search-btn" aria-label="Search">
+                Search
             </button>
         </div>
 
-        <div class="lhp-filter-group">
-            <label for="food-category">Focus Area:</label>
-            <select id="food-category" class="lhp-select">
+        <div class="lhp-filter-row">
+            <label for="food-category" class="lhp-filter-label">Filter by:</label>
+            <select id="food-category" class="lhp-filter-select" aria-label="Filter by category">
                 <option value="all">All Foods</option>
-                <option value="seasonal">Seasonal & Local</option>
-                <option value="medicine">Food as Medicine</option>
-                <option value="high-protein">Muscle Recovery</option>
-                <option value="low-glycemic">Metabolic Stability</option>
+                <option value="seasonal">🌿 Seasonal & Local</option>
+                <option value="medicine">💊 Food as Medicine</option>
+                <option value="high-protein">🥩 Muscle Recovery</option>
+                <option value="low-glycemic">📉 Metabolic Stability</option>
+                <option value="anti-inflammatory">🔥 Anti-Inflammatory</option>
             </select>
         </div>
     </form>
 
-    <div class="lhp-results-summary">
-        <p>Showing <span class="lhp-count">3</span> results for <span class="lhp-query">"Wild"</span></p>
+    <div class="lhp-results-header">
+        <p>Showing <strong class="lhp-result-count">3</strong> results</p>
     </div>
 
     <div class="lhp-food-results">
-        <!-- Mock Result 1 -->
-        <div class="lhp-food-item" tabindex="0">
+        <!-- Result 1 -->
+        <article class="lhp-food-card" tabindex="0">
+            <div class="lhp-food-badge seasonal">Seasonal</div>
             <div class="lhp-food-info">
-                <h3 class="lhp-food-name">Wild Blueberries</h3>
-                <span class="lhp-food-meta">Seasonal • High Antioxidant</span>
+                <h4 class="lhp-food-name">Wild Blueberries</h4>
+                <p class="lhp-food-meta">High Antioxidant • Brain Health</p>
             </div>
-            <div class="lhp-food-stats">
-                <div class="lhp-stat">
-                    <span class="lhp-label">Density</span>
-                    <span class="lhp-val">High</span>
+            <div class="lhp-food-density">
+                <span class="lhp-density-label">Density</span>
+                <div class="lhp-density-bar">
+                    <div class="lhp-density-fill" style="width: 95%;"></div>
                 </div>
-                <button class="lhp-add-btn" aria-label="Add Wild Blueberries to log">+</button>
+                <span class="lhp-density-value">95/100</span>
             </div>
-        </div>
+            <button class="lhp-add-food-btn" aria-label="Add Wild Blueberries">+</button>
+        </article>
 
-        <!-- Mock Result 2 -->
-        <div class="lhp-food-item" tabindex="0">
+        <!-- Result 2 -->
+        <article class="lhp-food-card" tabindex="0">
+            <div class="lhp-food-badge protein">High Protein</div>
             <div class="lhp-food-info">
-                <h3 class="lhp-food-name">Wild Caught Salmon</h3>
-                <span class="lhp-food-meta">Protien • Omega-3</span>
+                <h4 class="lhp-food-name">Wild Caught Salmon</h4>
+                <p class="lhp-food-meta">Omega-3 • Muscle Recovery</p>
             </div>
-            <div class="lhp-food-stats">
-                <div class="lhp-stat">
-                    <span class="lhp-label">Density</span>
-                    <span class="lhp-val">V. High</span>
+            <div class="lhp-food-density">
+                <span class="lhp-density-label">Density</span>
+                <div class="lhp-density-bar">
+                    <div class="lhp-density-fill" style="width: 92%;"></div>
                 </div>
-                <button class="lhp-add-btn" aria-label="Add Wild Caught Salmon to log">+</button>
+                <span class="lhp-density-value">92/100</span>
             </div>
-        </div>
+            <button class="lhp-add-food-btn" aria-label="Add Wild Caught Salmon">+</button>
+        </article>
 
-        <!-- Mock Result 3 -->
-        <div class="lhp-food-item" tabindex="0">
+        <!-- Result 3 -->
+        <article class="lhp-food-card" tabindex="0">
+            <div class="lhp-food-badge medicine">Medicine</div>
             <div class="lhp-food-info">
-                <h3 class="lhp-food-name">Wild Arugula</h3>
-                <span class="lhp-food-meta">Local • Digestive Bitter</span>
+                <h4 class="lhp-food-name">Organic Turmeric Root</h4>
+                <p class="lhp-food-meta">Anti-Inflammatory • Joint Support</p>
             </div>
-            <div class="lhp-food-stats">
-                <div class="lhp-stat">
-                    <span class="lhp-label">Density</span>
-                    <span class="lhp-val">Medium</span>
+            <div class="lhp-food-density">
+                <span class="lhp-density-label">Density</span>
+                <div class="lhp-density-bar">
+                    <div class="lhp-density-fill" style="width: 88%;"></div>
                 </div>
-                <button class="lhp-add-btn" aria-label="Add Wild Arugula to log">+</button>
+                <span class="lhp-density-value">88/100</span>
             </div>
-        </div>
+            <button class="lhp-add-food-btn" aria-label="Add Organic Turmeric Root">+</button>
+        </article>
     </div>
 </div>
+
+<style>
+.lhp-food-search {
+    background: var(--lhp-food-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-food-border, #e5e7eb);
+}
+
+.lhp-search-header h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lhp-food-text, #1f2937);
+}
+
+.lhp-subtitle {
+    margin: 0 0 24px 0;
+    font-size: 0.9rem;
+    color: var(--lhp-food-text-muted, #6b7280);
+}
+
+.lhp-search-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.lhp-search-input-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.lhp-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+.lhp-search-input {
+    width: 100%;
+    padding: 14px 16px 14px 48px;
+    border-radius: 10px;
+    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    background: var(--lhp-food-card, #ffffff);
+    color: var(--lhp-food-text, #1f2937);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.lhp-search-input:focus {
+    outline: none;
+    border-color: #f79420;
+    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.15);
+}
+
+.lhp-search-btn {
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #f79420 0%, #e68a1c 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(247, 148, 32, 0.3);
+}
+
+.lhp-search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(247, 148, 32, 0.4);
+}
+
+.lhp-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.lhp-filter-label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--lhp-food-text, #1f2937);
+}
+
+.lhp-filter-select {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    background: var(--lhp-food-card, #ffffff);
+    color: var(--lhp-food-text, #1f2937);
+    font-size: 0.95rem;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.lhp-results-header {
+    padding: 12px 0;
+    border-bottom: 2px solid var(--lhp-food-border, #e5e7eb);
+    margin-bottom: 16px;
+}
+
+.lhp-results-header p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--lhp-food-text-muted, #6b7280);
+}
+
+.lhp-result-count {
+    color: #f79420;
+    font-weight: 700;
+}
+
+.lhp-food-results {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lhp-food-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: var(--lhp-food-bg, #f9fafb);
+    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.lhp-food-card:hover {
+    border-color: #f79420;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.lhp-food-card:focus {
+    outline: none;
+    border-color: #f79420;
+    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.15);
+}
+
+.lhp-food-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.lhp-food-badge.seasonal {
+    background: rgba(34, 197, 94, 0.15);
+    color: #16a34a;
+}
+
+.lhp-food-badge.protein {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+}
+
+.lhp-food-badge.medicine {
+    background: rgba(168, 85, 247, 0.15);
+    color: #7c3aed;
+}
+
+.lhp-food-info {
+    flex: 1;
+}
+
+.lhp-food-name {
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--lhp-food-text, #1f2937);
+}
+
+.lhp-food-meta {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--lhp-food-text-muted, #6b7280);
+}
+
+.lhp-food-density {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 80px;
+}
+
+.lhp-density-label {
+    font-size: 0.7rem;
+    color: var(--lhp-food-text-muted, #6b7280);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.lhp-density-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--lhp-food-border, #e5e7eb);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.lhp-density-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f79420 0%, #10b981 100%);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.lhp-density-value {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--lhp-food-text, #1f2937);
+}
+
+.lhp-add-food-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #f79420;
+    background: transparent;
+    color: #f79420;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lhp-add-food-btn:hover {
+    background: #f79420;
+    color: white;
+    transform: scale(1.1);
+}
+
+.lhp-add-food-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.25);
+}
+</style>
