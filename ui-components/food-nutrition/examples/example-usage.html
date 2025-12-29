@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Food & Nutrition Components - Example Usage</title>
+    <link rel="stylesheet" href="../styles/food-nutrition-components.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400,500,600,700&display=swap">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .demo-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .demo-description {
+            font-size: 16px;
+            color: #6c757d;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 30px;
+        }
+
+        .component-wrapper {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .component-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .code-snippet {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .code-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .demo-section {
+            margin-bottom: 50px;
+        }
+
+        .section-divider {
+            height: 1px;
+            background-color: #e9ecef;
+            margin: 40px 0;
+            border: none;
+        }
+
+        .interactive-demo {
+            background-color: #e3f2fd;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .demo-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .demo-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .demo-status {
+            text-align: center;
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1 class="demo-title">Food & Nutrition Components</h1>
+            <p class="demo-description">Nutritional information, food logging, and barcode scanning interface</p>
+        </div>
+
+        <div class="demo-section">
+            <div class="component-grid">
+                <!-- Food Search -->
+                <div class="component-wrapper">
+                    <h3 class="component-title">Food Search</h3>
+                    <div class="nutrition-container">
+                        <div class="nutrition-header">
+                            <div class="nutrition-title">Food Database Search</div>
+                            <div class="nutrition-subtitle">Find detailed nutritional information</div>
+                        </div>
+
+                        <div class="nutrition-content">
+                            <div class="search-controls">
+                                <div class="search-row">
+                                    <div class="search-input-group">
+                                        <input type="text" class="search-input" placeholder="Search foods..." id="demo-search-input">
+                                    </div>
+                                    <button class="search-button" onclick="performDemoSearch()">Search</button>
+                                </div>
+
+                                <div class="search-row">
+                                    <div class="filter-group">
+                                        <label class="filter-label">Food Group</label>
+                                        <select class="filter-select" id="demo-food-group">
+                                            <option value="">All Groups</option>
+                                            <option value="fruits">Fruits</option>
+                                            <option value="vegetables">Vegetables</option>
+                                            <option value="grains">Grains</option>
+                                            <option value="proteins">Proteins</option>
+                                            <option value="dairy">Dairy</option>
+                                            <option value="beverages">Beverages</option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label class="filter-label">Category</label>
+                                        <select class="filter-select" id="demo-category">
+                                            <option value="">All Categories</option>
+                                            <option value="organic">Organic</option>
+                                            <option value="processed">Processed</option>
+                                            <option value="raw">Raw</option>
+                                            <option value="cooked">Cooked</option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label class="filter-label">Sort By</label>
+                                        <select class="filter-select" id="demo-sort">
+                                            <option value="name-asc">Name (A-Z)</option>
+                                            <option value="calories-desc">Calories (High-Low)</option>
+                                            <option value="protein-desc">Protein (High-Low)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <button class="advanced-search-toggle" id="demo-advanced-toggle" onclick="toggleDemoAdvanced()">
+                                    <span id="toggle-icon">▼</span> Advanced Search Options
+                                </button>
+
+                                <div class="advanced-search-panel" id="demo-advanced-panel">
+                                    <div class="filter-grid">
+                                        <div class="nutrient-filter">
+                                            <label class="filter-label">Calories (Min)</label>
+                                            <input type="number" class="nutrient-input" placeholder="Min">
+                                        </div>
+                                        <div class="nutrient-filter">
+                                            <label class="filter-label">Calories (Max)</label>
+                                            <input type="number" class="nutrient-input" placeholder="Max">
+                                        </div>
+                                        <div class="nutrient-filter">
+                                            <label class="filter-label">Protein (g) Min</label>
+                                            <input type="number" class="nutrient-input" placeholder="Min" step="0.1">
+                                        </div>
+                                        <div class="nutrient-filter">
+                                            <label class="filter-label">Protein (g) Max</label>
+                                            <input type="number" class="nutrient-input" placeholder="Max" step="0.1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="search-results" id="demo-search-results">
+                                <div class="results-header">
+                                    <div class="results-count">Showing 4 results</div>
+                                    <select class="sort-select" onchange="sortDemoResults(this.value)">
+                                        <option value="relevance">Sort by Relevance</option>
+                                        <option value="calories">Sort by Calories</option>
+                                        <option value="protein">Sort by Protein</option>
+                                    </select>
+                                </div>
+
+                                <div class="food-item" onclick="selectDemoFood('apple')">
+                                    <div class="food-info">
+                                        <div class="food-name">Apple</div>
+                                        <div class="food-details">Fresh fruit • 1 medium</div>
+                                        <span class="food-category">Fruits</span>
+                                    </div>
+                                    <div class="food-nutrition">
+                                        <div class="nutrition-item">
+                                            <div class="nutrition-value">95</div>
+                                            <div class="nutrition-label">cal</div>
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <div class="nutrition-value">0.5g</div>
+                                            <div class="nutrition-label">protein</div>
+                                        </div>
+                                    </div>
+                                    <button class="select-food-btn" onclick="selectDemoFood('apple')">Select</button>
+                                </div>
+
+                                <div class="food-item" onclick="selectDemoFood('chicken-breast')">
+                                    <div class="food-info">
+                                        <div class="food-name">Chicken Breast</div>
+                                        <div class="food-details">Grilled • 100g</div>
+                                        <span class="food-category">Proteins</span>
+                                    </div>
+                                    <div class="food-nutrition">
+                                        <div class="nutrition-item">
+                                            <div class="nutrition-value">165</div>
+                                            <div class="nutrition-label">cal</div>
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <div class="nutrition-value">31g</div>
+                                            <div class="nutrition-label">protein</div>
+                                        </div>
+                                    </div>
+                                    <button class="select-food-btn" onclick="selectDemoFood('chicken-breast')">Select</button>
+                                </div>
+
+                                <div class="food-item" onclick="selectDemoFood('broccoli')">
+                                    <div class="food-info">
+                                        <div class="food-name">Broccoli</div>
+                                        <div class="food-details">Steamed • 1 cup</div>
+                                        <span class="food-category">Vegetables</span>
+                                    </div>
+                                    <div class="food-nutrition">
+                                        <div class="nutrition-item">
+                                            <div class="nutrition-value">55</div>
+                                            <div class="nutrition-label">cal</div>
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <div class="nutrition-value">3.7g</div>
+                                            <div class="nutrition-label">protein</div>
+                                        </div>
+                                    </div>
+                                    <button class="select-food-btn" onclick="selectDemoFood('broccoli')">Select</button>
+                                </div>
+
+                                <div class="food-item" onclick="selectDemoFood('oatmeal')">
+                                    <div class="food-info">
+                                        <div class="food-name">Oatmeal</div>
+                                        <div class="food-details">Cooked • 1 cup</div>
+                                        <span class="food-category">Grains</span>
+                                    </div>
+                                    <div class="food-nutrition">
+                                        <div class="nutrition-item">
+                                            <div class="nutrition-value">147</div>
+                                            <div class="nutrition-label">cal</div>
+                                        </div>
+                                        <div class="nutrition-item">
+                                            <div class="nutrition-value">5.3g</div>
+                                            <div class="nutrition-label">protein</div>
+                                        </div>
+                                    </div>
+                                    <button class="select-food-btn" onclick="selectDemoFood('oatmeal')">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-snippet">
+                        <div class="code-title">Usage:</div>
+                        &lt;div class="nutrition-container"&gt;<br>
+                        &nbsp;&nbsp;&lt;!-- Search controls and results --&gt;<br>
+                        &lt;/div&gt;
+                    </div>
+                </div>
+
+                <!-- Nutrition Card -->
+                <div class="component-wrapper">
+                    <h3 class="component-title">Nutrition Card</h3>
+                    <div class="nutrition-card-container">
+                        <div class="nutrition-header">
+                            <div class="nutrition-title">Apple</div>
+                            <div class="nutrition-subtitle">Fresh fruit • 1 medium (182g)</div>
+                        </div>
+
+                        <div class="nutrition-content">
+                            <div class="data-completeness">
+                                <div class="completeness-label">Data Completeness</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 95%;"></div>
+                                </div>
+                                <div class="completeness-text">95% complete nutritional data</div>
+                            </div>
+
+                            <div class="basic-info">
+                                <div class="info-item">
+                                    <div class="info-value">95</div>
+                                    <div class="info-label">calories</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-value">25.1g</div>
+                                    <div class="info-label">carbs</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-value">4.4g</div>
+                                    <div class="info-label">fiber</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-value">0.5g</div>
+                                    <div class="info-label">protein</div>
+                                </div>
+                            </div>
+
+                            <div class="nutrition-breakdown">
+                                <div class="nutrient-item">
+                                    <div class="nutrient-name">Carbohydrates</div>
+                                    <div class="nutrient-value">25.1g</div>
+                                    <div class="nutrient-unit">(13.8% DV)</div>
+                                    <div class="nutrient-bar">
+                                        <div class="nutrient-fill" style="width: 30%;"></div>
+                                    </div>
+                                </div>
+                                <div class="nutrient-item">
+                                    <div class="nutrient-name">Protein</div>
+                                    <div class="nutrient-value">0.5g</div>
+                                    <div class="nutrient-unit">(1% DV)</div>
+                                    <div class="nutrient-bar">
+                                        <div class="nutrient-fill" style="width: 5%;"></div>
+                                    </div>
+                                </div>
+                                <div class="nutrient-item">
+                                    <div class="nutrient-name">Fat</div>
+                                    <div class="nutrient-value">0.3g</div>
+                                    <div class="nutrient-unit">(0.4% DV)</div>
+                                    <div class="nutrient-bar">
+                                        <div class="nutrient-fill" style="width: 2%;"></div>
+                                    </div>
+                                </div>
+                                <div class="nutrient-item">
+                                    <div class="nutrient-name">Fiber</div>
+                                    <div class="nutrient-value">4.4g</div>
+                                    <div class="nutrient-unit">(15.7% DV)</div>
+                                    <div class="nutrient-bar">
+                                        <div class="nutrient-fill" style="width: 85%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="micronutrients">
+                                <div class="micronutrient-item">
+                                    <div class="micronutrient-name">Vitamin C</div>
+                                    <div class="micronutrient-value">8.4mg</div>
+                                </div>
+                                <div class="micronutrient-item">
+                                    <div class="micronutrient-name">Potassium</div>
+                                    <div class="micronutrient-value">195mg</div>
+                                </div>
+                                <div class="micronutrient-item">
+                                    <div class="micronutrient-name">Vitamin K</div>
+                                    <div class="micronutrient-value">3.6μg</div>
+                                </div>
+                                <div class="micronutrient-item">
+                                    <div class="micronutrient-name">Manganese</div>
+                                    <div class="micronutrient-value">0.064mg</div>
+                                </div>
+                                <div class="micronutrient-item">
+                                    <div class="micronutrient-name">Copper</div>
+                                    <div class="micronutrient-value">0.049mg</div>
+                                </div>
+                                <div class="micronutrient-item">
+                                    <div class="micronutrient-name">Vitamin B6</div>
+                                    <div class="micronutrient-value">0.041mg</div>
+                                </div>
+                            </div>
+
+                            <div class="safety-info">
+                                <div class="safety-title">✓ Safety Information</div>
+                                <div class="safety-text">
+                                    This food item has been analyzed and meets safety standards. Uses advanced computational methods for nutritional assessment.
+                                </div>
+                            </div>
+
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" onclick="addToDemoMeal()">Add to Meal</button>
+                                <button class="btn btn-success" onclick="logDemoFood()">Log Food</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-snippet">
+                        <div class="code-title">Usage:</div>
+                        &lt;div class="nutrition-card-container"&gt;<br>
+                        &nbsp;&nbsp;&lt;!-- Nutritional information display --&gt;<br>
+                        &lt;/div&gt;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Barcode Scanner Section -->
+        <div class="demo-section">
+            <div class="component-wrapper">
+                <h3 class="component-title">Barcode Scanner</h3>
+                <div class="scanner-container">
+                    <div class="scanner-header">
+                        <div class="scanner-title">Barcode Scanner</div>
+                        <div class="scanner-subtitle">Scan food product barcodes</div>
+                    </div>
+
+                    <div class="scanner-content">
+                        <div class="permissions-notice">
+                            <div class="permissions-title">Camera Access Required</div>
+                            <div class="permissions-text">
+                                Allow camera access to scan barcodes. Your privacy is protected.
+                            </div>
+                        </div>
+
+                        <div class="scanner-instructions">
+                            <div class="instruction-title">How to Scan</div>
+                            <div class="instruction-text">
+                                Position the barcode within the scanning area. Hold steady for best results.
+                            </div>
+                        </div>
+
+                        <div class="video-container">
+                            <div class="camera-placeholder">Camera Feed</div>
+                            <div class="scanner-overlay"></div>
+                        </div>
+
+                        <div class="scanner-controls">
+                            <div class="control-buttons">
+                                <button class="scanner-btn btn-primary" id="demo-start-scan" onclick="startDemoScan()">Start Scanning</button>
+                                <button class="scanner-btn btn-secondary" id="demo-stop-scan" onclick="stopDemoScan()" style="display: none;">Stop Scanning</button>
+                                <button class="scanner-btn btn-success" onclick="simulateDemoScan()">Simulate Scan</button>
+                            </div>
+
+                            <div class="manual-input">
+                                <div class="manual-input-group">
+                                    <input type="text" class="manual-input-field" placeholder="Enter barcode manually" id="demo-manual-barcode">
+                                    <button class="manual-submit-btn" onclick="manualDemoLookup()">Lookup</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="scan-status" id="demo-scan-status">
+                            <div class="status-text" id="demo-status-text">Ready to scan</div>
+                            <div class="status-detail" id="demo-status-detail">Click "Start Scanning" to begin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+                    <div class="code-title">Usage:</div>
+                    &lt;div class="scanner-container"&gt;<br>
+                    &nbsp;&nbsp;&lt;!-- Camera interface and barcode scanning --&gt;<br>
+                    &lt;/div&gt;
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Food Log Form Section -->
+        <div class="demo-section">
+            <div class="component-wrapper">
+                <h3 class="component-title">Food Log Form</h3>
+                <div class="food-log-container">
+                    <div class="log-header">
+                        <div class="log-title">Food Logs</div>
+                        <div class="log-subtitle">Track your daily nutrition</div>
+                    </div>
+
+                    <div class="log-content">
+                        <div class="date-selector">
+                            <div class="date-input-group">
+                                <span class="date-label">Date:</span>
+                                <input type="date" class="date-input" id="demo-log-date" value="2024-12-28">
+                            </div>
+                        </div>
+
+                        <div class="quick-stats">
+                            <div class="stat-card">
+                                <span class="stat-icon">🍽️</span>
+                                <div class="stat-value" id="demo-today-calories">0</div>
+                                <div class="stat-label">Calories</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-icon">🥩</span>
+                                <div class="stat-value" id="demo-today-protein">0g</div>
+                                <div class="stat-label">Protein</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-icon">🍞</span>
+                                <div class="stat-value" id="demo-today-carbs">0g</div>
+                                <div class="stat-label">Carbs</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-icon">🥗</span>
+                                <div class="stat-value" id="demo-today-meals">0</div>
+                                <div class="stat-label">Meals</div>
+                            </div>
+                        </div>
+
+                        <div class="add-food-section">
+                            <h3 class="section-title">
+                                <span>➕</span> Add Food to Log
+                            </h3>
+
+                            <div class="add-food-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Search Food:</label>
+                                        <input type="text" class="form-input" id="demo-food-search" placeholder="Search for food items...">
+                                    </div>
+                                    <button class="search-btn" onclick="searchDemoFood()">🔍</button>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="quantity-controls">
+                                        <input type="number" class="quantity-input" id="demo-food-quantity" value="1" min="0.1" step="0.1">
+                                        <div class="quantity-unit">serving</div>
+                                    </div>
+                                    <button class="search-btn" onclick="addDemoFoodToLog()">Add Food</button>
+                                </div>
+
+                                <div class="meal-selector">
+                                    <div class="meal-option selected" onclick="selectDemoMeal('breakfast')">Breakfast</div>
+                                    <div class="meal-option" onclick="selectDemoMeal('lunch')">Lunch</div>
+                                    <div class="meal-option" onclick="selectDemoMeal('dinner')">Dinner</div>
+                                    <div class="meal-option" onclick="selectDemoMeal('snacks')">Snacks</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="food-log-entries">
+                            <h3 class="entries-title">Today's Entries</h3>
+
+                            <div id="demo-log-entries-container">
+                                <!-- Log entries will be populated here -->
+                                <div class="no-entries">
+                                    <div class="no-entries-icon">🍽️</div>
+                                    <div class="no-entries-text">No food logged today</div>
+                                    <div class="no-entries-subtext">Add your first meal to get started!</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="log-summary" id="demo-log-summary" style="display: none;">
+                            <div class="summary-title">Daily Summary</div>
+                            <div class="summary-stats">
+                                <div class="summary-stat">
+                                    <div class="summary-value">1,250</div>
+                                    <div class="summary-label">Calories</div>
+                                </div>
+                                <div class="summary-stat">
+                                    <div class="summary-value">65g</div>
+                                    <div class="summary-label">Protein</div>
+                                </div>
+                                <div class="summary-stat">
+                                    <div class="summary-value">180g</div>
+                                    <div class="summary-label">Carbs</div>
+                                </div>
+                                <div class="summary-stat">
+                                    <div class="summary-value">3</div>
+                                    <div class="summary-label">Meals</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+                    <div class="code-title">Usage:</div>
+                    &lt;div class="food-log-container"&gt;<br>
+                    &nbsp;&nbsp;&lt;!-- Food logging and daily summary --&gt;<br>
+                    &lt;/div&gt;
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo Section -->
+        <div class="interactive-demo">
+            <h3 style="text-align: center; margin-bottom: 20px; color: #1976d2;">Interactive Demo Controls</h3>
+            <div class="demo-controls">
+                <button class="demo-btn" onclick="performDemoSearch()">Search Foods</button>
+                <button class="demo-btn" onclick="startDemoScan()">Start Barcode Scan</button>
+                <button class="demo-btn" onclick="addDemoFoodToLog()">Add Sample Food</button>
+                <button class="demo-btn" onclick="resetDemo()">Reset All</button>
+            </div>
+            <div class="demo-status" id="interactive-status">
+                Try the interactive controls above to explore the components!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Interactive demo functionality
+        let demoLogEntries = [];
+        let selectedDemoMeal = 'breakfast';
+        let isScanning = false;
+
+        function performDemoSearch() {
+            const searchInput = document.getElementById('demo-search-input');
+            if (searchInput.value.trim()) {
+                updateInteractiveStatus(`Searching for: "${searchInput.value}"`);
+            } else {
+                updateInteractiveStatus('Please enter a search term');
+            }
+        }
+
+        function toggleDemoAdvanced() {
+            const panel = document.getElementById('demo-advanced-panel');
+            const toggle = document.getElementById('demo-advanced-toggle');
+            const icon = document.getElementById('toggle-icon');
+
+            if (panel.classList.contains('active')) {
+                panel.classList.remove('active');
+                toggle.classList.remove('active');
+                icon.textContent = '▼';
+            } else {
+                panel.classList.add('active');
+                toggle.classList.add('active');
+                icon.textContent = '▲';
+            }
+        }
+
+        function selectDemoFood(foodName) {
+            updateInteractiveStatus(`Selected: ${foodName}`);
+        }
+
+        function sortDemoResults(sortType) {
+            updateInteractiveStatus(`Sorting results by: ${sortType}`);
+        }
+
+        function addToDemoMeal() {
+            updateInteractiveStatus('Food added to meal planning');
+        }
+
+        function logDemoFood() {
+            updateInteractiveStatus('Food logged successfully');
+        }
+
+        function startDemoScan() {
+            isScanning = true;
+            document.getElementById('demo-start-scan').style.display = 'none';
+            document.getElementById('demo-stop-scan').style.display = 'inline-block';
+
+            showDemoStatus('scanning', 'Scanning for barcodes...', 'Position barcode in the scanning area');
+            updateInteractiveStatus('Barcode scanner activated');
+        }
+
+        function stopDemoScan() {
+            isScanning = false;
+            document.getElementById('demo-start-scan').style.display = 'inline-block';
+            document.getElementById('demo-stop-scan').style.display = 'none';
+
+            hideDemoStatus();
+            updateInteractiveStatus('Barcode scanner stopped');
+        }
+
+        function simulateDemoScan() {
+            showDemoStatus('success', 'Barcode Detected!', 'Product: Organic Apple (UPC: 123456789012)');
+            updateInteractiveStatus('Barcode scan successful - product found');
+        }
+
+        function manualDemoLookup() {
+            const barcode = document.getElementById('demo-manual-barcode').value;
+            if (barcode.trim()) {
+                showDemoStatus('success', 'Product Found!', `Barcode: ${barcode}`);
+                updateInteractiveStatus(`Manual lookup successful for barcode: ${barcode}`);
+            } else {
+                showDemoStatus('error', 'Invalid Barcode', 'Please enter a valid barcode number');
+                updateInteractiveStatus('Please enter a valid barcode');
+            }
+        }
+
+        function showDemoStatus(type, text, detail) {
+            const statusDiv = document.getElementById('demo-scan-status');
+            const statusText = document.getElementById('demo-status-text');
+            const statusDetail = document.getElementById('demo-status-detail');
+
+            statusDiv.className = `scan-status status-${type}`;
+            statusText.textContent = text;
+            statusDetail.textContent = detail;
+            statusDiv.style.display = 'block';
+        }
+
+        function hideDemoStatus() {
+            document.getElementById('demo-scan-status').style.display = 'none';
+        }
+
+        function searchDemoFood() {
+            const searchTerm = document.getElementById('demo-food-search').value;
+            updateInteractiveStatus(`Searching for food: ${searchTerm || 'empty search'}`);
+        }
+
+        function selectDemoMeal(meal) {
+            selectedDemoMeal = meal;
+            document.querySelectorAll('.meal-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+        }
+
+        function addDemoFoodToLog() {
+            const foodName = document.getElementById('demo-food-search').value;
+            const quantity = document.getElementById('demo-food-quantity').value;
+
+            if (!foodName.trim()) {
+                updateInteractiveStatus('Please search for a food first');
+                return;
+            }
+
+            // Mock food entry
+            const entry = {
+                id: Date.now(),
+                name: foodName,
+                quantity: quantity,
+                meal: selectedDemoMeal,
+                calories: Math.floor(Math.random() * 500) + 50,
+                protein: Math.floor(Math.random() * 30) + 5,
+                carbs: Math.floor(Math.random() * 50) + 10
+            };
+
+            demoLogEntries.push(entry);
+            renderDemoLogEntries();
+            updateDemoSummary();
+
+            // Clear form
+            document.getElementById('demo-food-search').value = '';
+            document.getElementById('demo-food-quantity').value = '1';
+
+            updateInteractiveStatus(`Added ${entry.name} to ${entry.meal}`);
+        }
+
+        function renderDemoLogEntries() {
+            const container = document.getElementById('demo-log-entries-container');
+
+            if (demoLogEntries.length === 0) {
+                container.innerHTML = `
+                    <div class="no-entries">
+                        <div class="no-entries-icon">🍽️</div>
+                        <div class="no-entries-text">No food logged today</div>
+                        <div class="no-entries-subtext">Add your first meal to get started!</div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = demoLogEntries.map(entry => `
+                <div class="log-entry">
+                    <div class="entry-info">
+                        <div class="entry-name">${entry.name}</div>
+                        <div class="entry-details">${entry.quantity} serving • ${entry.meal}</div>
+                    </div>
+                    <div class="entry-nutrition">
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">${entry.calories}</div>
+                            <div class="nutrition-label">cal</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">${entry.protein}g</div>
+                            <div class="nutrition-label">protein</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">${entry.carbs}g</div>
+                            <div class="nutrition-label">carbs</div>
+                        </div>
+                    </div>
+                    <div class="entry-actions">
+                        <button class="entry-btn btn-edit" onclick="editDemoEntry(${entry.id})">Edit</button>
+                        <button class="entry-btn btn-delete" onclick="deleteDemoEntry(${entry.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateDemoSummary() {
+            const totalCalories = demoLogEntries.reduce((sum, entry) => sum + entry.calories, 0);
+            const totalProtein = demoLogEntries.reduce((sum, entry) => sum + entry.protein, 0);
+            const totalCarbs = demoLogEntries.reduce((sum, entry) => sum + entry.carbs, 0);
+
+            document.getElementById('demo-today-calories').textContent = totalCalories;
+            document.getElementById('demo-today-protein').textContent = totalProtein + 'g';
+            document.getElementById('demo-today-carbs').textContent = totalCarbs + 'g';
+            document.getElementById('demo-today-meals').textContent = demoLogEntries.length;
+
+            document.getElementById('demo-log-summary').style.display = demoLogEntries.length > 0 ? 'block' : 'none';
+        }
+
+        function editDemoEntry(id) {
+            updateInteractiveStatus(`Editing entry ${id}`);
+        }
+
+        function deleteDemoEntry(id) {
+            demoLogEntries = demoLogEntries.filter(entry => entry.id !== id);
+            renderDemoLogEntries();
+            updateDemoSummary();
+            updateInteractiveStatus(`Deleted entry ${id}`);
+        }
+
+        function resetDemo() {
+            // Reset all demo states
+            demoLogEntries = [];
+            selectedDemoMeal = 'breakfast';
+
+            // Reset form
+            document.getElementById('demo-food-search').value = '';
+            document.getElementById('demo-food-quantity').value = '1';
+
+            // Reset meal selection
+            document.querySelectorAll('.meal-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector('.meal-option').classList.add('selected');
+
+            // Reset stats
+            document.getElementById('demo-today-calories').textContent = '0';
+            document.getElementById('demo-today-protein').textContent = '0g';
+            document.getElementById('demo-today-carbs').textContent = '0g';
+            document.getElementById('demo-today-meals').textContent = '0';
+
+            // Reset scanner
+            stopDemoScan();
+            hideDemoStatus();
+
+            // Reset log entries
+            renderDemoLogEntries();
+            document.getElementById('demo-log-summary').style.display = 'none';
+
+            updateInteractiveStatus('Demo reset to initial state');
+        }
+
+        function updateInteractiveStatus(message) {
+            const statusElement = document.getElementById('interactive-status');
+            statusElement.textContent = message;
+            statusElement.style.color = '#1976d2';
+            statusElement.style.fontWeight = '600';
+
+            setTimeout(() => {
+                statusElement.style.color = '#2c3e50';
+                statusElement.style.fontWeight = '500';
+            }, 3000);
+        }
+
+        // Initialize demo
+        document.addEventListener('DOMContentLoaded', function() {
+            updateInteractiveStatus('Demo loaded - explore the interactive components!');
+        });
+    </script>
+</body>
+</html>

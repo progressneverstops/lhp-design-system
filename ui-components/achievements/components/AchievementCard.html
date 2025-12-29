@@ -1,0 +1,38 @@
+<!--
+  AchievementCard Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: A card for individual user achievements.
+  Features:
+  - Icon/Badge display.
+  - Achievement name and description.
+  - Earned date placeholder.
+  - Social share actions.
+-->
+
+<div class="lhp-achievement-card earned">
+    <div class="lhp-achievement-icon">
+        <span class="lhp-icon">🔥</span>
+    </div>
+    <div class="lhp-achievement-details">
+        <h3>7-Day Streak</h3>
+        <p>You've logged your vitals for 7 consecutive days! Keep the momentum going.</p>
+        <span class="lhp-earned-date">Earned: Recently</span>
+    </div>
+    <div class="lhp-achievement-actions">
+        <button class="lhp-share-btn" aria-label="Share achievement">📤</button>
+    </div>
+</div>
+
+<div class="lhp-achievement-card locked">
+    <div class="lhp-achievement-icon">
+        <span class="lhp-icon">🔒</span>
+    </div>
+    <div class="lhp-achievement-details">
+        <h3>Early Riser</h3>
+        <p>Log a sunrise meal 5 days in a row to unlock this badge.</p>
+        <div class="lhp-mini-progress">
+            <div class="lhp-bar" style="width: 60%;"></div>
+        </div>
+    </div>
+</div>

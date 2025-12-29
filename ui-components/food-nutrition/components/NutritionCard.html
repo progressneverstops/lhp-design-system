@@ -1,0 +1,71 @@
+<!--
+  NutritionCard Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: A detailed nutrient breakdown card.
+  Features:
+  - Visual density bars for macronutrients.
+  - Micro-nutrient highlights.
+  - Healing property tags.
+  - Sunrise/Sunset fasting reminder.
+-->
+
+<div class="lhp-nutrition-card">
+    <div class="lhp-card-header">
+        <div class="lhp-title-section">
+            <h2 class="lhp-food-title">Organic Avocado</h2>
+            <span class="lhp-category">Healthy Fats • Heart Support</span>
+        </div>
+        <div class="lhp-density-badge">
+            <span class="lhp-badge-label">Nutrient Density</span>
+            <div class="lhp-badge-value">92/100</div>
+        </div>
+    </div>
+
+    <div class="lhp-macro-breakdown">
+        <div class="lhp-macro">
+            <div class="lhp-macro-label">
+                <span>Healthy Fats</span>
+                <span class="lhp-percent">75%</span>
+            </div>
+            <div class="lhp-progress-bar">
+                <div class="lhp-progress-fill fat" style="width: 75%;"></div>
+            </div>
+        </div>
+        <div class="lhp-macro">
+            <div class="lhp-macro-label">
+                <span>Fiber</span>
+                <span class="lhp-percent">15%</span>
+            </div>
+            <div class="lhp-progress-bar">
+                <div class="lhp-progress-fill fiber" style="width: 15%;"></div>
+            </div>
+        </div>
+        <div class="lhp-macro">
+            <div class="lhp-macro-label">
+                <span>Protein</span>
+                <span class="lhp-percent">10%</span>
+            </div>
+            <div class="lhp-progress-bar">
+                <div class="lhp-progress-fill protein" style="width: 10%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lhp-healing-properties">
+        <h3>Healing Properties</h3>
+        <div class="lhp-tag-cloud">
+            <span class="lhp-tag anti-inflammatory">Anti-inflammatory</span>
+            <span class="lhp-tag brain-health">Brain Health</span>
+            <span class="lhp-tag skin-synthesis">Skin Synthesis</span>
+        </div>
+    </div>
+
+    <div class="lhp-lifestyle-tip">
+        <div class="lhp-tip-icon">☀️</div>
+        <div class="lhp-tip-content">
+            <strong>Optimal Consumption:</strong> Best enjoyed midday when your metabolic fire is strongest. 
+            Remember to fast from sunset to sunrise to allow for cellular repair.
+        </div>
+    </div>
+</div>

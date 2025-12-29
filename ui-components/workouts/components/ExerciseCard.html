@@ -1,0 +1,54 @@
+<!--
+  ExerciseCard Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: A card displaying details for a specific exercise.
+  Features:
+  - Video/Image placeholder.
+  - Instructions and key cues.
+  - Target muscle groups.
+  - Quick-log fields.
+-->
+
+<div class="lhp-exercise-card">
+    <div class="lhp-exercise-media">
+        <div class="lhp-video-placeholder">
+            <span class="lhp-play-icon">▶️</span>
+            <p>Form Technique Video</p>
+        </div>
+    </div>
+
+    <div class="lhp-exercise-content">
+        <div class="lhp-exercise-header">
+            <h3>Goblet Squat</h3>
+            <span class="lhp-badge muscle">Quads & Glutes</span>
+        </div>
+
+        <div class="lhp-exercise-cues">
+            <h4>Key Technique Cues:</h4>
+            <ul>
+                <li>Keep chest tall and core engaged.</li>
+                <li>Hips back and down, knees track over toes.</li>
+                <li>Drive through heels to stand.</li>
+            </ul>
+        </div>
+
+        <form class="lhp-quick-log">
+            <div class="lhp-log-inputs">
+                <div class="lhp-field">
+                    <label>Sets</label>
+                    <input type="number" value="3">
+                </div>
+                <div class="lhp-field">
+                    <label>Reps</label>
+                    <input type="number" value="12">
+                </div>
+                <div class="lhp-field">
+                    <label>Weight (kg)</label>
+                    <input type="number" value="16">
+                </div>
+            </div>
+            <button type="submit" class="lhp-save-set-btn">Save Set</button>
+        </form>
+    </div>
+</div>

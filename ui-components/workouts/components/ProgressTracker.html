@@ -1,0 +1,60 @@
+<!--
+  ProgressTracker Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: A visualization for tracking exercise progress over time.
+  Features:
+  - Metric selection (Volume, 1RM, Reps).
+  - Time range filtering.
+  - Mock chart area.
+  - Achievement milestones.
+-->
+
+<div class="lhp-progress-tracker">
+    <div class="lhp-tracker-header">
+        <h2>📈 Strength Progression</h2>
+        <div class="lhp-tracker-controls">
+            <select class="lhp-select-small">
+                <option>Back Squat</option>
+                <option>Deadlift</option>
+                <option>Bench Press</option>
+            </select>
+            <div class="lhp-period-toggle">
+                <button class="active">1M</button>
+                <button>3M</button>
+                <button>YTD</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="lhp-chart-container">
+        <!-- Mock Chart Visualization -->
+        <div class="lhp-mock-chart">
+            <div class="lhp-bar" style="height: 40%;"></div>
+            <div class="lhp-bar" style="height: 55%;"></div>
+            <div class="lhp-bar" style="height: 50%;"></div>
+            <div class="lhp-bar" style="height: 70%;"></div>
+            <div class="lhp-bar highlighted" style="height: 85%;">
+                <span class="lhp-milestone">⭐ PB</span>
+            </div>
+        </div>
+        <div class="lhp-chart-labels">
+            <span>Nov 01</span>
+            <span>Nov 08</span>
+            <span>Nov 15</span>
+            <span>Nov 22</span>
+            <span>Nov 29</span>
+        </div>
+    </div>
+
+    <div class="lhp-tracker-stats">
+        <div class="lhp-stat-pill">
+            <span class="label">Volume Increase</span>
+            <span class="value positive">+12%</span>
+        </div>
+        <div class="lhp-stat-pill">
+            <span class="label">Consistency Score</span>
+            <span class="value">95%</span>
+        </div>
+    </div>
+</div>

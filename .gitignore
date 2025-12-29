@@ -1,0 +1,22 @@
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build/Node
+node_modules/
+dist/
+build/
+*.log
+
+# Sensitive/Internal (Archived)
+.env
+internal-notes/
+archive/
+legacy-swift-attempt/
+

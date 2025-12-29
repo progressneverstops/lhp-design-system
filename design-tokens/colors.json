@@ -1,0 +1,35 @@
+{
+  "colors": {
+    "brand": {
+      "primary": "#ff8c00",
+      "primary-hover": "#e67e00",
+      "secondary": "#28a745",
+      "accent": "#f79420"
+    },
+    "status": {
+      "success": "#28a745",
+      "warning": "#ffc107",
+      "error": "#dc3545",
+      "info": "#17a2b8"
+    },
+    "neutral": {
+      "white": "#ffffff",
+      "gray-100": "#f8f9fa",
+      "gray-200": "#e9ecef",
+      "gray-300": "#dee2e6",
+      "gray-800": "#343a40",
+      "black": "#000000"
+    }
+  },
+  "themes": {
+    "light": {
+      "bg": "#ffffff",
+      "text": "#333333"
+    },
+    "dark": {
+      "bg": "#1a1a1a",
+      "text": "#f8f9fa"
+    }
+  }
+}
+

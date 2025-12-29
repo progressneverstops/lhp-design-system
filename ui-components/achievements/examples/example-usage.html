@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Achievements Components - Example Usage</title>
+    <link rel="stylesheet" href="../styles/achievements-components.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400,500,600,700&display=swap">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .demo-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .demo-description {
+            font-size: 16px;
+            color: #6c757d;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 30px;
+        }
+
+        .component-wrapper {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .component-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .code-snippet {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .code-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .demo-section {
+            margin-bottom: 50px;
+        }
+
+        .section-divider {
+            height: 1px;
+            background-color: #e9ecef;
+            margin: 40px 0;
+            border: none;
+        }
+
+        .interactive-demo {
+            background-color: #e3f2fd;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .demo-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .demo-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .demo-status {
+            text-align: center;
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1 class="demo-title">Achievements Components</h1>
+            <p class="demo-description">Gamification system with badges, progress tracking, and achievement cards</p>
+        </div>
+
+        <div class="demo-section">
+            <div class="component-grid">
+                <!-- Achievement Card -->
+                <div class="component-wrapper">
+                    <h3 class="component-title">Achievement Card</h3>
+                    <div class="achievement-card-container achievement-unlocked" id="achievement-demo-card">
+                        <div class="achievement-header">
+                            <span class="achievement-icon">🏆</span>
+                            <div class="achievement-title">Consistency Champion</div>
+                            <div class="achievement-category">Habit Building</div>
+                            <div class="achievement-status status-unlocked">Unlocked</div>
+                        </div>
+
+                        <div class="achievement-content">
+                            <div class="achievement-description">
+                                Maintain a 30-day streak of daily check-ins and habit tracking. This achievement recognizes your dedication to building lasting positive habits.
+                            </div>
+
+                            <div class="achievement-details">
+                                <div class="detail-item">
+                                    <div class="detail-value">30</div>
+                                    <div class="detail-label">Day Streak</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-value">4.8</div>
+                                    <div class="detail-label">Avg Rating</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-value">95%</div>
+                                    <div class="detail-label">Completion</div>
+                                </div>
+                            </div>
+
+                            <div class="achievement-rewards">
+                                <div class="rewards-title">
+                                    <span>🎁</span> Achievement Rewards
+                                </div>
+                                <div class="reward-item">
+                                    <span class="reward-icon">🏅</span>
+                                    <span class="reward-text">Exclusive "Champion" badge for your profile</span>
+                                </div>
+                                <div class="reward-item">
+                                    <span class="reward-icon">📊</span>
+                                    <span class="reward-text">Advanced analytics dashboard access</span>
+                                </div>
+                                <div class="reward-item">
+                                    <span class="reward-icon">🎯</span>
+                                    <span class="reward-text">Priority support for goal setting</span>
+                                </div>
+                            </div>
+
+                            <div class="achievement-actions">
+                                <button class="action-btn btn-primary" onclick="shareDemoAchievement()">Share Achievement</button>
+                                <button class="action-btn btn-secondary" onclick="viewDemoDetails()">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-snippet">
+                        <div class="code-title">Usage:</div>
+                        &lt;div class="achievement-card-container"&gt;<br>
+                        &nbsp;&nbsp;&lt;!-- Achievement display with rewards --&gt;<br>
+                        &lt;/div&gt;
+                    </div>
+                </div>
+
+                <!-- Badge Display -->
+                <div class="component-wrapper">
+                    <h3 class="component-title">Badge Display</h3>
+                    <div class="achievement-container">
+                        <div class="achievement-header">
+                            <div class="achievement-title">Achievement Badges</div>
+                            <div class="achievement-subtitle">Your collection of earned achievements</div>
+                        </div>
+
+                        <div class="achievement-content">
+                            <div class="badge-stats">
+                                <div class="stat-card">
+                                    <div class="stat-value">24</div>
+                                    <div class="stat-label">Badges Earned</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">8</div>
+                                    <div class="stat-label">Collections</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">92%</div>
+                                    <div class="stat-label">Completion</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">156</div>
+                                    <div class="stat-label">Total Points</div>
+                                </div>
+                            </div>
+
+                            <div class="badge-showcase">
+                                <div class="showcase-title">🏆 Featured Achievements</div>
+                                <div class="featured-badges">
+                                    <div class="featured-badge">
+                                        <span class="featured-icon">🔥</span>
+                                        <div class="featured-name">Streak Master</div>
+                                        <div class="featured-date">Earned Dec 15</div>
+                                    </div>
+                                    <div class="featured-badge">
+                                        <span class="featured-icon">💪</span>
+                                        <div class="featured-name">Strength Champion</div>
+                                        <div class="featured-date">Earned Dec 10</div>
+                                    </div>
+                                    <div class="featured-badge">
+                                        <span class="featured-icon">🏃</span>
+                                        <div class="featured-name">Marathon Runner</div>
+                                        <div class="featured-date">Earned Nov 28</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="badge-filters">
+                                <button class="filter-btn active" onclick="filterDemoBadges('all')">All Badges</button>
+                                <button class="filter-btn" onclick="filterDemoBadges('unlocked')">Unlocked</button>
+                                <button class="filter-btn" onclick="filterDemoBadges('locked')">Locked</button>
+                                <button class="filter-btn" onclick="filterDemoBadges('progress')">In Progress</button>
+                            </div>
+
+                            <div class="badge-grid">
+                                <div class="badge-item unlocked">
+                                    <span class="badge-category">Fitness</span>
+                                    <div class="badge-status status-unlocked">Earned</div>
+                                    <span class="badge-icon">🏃</span>
+                                    <div class="badge-name">First Steps</div>
+                                    <div class="badge-description">Complete your first workout session</div>
+                                </div>
+
+                                <div class="badge-item unlocked">
+                                    <span class="badge-category">Consistency</span>
+                                    <div class="badge-status status-unlocked">Earned</div>
+                                    <span class="badge-icon">🔥</span>
+                                    <div class="badge-name">Week Warrior</div>
+                                    <div class="badge-description">7 consecutive days of activity</div>
+                                </div>
+
+                                <div class="badge-item unlocked rare">
+                                    <span class="badge-category">Strength</span>
+                                    <div class="badge-status status-unlocked">Earned</div>
+                                    <span class="badge-icon">💪</span>
+                                    <div class="badge-name">Power Lifter</div>
+                                    <div class="badge-description">Lift heavy weights for a month</div>
+                                </div>
+
+                                <div class="badge-item">
+                                    <span class="badge-category">Nutrition</span>
+                                    <div class="badge-status status-locked">Locked</div>
+                                    <span class="badge-icon">🥗</span>
+                                    <div class="badge-name">Nutrition Guru</div>
+                                    <div class="badge-description">Log meals for 30 consecutive days</div>
+                                    <div class="badge-progress">
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar-fill" style="width: 65%;"></div>
+                                        </div>
+                                        <div class="progress-text">19/30 days</div>
+                                    </div>
+                                    <div class="badge-locked-overlay">
+                                        <div class="locked-message">
+                                            <span class="locked-icon">🔒</span>
+                                            <div class="locked-text">Keep logging meals to unlock!</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="badge-item">
+                                    <span class="badge-category">Hydration</span>
+                                    <div class="badge-status status-progress">Progress</div>
+                                    <span class="badge-icon">💧</span>
+                                    <div class="badge-name">Water Champion</div>
+                                    <div class="badge-description">Drink 8 glasses daily for a week</div>
+                                    <div class="badge-progress">
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar-fill" style="width: 43%;"></div>
+                                        </div>
+                                        <div class="progress-text">3/7 days</div>
+                                    </div>
+                                </div>
+
+                                <div class="badge-item unlocked epic">
+                                    <span class="badge-category">Mastery</span>
+                                    <div class="badge-status status-unlocked">Earned</div>
+                                    <span class="badge-icon">👑</span>
+                                    <div class="badge-name">Grand Master</div>
+                                    <div class="badge-description">Achieve mastery in all categories</div>
+                                </div>
+                            </div>
+
+                            <div class="badge-actions">
+                                <button class="action-btn btn-primary" onclick="shareDemoBadges()">Share Badges</button>
+                                <button class="action-btn btn-secondary" onclick="viewDemoAllAchievements()">View All Achievements</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-snippet">
+                        <div class="code-title">Usage:</div>
+                        &lt;div class="achievement-container"&gt;<br>
+                        &nbsp;&nbsp;&lt;!-- Badge collection with filtering --&gt;<br>
+                        &lt;/div&gt;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Progress Indicator Section -->
+        <div class="demo-section">
+            <div class="component-wrapper">
+                <h3 class="component-title">Progress Indicator</h3>
+                <div class="progress-indicator-container">
+                    <div class="progress-header">
+                        <div class="progress-title">Achievement Progress</div>
+                        <div class="progress-subtitle">Track your journey to mastery</div>
+                    </div>
+
+                    <div class="progress-content">
+                        <div class="achievement-progress">
+                            <div class="progress-item current" id="demo-progress-item">
+                                <div class="progress-header-row">
+                                    <div class="progress-name">Consistency Champion</div>
+                                    <div class="progress-status status-in-progress">In Progress</div>
+                                </div>
+                                <div class="progress-description">
+                                    Maintain a 30-day streak of daily check-ins and habit tracking. You're currently on a 24-day streak!
+                                </div>
+                                <div class="progress-bar-section">
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar-fill" id="demo-progress-bar" style="width: 80%;"></div>
+                                    </div>
+                                    <div class="progress-stats">
+                                        <span class="progress-current" id="demo-current">24 days</span>
+                                        <span class="progress-target">30 days</span>
+                                    </div>
+                                </div>
+                                <div class="progress-details">
+                                    <div class="detail-item">
+                                        <div class="detail-value" id="demo-days-left">6</div>
+                                        <div class="detail-label">Days Left</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-value" id="demo-percentage">80%</div>
+                                        <div class="detail-label">Complete</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-value">4.8</div>
+                                        <div class="detail-label">Avg Rating</div>
+                                    </div>
+                                </div>
+                                <div class="milestone-indicator" id="demo-milestone">
+                                    <div class="milestone-text">🎯 You're 80% to earning the Consistency Champion badge!</div>
+                                </div>
+                            </div>
+
+                            <div class="progress-item completed">
+                                <div class="progress-header-row">
+                                    <div class="progress-name">Hydration Hero</div>
+                                    <div class="progress-status status-completed">Completed</div>
+                                </div>
+                                <div class="progress-description">
+                                    Drink at least 8 glasses of water daily for 14 consecutive days.
+                                </div>
+                                <div class="progress-bar-section">
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar-fill" style="width: 100%;"></div>
+                                    </div>
+                                    <div class="progress-stats">
+                                        <span class="progress-current">14 days</span>
+                                        <span class="progress-target">14 days</span>
+                                    </div>
+                                </div>
+                                <div class="progress-details">
+                                    <div class="detail-item">
+                                        <div class="detail-value">14</div>
+                                        <div class="detail-label">Days Done</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-value">100%</div>
+                                        <div class="detail-label">Success</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-value">8.5</div>
+                                        <div class="detail-label">Avg Glasses</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-summary">
+                            <div class="summary-title">Overall Progress Summary</div>
+                            <div class="summary-metrics">
+                                <div class="summary-metric">
+                                    <div class="summary-value">7</div>
+                                    <div class="summary-label">Completed</div>
+                                </div>
+                                <div class="summary-metric">
+                                    <div class="summary-value">3</div>
+                                    <div class="summary-label">In Progress</div>
+                                </div>
+                                <div class="summary-metric">
+                                    <div class="summary-value">5</div>
+                                    <div class="summary-label">Available</div>
+                                </div>
+                                <div class="summary-metric">
+                                    <div class="summary-value">87%</div>
+                                    <div class="summary-label">Overall</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-actions">
+                            <button class="action-btn btn-primary" onclick="viewDemoAllAchievements()">View All Achievements</button>
+                            <button class="action-btn btn-secondary" onclick="shareDemoProgress()">Share Progress</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+                    <div class="code-title">Usage:</div>
+                    &lt;div class="progress-indicator-container"&gt;<br>
+                    &nbsp;&nbsp;&lt;!-- Achievement progress tracking --&gt;<br>
+                    &lt;/div&gt;
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo Section -->
+        <div class="interactive-demo">
+            <h3 style="text-align: center; margin-bottom: 20px; color: #1976d2;">Interactive Demo Controls</h3>
+            <div class="demo-controls">
+                <button class="demo-btn" onclick="toggleDemoAchievementState()">Toggle Achievement State</button>
+                <button class="demo-btn" onclick="updateDemoProgress()">Update Progress</button>
+                <button class="demo-btn" onclick="simulateDemoCompletion()">Simulate Completion</button>
+                <button class="demo-btn" onclick="resetDemoProgress()">Reset Demo</button>
+            </div>
+            <div class="demo-status" id="interactive-status">
+                Try the interactive controls above to explore achievement functionality!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Interactive demo functionality
+        let currentProgress = 24;
+        const maxProgress = 30;
+        let achievementUnlocked = true;
+
+        function shareDemoAchievement() {
+            updateInteractiveStatus('Achievement shared successfully!');
+            alert('Achievement shared on social media!');
+        }
+
+        function viewDemoDetails() {
+            updateInteractiveStatus('Achievement details displayed');
+            // Would show detailed modal/popup
+        }
+
+        function filterDemoBadges(filterType) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            updateInteractiveStatus(`Filtered badges by: ${filterType}`);
+        }
+
+        function shareDemoBadges() {
+            updateInteractiveStatus('Badge collection shared!');
+            alert('Badge collection shared!');
+        }
+
+        function viewDemoAllAchievements() {
+            updateInteractiveStatus('All achievements displayed');
+            // Would navigate to full achievements page
+        }
+
+        function shareDemoProgress() {
+            updateInteractiveStatus('Progress shared successfully!');
+            alert('Progress shared on social media!');
+        }
+
+        function toggleDemoAchievementState() {
+            const card = document.getElementById('achievement-demo-card');
+
+            if (achievementUnlocked) {
+                card.classList.remove('achievement-unlocked');
+                card.classList.add('achievement-rare');
+                card.querySelector('.achievement-status').className = 'achievement-status status-locked';
+                card.querySelector('.achievement-status').textContent = 'Rare';
+                card.querySelector('.achievement-title').textContent = 'Legendary Master';
+                achievementUnlocked = false;
+                updateInteractiveStatus('Achievement changed to Rare status');
+            } else {
+                card.classList.remove('achievement-rare');
+                card.classList.add('achievement-unlocked');
+                card.querySelector('.achievement-status').className = 'achievement-status status-unlocked';
+                card.querySelector('.achievement-status').textContent = 'Unlocked';
+                card.querySelector('.achievement-title').textContent = 'Consistency Champion';
+                achievementUnlocked = true;
+                updateInteractiveStatus('Achievement changed to Unlocked status');
+            }
+        }
+
+        function updateDemoProgress() {
+            if (currentProgress < maxProgress) {
+                currentProgress += 1;
+                updateProgressDisplay();
+                updateInteractiveStatus(`Progress updated: ${currentProgress}/${maxProgress} days`);
+            } else {
+                updateInteractiveStatus('Achievement already at maximum progress!');
+            }
+        }
+
+        function simulateDemoCompletion() {
+            currentProgress = maxProgress;
+            updateProgressDisplay();
+
+            const progressItem = document.getElementById('demo-progress-item');
+            progressItem.classList.add('newly-completed');
+            progressItem.classList.remove('current');
+            progressItem.querySelector('.progress-status').className = 'progress-status status-completed';
+            progressItem.querySelector('.progress-status').textContent = 'Completed';
+
+            updateInteractiveStatus('🎉 Achievement completed! Congratulations!');
+        }
+
+        function resetDemoProgress() {
+            currentProgress = 24;
+            updateProgressDisplay();
+
+            const progressItem = document.getElementById('demo-progress-item');
+            progressItem.classList.remove('newly-completed', 'completed');
+            progressItem.classList.add('current');
+            progressItem.querySelector('.progress-status').className = 'progress-status status-in-progress';
+            progressItem.querySelector('.progress-status').textContent = 'In Progress';
+
+            updateInteractiveStatus('Demo progress reset to initial state');
+        }
+
+        function updateProgressDisplay() {
+            const percentage = Math.round((currentProgress / maxProgress) * 100);
+            const daysLeft = maxProgress - currentProgress;
+
+            document.getElementById('demo-progress-bar').style.width = `${percentage}%`;
+            document.getElementById('demo-current').textContent = `${currentProgress} days`;
+            document.getElementById('demo-days-left').textContent = daysLeft;
+            document.getElementById('demo-percentage').textContent = `${percentage}%`;
+
+            const milestone = document.getElementById('demo-milestone');
+            if (percentage >= 90) {
+                milestone.innerHTML = '<div class="milestone-text">🎯 You\'re almost there! Just ' + daysLeft + ' days to go!</div>';
+            } else if (percentage >= 75) {
+                milestone.innerHTML = '<div class="milestone-text">🚀 Great progress! ' + percentage + '% complete!</div>';
+            } else {
+                milestone.innerHTML = '<div class="milestone-text">🎯 You\'re ' + percentage + '% to earning the Consistency Champion badge!</div>';
+            }
+        }
+
+        function updateInteractiveStatus(message) {
+            const statusElement = document.getElementById('interactive-status');
+            statusElement.textContent = message;
+            statusElement.style.color = '#1976d2';
+            statusElement.style.fontWeight = '600';
+
+            setTimeout(() => {
+                statusElement.style.color = '#2c3e50';
+                statusElement.style.fontWeight = '500';
+            }, 4000);
+        }
+
+        // Initialize demo
+        document.addEventListener('DOMContentLoaded', function() {
+            updateInteractiveStatus('Demo loaded - explore the achievement components!');
+        });
+    </script>
+</body>
+</html>

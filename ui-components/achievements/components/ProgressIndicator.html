@@ -1,0 +1,36 @@
+<!--
+  ProgressIndicator Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: A visual indicator showing progress towards the next rank or major achievement.
+  Features:
+  - Multi-stage progress bar.
+  - Rank icons.
+  - Percentage display.
+  - Motivational feedback.
+-->
+
+<div class="lhp-progress-indicator-container">
+    <div class="lhp-progress-header">
+        <span class="lhp-current-rank">Rank: Novice Healer</span>
+        <span class="lhp-next-rank">Next: Body Guardian</span>
+    </div>
+
+    <div class="lhp-multi-stage-bar">
+        <div class="lhp-stage complete" title="Novice">
+            <span class="lhp-stage-icon">🌱</span>
+        </div>
+        <div class="lhp-stage active" title="Guardian">
+            <div class="lhp-stage-fill" style="width: 45%;"></div>
+            <span class="lhp-stage-icon">🛡️</span>
+        </div>
+        <div class="lhp-stage locked" title="Master">
+            <span class="lhp-stage-icon">👑</span>
+        </div>
+    </div>
+
+    <div class="lhp-progress-footer">
+        <p>450 / 1000 XP to next rank</p>
+        <span class="lhp-streak-info">🔥 12 Day Streak</span>
+    </div>
+</div>

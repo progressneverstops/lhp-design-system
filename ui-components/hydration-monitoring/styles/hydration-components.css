@@ -1,0 +1,142 @@
+/* Hydration Monitoring Component Styles */
+.hydration-log-card, .hydration-progress-card, .hydration-stats-card, .hydration-goal-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e0f2f1;
+}
+
+[data-theme="dark"] .hydration-log-card, 
+[data-theme="dark"] .hydration-progress-card, 
+[data-theme="dark"] .hydration-stats-card, 
+[data-theme="dark"] .hydration-goal-card {
+    background: #1a1a1a;
+    border-color: #004d40;
+    color: #f8f9fa;
+}
+
+h3 {
+    margin-top: 0;
+    color: #4db6ac;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+}
+
+/* Water Log Buttons */
+.quick-log {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.glass-btn {
+    flex: 1;
+    padding: 12px 8px;
+    border-radius: 8px;
+    border: 1px solid #4db6ac;
+    background: #e0f2f1;
+    color: #00796b;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.glass-btn:hover {
+    background: #b2dfdb;
+    transform: translateY(-2px);
+}
+
+.custom-log {
+    display: flex;
+    gap: 12px;
+}
+
+/* Progress Circle */
+.progress-circle-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 16px;
+}
+
+.progress-circle {
+    transform: rotate(-90deg);
+}
+
+.bg-circle {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 8;
+}
+
+.fg-circle {
+    fill: none;
+    stroke: #4db6ac;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease-out;
+}
+
+.percentage-text {
+    font-size: 18px;
+    font-weight: 700;
+    fill: #00796b;
+    transform: rotate(90deg);
+    transform-origin: center;
+}
+
+[data-theme="dark"] .percentage-text {
+    fill: #4db6ac;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.label {
+    display: block;
+    font-size: 0.7rem;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #00796b;
+}
+
+/* Form Controls */
+.lhp-input, .lhp-select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 12px;
+}
+
+.lhp-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    background: #4db6ac;
+    color: white;
+}
+
+.lhp-btn:hover {
+    background: #26a69a;
+}
+

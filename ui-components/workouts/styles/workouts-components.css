@@ -1,0 +1,145 @@
+/* 
+  Workout & Physical Exercise Component Styles
+  Part of the Lighthouse Portal Design System
+*/
+
+:root {
+    --lhp-workout-bg: #1e1e1e;
+    --lhp-workout-card-bg: #2d2d2d;
+    --lhp-workout-accent: #ff8c00;
+    --lhp-workout-accent-vibrant: #ff6b35;
+    --lhp-workout-text: #ffffff;
+    --lhp-workout-text-muted: #aaaaaa;
+    --lhp-workout-border: #444;
+    
+    --lhp-intensity-high: #ff5252;
+    --lhp-intensity-med: #ffb142;
+    --lhp-intensity-low: #33d9b2;
+}
+
+/* Container & Layout */
+.lhp-workout-container,
+.lhp-exercise-card,
+.lhp-progress-tracker {
+    background: var(--lhp-workout-bg);
+    color: var(--lhp-workout-text);
+    border: 2px solid var(--lhp-workout-border);
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* Header & Actions */
+.lhp-workout-header .lhp-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.lhp-workout-header h2 { margin: 0; font-size: 1.5rem; }
+.lhp-subtitle { color: var(--lhp-workout-text-muted); margin: 0; font-size: 0.9rem; }
+
+.lhp-btn-vibrant {
+    background: linear-gradient(135deg, var(--lhp-workout-accent), var(--lhp-workout-accent-vibrant));
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+    transition: transform 0.2s;
+    margin-left: 8px;
+}
+
+.lhp-btn-vibrant:hover { transform: translateY(-2px); }
+.lhp-btn-vibrant.secondary { background: #444; box-shadow: none; }
+
+/* Table Styles */
+.lhp-workout-table-wrapper { margin-top: 24px; overflow-x: auto; }
+.lhp-workout-table { width: 100%; border-collapse: collapse; }
+.lhp-workout-table th { text-align: left; padding: 12px; border-bottom: 2px solid var(--lhp-workout-border); font-size: 0.8rem; text-transform: uppercase; color: var(--lhp-workout-text-muted); }
+.lhp-workout-table td { padding: 16px 12px; border-bottom: 1px solid var(--lhp-workout-border); font-size: 0.9rem; }
+
+.lhp-activity-icon { margin-right: 8px; }
+
+.lhp-intensity { padding: 4px 8px; border-radius: 4px; font-weight: 700; font-size: 0.7rem; text-transform: uppercase; }
+.lhp-intensity.high { background: rgba(255, 82, 82, 0.2); color: var(--lhp-intensity-high); }
+.lhp-intensity.med { background: rgba(255, 177, 66, 0.2); color: var(--lhp-intensity-med); }
+.lhp-intensity.low { background: rgba(51, 217, 178, 0.2); color: var(--lhp-intensity-low); }
+
+.lhp-status { font-size: 0.8rem; font-weight: 500; }
+.lhp-status.complete { color: #81c784; }
+.lhp-status.pending { color: #ffb142; }
+
+/* Footer */
+.lhp-workout-footer { margin-top: 24px; display: flex; justify-content: center; }
+.lhp-add-session-btn {
+    background: transparent;
+    border: 2px dashed var(--lhp-workout-accent);
+    color: var(--lhp-workout-accent);
+    padding: 12px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.lhp-add-session-btn:hover { background: rgba(255, 140, 0, 0.1); border-style: solid; }
+
+/* Exercise Card Specifics */
+.lhp-exercise-media { margin-bottom: 20px; }
+.lhp-video-placeholder {
+    height: 200px;
+    background: #000;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+
+.lhp-play-icon { font-size: 3rem; margin-bottom: 10px; opacity: 0.7; }
+
+.lhp-exercise-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.lhp-badge { background: #444; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; }
+
+.lhp-exercise-cues h4 { margin: 0 0 10px 0; font-size: 0.9rem; color: var(--lhp-workout-accent); }
+.lhp-exercise-cues ul { padding-left: 20px; margin: 0; color: var(--lhp-workout-text-muted); font-size: 0.85rem; }
+.lhp-exercise-cues li { margin-bottom: 6px; }
+
+.lhp-quick-log { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--lhp-workout-border); }
+.lhp-log-inputs { display: flex; gap: 15px; margin-bottom: 16px; }
+.lhp-field { flex: 1; }
+.lhp-field label { display: block; font-size: 0.7rem; color: var(--lhp-workout-text-muted); margin-bottom: 4px; }
+.lhp-field input { width: 100%; padding: 10px; background: #333; border: 1px solid #444; border-radius: 6px; color: #fff; text-align: center; }
+
+.lhp-save-set-btn { width: 100%; padding: 12px; background: var(--lhp-workout-accent); color: #fff; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+/* Progress Tracker Specifics */
+.lhp-tracker-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; }
+.lhp-select-small { background: #333; border: 1px solid #444; color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; }
+
+.lhp-period-toggle { display: flex; background: #333; padding: 2px; border-radius: 6px; margin-top: 10px; }
+.lhp-period-toggle button { background: transparent; border: none; color: #666; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.7rem; font-weight: 700; }
+.lhp-period-toggle button.active { background: #444; color: #fff; }
+
+.lhp-mock-chart { height: 150px; display: flex; align-items: flex-end; gap: 12px; margin-bottom: 10px; border-bottom: 2px solid #444; padding-bottom: 10px; }
+.lhp-bar { flex: 1; background: #444; border-radius: 4px 4px 0 0; position: relative; transition: height 0.3s; }
+.lhp-bar.highlighted { background: var(--lhp-workout-accent); }
+
+.lhp-milestone { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.6rem; background: var(--lhp-workout-accent); color: #fff; padding: 2px 6px; border-radius: 4px; }
+
+.lhp-chart-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: #666; }
+
+.lhp-tracker-stats { margin-top: 24px; display: flex; gap: 15px; }
+.lhp-stat-pill { flex: 1; background: var(--lhp-workout-card-bg); padding: 12px; border-radius: 12px; border: 1px solid #444; }
+.lhp-stat-pill .label { display: block; font-size: 0.65rem; color: var(--lhp-workout-text-muted); margin-bottom: 4px; }
+.lhp-stat-pill .value { font-size: 1.1rem; font-weight: 800; }
+.lhp-stat-pill .value.positive { color: #81c784; }

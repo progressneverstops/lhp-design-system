@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vice Tracking - Example Usage</title>
+    <link rel="stylesheet" href="../styles/vice-components.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #f0f2f5; padding: 40px; }
+        .dashboard-mock { max-width: 500px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-mock">
+        <div class="header">
+            <h1>Habit Tracker</h1>
+            <p>Example implementation of Vice Tracking UI</p>
+        </div>
+
+        <!-- 1. Selection -->
+        <div id="selector-container"></div>
+
+        <!-- 2. Progress -->
+        <div id="progress-container"></div>
+
+        <!-- 3. Replacements -->
+        <div id="replacement-container"></div>
+
+        <!-- 4. Reflection -->
+        <div id="reflection-container"></div>
+    </div>
+
+    <script>
+        // Mock data and component loading logic
+        async function loadComponents() {
+            const components = [
+                { id: 'selector-container', path: '../components/ViceSelector.html' },
+                { id: 'progress-container', path: '../components/ProgressView.html' },
+                { id: 'replacement-container', path: '../components/ReplacementForm.html' },
+                { id: 'reflection-container', path: '../components/ReflectionForm.html' }
+            ];
+
+            for (const comp of components) {
+                const response = await fetch(comp.path);
+                const html = await response.text();
+                document.getElementById(comp.id).innerHTML = html;
+            }
+        }
+
+        loadComponents();
+    </script>
+</body>
+</html>
+

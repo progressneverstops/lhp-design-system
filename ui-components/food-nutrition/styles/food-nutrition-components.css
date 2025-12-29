@@ -1,0 +1,242 @@
+/* 
+  Food & Nutrition Component Styles
+  Part of the Lighthouse Portal Design System
+*/
+
+:root {
+    --lhp-food-bg: #1a1a1a;
+    --lhp-food-border: #333;
+    --lhp-food-accent: #f79420;
+    --lhp-food-text: #ffffff;
+    --lhp-food-text-muted: #cccccc;
+    --lhp-food-card-bg: #2a2a2a;
+    --lhp-food-input-bg: #ffffff;
+    --lhp-food-input-text: #000000;
+    
+    --lhp-fat: #4db6ac;
+    --lhp-fiber: #81c784;
+    --lhp-protein: #ff8a65;
+}
+
+/* Container & Layout */
+.lhp-food-search-container,
+.lhp-nutrition-card,
+.lhp-scanner-container,
+.lhp-food-log-container {
+    background: var(--lhp-food-bg);
+    color: var(--lhp-food-text);
+    border: 2px solid var(--lhp-food-border);
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 500px;
+    margin: 20px auto;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* Header & Tips */
+.lhp-search-header h2,
+.lhp-card-header h2,
+.lhp-scanner-header h2,
+.lhp-form-header h2 {
+    margin: 0 0 8px 0;
+    color: var(--lhp-food-accent);
+}
+
+.lhp-tip {
+    font-size: 0.9rem;
+    color: var(--lhp-food-text-muted);
+    background: rgba(247, 148, 32, 0.1);
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 4px solid var(--lhp-food-accent);
+}
+
+/* Forms & Inputs */
+.lhp-input-group {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.lhp-search-input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 2px solid var(--lhp-food-accent);
+    background: var(--lhp-food-input-bg);
+    color: var(--lhp-food-input-text);
+    font-size: 1rem;
+}
+
+.lhp-search-btn, .lhp-log-btn {
+    background: var(--lhp-food-accent);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.lhp-select, .lhp-unit-select, input[type="number"], textarea {
+    width: 100%;
+    padding: 12px;
+    background: var(--lhp-food-input-bg);
+    color: var(--lhp-food-input-text);
+    border: 2px solid var(--lhp-food-border);
+    border-radius: 6px;
+    margin-top: 8px;
+    font-size: 1rem;
+}
+
+.lhp-form-group {
+    margin-bottom: 20px;
+}
+
+.lhp-input-tip {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--lhp-food-text-muted);
+    margin-top: 5px;
+}
+
+/* Nutrition Card Specifics */
+.lhp-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.lhp-density-badge {
+    background: var(--lhp-food-accent);
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.lhp-badge-label { font-size: 0.7rem; display: block; }
+.lhp-badge-value { font-size: 1.2rem; font-weight: 800; }
+
+.lhp-macro-breakdown { margin: 24px 0; }
+.lhp-macro { margin-bottom: 16px; }
+.lhp-macro-label { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem; }
+
+.lhp-progress-bar {
+    height: 10px;
+    background: var(--lhp-food-border);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.lhp-progress-fill { height: 100%; border-radius: 5px; }
+.lhp-progress-fill.fat { background: var(--lhp-fat); }
+.lhp-progress-fill.fiber { background: var(--lhp-fiber); }
+.lhp-progress-fill.protein { background: var(--lhp-protein); }
+
+.lhp-tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.lhp-tag {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    background: var(--lhp-food-card-bg);
+    border: 1px solid var(--lhp-food-border);
+}
+
+.lhp-lifestyle-tip {
+    margin-top: 24px;
+    display: flex;
+    gap: 15px;
+    padding: 16px;
+    background: rgba(247, 148, 32, 0.05);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+/* Scanner Specifics */
+.lhp-viewfinder {
+    position: relative;
+    height: 300px;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.lhp-scan-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.lhp-scan-frame {
+    width: 250px;
+    height: 150px;
+    position: relative;
+}
+
+.lhp-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--lhp-food-accent);
+    border-style: solid;
+}
+
+.top-left { border-width: 4px 0 0 4px; top: 0; left: 0; }
+.top-right { border-width: 4px 4px 0 0; top: 0; right: 0; }
+.bottom-left { border-width: 0 0 4px 4px; bottom: 0; left: 0; }
+.bottom-right { border-width: 0 4px 4px 0; bottom: 0; right: 0; }
+
+.lhp-scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--lhp-food-accent);
+    box-shadow: 0 0 8px var(--lhp-food-accent);
+    animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+/* Results List */
+.lhp-food-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid var(--lhp-food-border);
+    transition: background 0.2s;
+}
+
+.lhp-food-item:hover { background: var(--lhp-food-card-bg); }
+
+.lhp-food-name { margin: 0; font-size: 1rem; }
+.lhp-food-meta { font-size: 0.8rem; color: var(--lhp-food-text-muted); }
+
+.lhp-food-stats { display: flex; align-items: center; gap: 15px; }
+.lhp-stat { text-align: center; font-size: 0.7rem; }
+.lhp-stat .lhp-val { display: block; font-weight: bold; font-size: 0.9rem; }
+
+.lhp-add-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--lhp-food-accent);
+    background: transparent;
+    color: var(--lhp-food-accent);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

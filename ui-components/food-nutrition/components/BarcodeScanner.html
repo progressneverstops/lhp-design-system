@@ -1,0 +1,45 @@
+<!--
+  BarcodeScanner Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: A UI placeholder and interface for food barcode scanning.
+  Features:
+  - Responsive camera viewfinder layout.
+  - Scan overlay with focus area.
+  - Manual entry fallback.
+  - High-contrast action buttons.
+-->
+
+<div class="lhp-scanner-container">
+    <div class="lhp-scanner-header">
+        <h2>Scan Food Item</h2>
+        <button class="lhp-close-btn" aria-label="Close scanner">&times;</button>
+    </div>
+
+    <div class="lhp-viewfinder">
+        <div class="lhp-scan-overlay">
+            <div class="lhp-scan-frame">
+                <div class="lhp-corner top-left"></div>
+                <div class="lhp-corner top-right"></div>
+                <div class="lhp-corner bottom-left"></div>
+                <div class="lhp-corner bottom-right"></div>
+                <div class="lhp-scan-line"></div>
+            </div>
+        </div>
+        <!-- Mock Video Feed -->
+        <div class="lhp-video-placeholder">
+            <span class="lhp-icon">📷</span>
+            <p>Camera Viewfinder Active</p>
+        </div>
+    </div>
+
+    <div class="lhp-scanner-controls">
+        <p class="lhp-instruction">Align barcode within the frame to scan.</p>
+        <div class="lhp-action-row">
+            <button class="lhp-flash-btn" aria-label="Toggle flash">
+                <span class="lhp-icon">🔦</span>
+            </button>
+            <button class="lhp-manual-btn">Enter Barcode Manually</button>
+        </div>
+    </div>
+</div>

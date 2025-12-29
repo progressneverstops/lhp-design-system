@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydration Monitoring - Example Usage</title>
+    <link rel="stylesheet" href="../styles/hydration-components.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #f4faf9; padding: 40px; }
+        .hydration-dashboard { max-width: 450px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 40px; color: #00796b; }
+    </style>
+</head>
+<body>
+    <div class="hydration-dashboard">
+        <div class="header">
+            <h1>Stay Hydrated</h1>
+            <p>Example of Hydration Monitoring Components</p>
+        </div>
+
+        <!-- 1. Progress -->
+        <div id="progress-container"></div>
+
+        <!-- 2. Logging -->
+        <div id="log-container"></div>
+
+        <!-- 3. Stats -->
+        <div id="stats-container"></div>
+
+        <!-- 4. Goal Setting -->
+        <div id="goal-container"></div>
+    </div>
+
+    <script>
+        async function loadComponents() {
+            const components = [
+                { id: 'progress-container', path: '../components/ProgressCircle.html' },
+                { id: 'log-container', path: '../components/WaterIntakeForm.html' },
+                { id: 'stats-container', path: '../components/StatsCard.html' },
+                { id: 'goal-container', path: '../components/GoalSettingForm.html' }
+            ];
+
+            for (const comp of components) {
+                const response = await fetch(comp.path);
+                const html = await response.text();
+                document.getElementById(comp.id).innerHTML = html;
+            }
+        }
+
+        loadComponents();
+    </script>
+</body>
+</html>
+

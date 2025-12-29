@@ -1,0 +1,183 @@
+/* 
+  Achievements & Badges Component Styles
+  Part of the Lighthouse Portal Design System
+*/
+
+:root {
+    --lhp-ach-bg: #1a1a1a;
+    --lhp-ach-card-bg: #252525;
+    --lhp-ach-accent: #f79420;
+    --lhp-ach-text: #ffffff;
+    --lhp-ach-text-muted: #888888;
+    --lhp-ach-border: #333333;
+    
+    --lhp-silver: #C0C0C0;
+    --lhp-gold: #FFD700;
+}
+
+/* Achievement Card */
+.lhp-achievement-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: var(--lhp-ach-card-bg);
+    border: 1px solid var(--lhp-ach-border);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    max-width: 500px;
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.lhp-achievement-card.earned {
+    border-color: var(--lhp-ach-accent);
+    box-shadow: 0 4px 12px rgba(247, 148, 32, 0.1);
+}
+
+.lhp-achievement-card.locked {
+    opacity: 0.6;
+    filter: grayscale(0.8);
+}
+
+.lhp-achievement-icon {
+    font-size: 2.5rem;
+    margin-right: 20px;
+}
+
+.lhp-achievement-details { flex: 1; }
+.lhp-achievement-details h3 { margin: 0 0 4px 0; font-size: 1.1rem; color: var(--lhp-ach-text); }
+.lhp-achievement-details p { margin: 0; font-size: 0.85rem; color: var(--lhp-ach-text-muted); line-height: 1.4; }
+.lhp-earned-date { display: block; margin-top: 8px; font-size: 0.7rem; color: var(--lhp-ach-accent); font-weight: 600; }
+
+.lhp-mini-progress {
+    height: 4px;
+    background: #444;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+.lhp-mini-progress .lhp-bar { height: 100%; background: var(--lhp-ach-accent); border-radius: 2px; }
+
+/* Badge Display (Premium) */
+.lhp-badge-display-container {
+    padding: 30px;
+    background: #000;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 500px;
+    margin: 40px auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.lhp-badge-title { color: #fff; margin: 0; font-size: 1.8rem; letter-spacing: 2px; }
+.lhp-badge-subtext { color: var(--lhp-ach-text-muted); font-size: 0.8rem; font-style: italic; margin-top: 10px; }
+
+.lhp-badge-media {
+    margin: 40px 0;
+    perspective: 1000px;
+}
+
+.lhp-badge-placeholder {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #333 0%, #111 100%);
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.lhp-badge-emoji { font-size: 5rem; filter: drop-shadow(0 0 15px var(--lhp-silver)); }
+
+/* Silver Glow Animation */
+.silver-glow {
+    border: 2px solid var(--lhp-silver);
+    box-shadow: 0 0 30px rgba(192, 192, 192, 0.4);
+    animation: silverPulse 4s infinite alternate;
+}
+
+@keyframes silverPulse {
+    from { box-shadow: 0 0 20px rgba(192, 192, 192, 0.3); }
+    to { box-shadow: 0 0 50px rgba(192, 192, 192, 0.6); }
+}
+
+.lhp-badge-actions { display: flex; flex-direction: column; gap: 10px; }
+.lhp-action-btn {
+    padding: 12px;
+    background: #222;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.lhp-action-btn.vibrant { background: var(--lhp-ach-accent); border: none; }
+.lhp-action-btn:hover { background: #333; transform: scale(1.02); }
+
+/* Multi-stage Progress Indicator */
+.lhp-progress-indicator-container {
+    padding: 24px;
+    background: var(--lhp-ach-bg);
+    border: 1px solid var(--lhp-ach-border);
+    border-radius: 16px;
+    max-width: 500px;
+    margin: 20px auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.lhp-progress-header { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; }
+.lhp-current-rank { color: var(--lhp-ach-accent); }
+
+.lhp-multi-stage-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 10px;
+}
+
+.lhp-multi-stage-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    right: 20px;
+    height: 4px;
+    background: #333;
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.lhp-stage {
+    width: 40px;
+    height: 40px;
+    background: #222;
+    border: 2px solid #444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.lhp-stage.complete { background: var(--lhp-ach-accent); border-color: var(--lhp-ach-accent); }
+.lhp-stage.active { border-color: var(--lhp-ach-accent); }
+.lhp-stage.locked { opacity: 0.5; }
+
+.lhp-stage-fill {
+    position: absolute;
+    top: 50%;
+    left: -120px; /* Adjust based on bar length */
+    width: 45%;
+    height: 4px;
+    background: var(--lhp-ach-accent);
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.lhp-progress-footer { display: flex; justify-content: space-between; margin-top: 20px; font-size: 0.75rem; color: var(--lhp-ach-text-muted); }
+.lhp-streak-info { color: #ff5252; font-weight: 800; }

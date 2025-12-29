@@ -1,0 +1,96 @@
+<!--
+  FoodSearch Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: A high-contrast, accessible food search interface.
+  Features:
+  - Accessible search input with clear labels.
+  - Group filtering (Seasonal, Local, Macro-focused).
+  - Mock results display.
+  - Theme-aware styling (Light/Dark).
+-->
+
+<div class="lhp-food-search-container">
+    <div class="lhp-search-header">
+        <h2>Explore Nourishment</h2>
+        <p class="lhp-tip">🌱 Tip: Choose seasonal foods for optimal nutrient density and body synthesis.</p>
+    </div>
+
+    <form class="lhp-search-form" onsubmit="return false;">
+        <div class="lhp-input-group">
+            <label for="food-query" class="sr-only">Search for food</label>
+            <input 
+                type="text" 
+                id="food-query" 
+                class="lhp-search-input" 
+                placeholder="Search: 'Wild Blueberries' or 'Organic Kale'..."
+                aria-label="Search for food"
+            >
+            <button type="submit" class="lhp-search-btn">
+                <span class="lhp-icon">🔍</span> Search
+            </button>
+        </div>
+
+        <div class="lhp-filter-group">
+            <label for="food-category">Focus Area:</label>
+            <select id="food-category" class="lhp-select">
+                <option value="all">All Foods</option>
+                <option value="seasonal">Seasonal & Local</option>
+                <option value="medicine">Food as Medicine</option>
+                <option value="high-protein">Muscle Recovery</option>
+                <option value="low-glycemic">Metabolic Stability</option>
+            </select>
+        </div>
+    </form>
+
+    <div class="lhp-results-summary">
+        <p>Showing <span class="lhp-count">3</span> results for <span class="lhp-query">"Wild"</span></p>
+    </div>
+
+    <div class="lhp-food-results">
+        <!-- Mock Result 1 -->
+        <div class="lhp-food-item" tabindex="0">
+            <div class="lhp-food-info">
+                <h3 class="lhp-food-name">Wild Blueberries</h3>
+                <span class="lhp-food-meta">Seasonal • High Antioxidant</span>
+            </div>
+            <div class="lhp-food-stats">
+                <div class="lhp-stat">
+                    <span class="lhp-label">Density</span>
+                    <span class="lhp-val">High</span>
+                </div>
+                <button class="lhp-add-btn" aria-label="Add Wild Blueberries to log">+</button>
+            </div>
+        </div>
+
+        <!-- Mock Result 2 -->
+        <div class="lhp-food-item" tabindex="0">
+            <div class="lhp-food-info">
+                <h3 class="lhp-food-name">Wild Caught Salmon</h3>
+                <span class="lhp-food-meta">Protien • Omega-3</span>
+            </div>
+            <div class="lhp-food-stats">
+                <div class="lhp-stat">
+                    <span class="lhp-label">Density</span>
+                    <span class="lhp-val">V. High</span>
+                </div>
+                <button class="lhp-add-btn" aria-label="Add Wild Caught Salmon to log">+</button>
+            </div>
+        </div>
+
+        <!-- Mock Result 3 -->
+        <div class="lhp-food-item" tabindex="0">
+            <div class="lhp-food-info">
+                <h3 class="lhp-food-name">Wild Arugula</h3>
+                <span class="lhp-food-meta">Local • Digestive Bitter</span>
+            </div>
+            <div class="lhp-food-stats">
+                <div class="lhp-stat">
+                    <span class="lhp-label">Density</span>
+                    <span class="lhp-val">Medium</span>
+                </div>
+                <button class="lhp-add-btn" aria-label="Add Wild Arugula to log">+</button>
+            </div>
+        </div>
+    </div>
+</div>

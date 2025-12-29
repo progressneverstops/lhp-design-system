@@ -1,0 +1,159 @@
+/* Vice Tracking Component Styles */
+.vice-selector-card, .vice-progress-card, .vice-analytics-card, .vice-reflection-card, .vice-replacement-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e9ecef;
+}
+
+[data-theme="dark"] .vice-selector-card, 
+[data-theme="dark"] .vice-progress-card, 
+[data-theme="dark"] .vice-analytics-card, 
+[data-theme="dark"] .vice-reflection-card, 
+[data-theme="dark"] .vice-replacement-card {
+    background: #1a1a1a;
+    border-color: #333333;
+    color: #f8f9fa;
+}
+
+h3 {
+    margin-top: 0;
+    color: #ff8c00;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+}
+
+/* Form Elements */
+.lhp-select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    background: #f8f9fa;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.helper-text {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #28a745;
+}
+
+/* Buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lhp-btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    text-align: center;
+}
+
+.lhp-btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.lhp-btn-success:hover {
+    background: #218838;
+}
+
+.lhp-btn-outline {
+    background: transparent;
+    border: 2px solid #dee2e6;
+    color: #6c757d;
+}
+
+.lhp-btn-outline:hover {
+    background: #f8f9fa;
+}
+
+/* Chart Placeholder */
+.mock-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 100px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 16px;
+}
+
+.bar {
+    flex: 1;
+    background: #ff8c00;
+    border-radius: 4px 4px 0 0;
+    min-height: 10px;
+}
+
+/* Reflection Form */
+.mood-selector {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 16px;
+}
+
+/* Replacement Pills */
+.suggestion-pill {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #e9f7ef;
+    color: #28a745;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    margin: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.suggestion-pill:hover {
+    background: #d4edda;
+}
+

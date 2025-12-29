@@ -1,0 +1,64 @@
+<!--
+  WorkoutPlanDisplay Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: A structured display for weekly workout plans and individual sessions.
+  Features:
+  - Weekly view with status indicators.
+  - High-contrast table for session details.
+  - Vibrant action buttons for logging and downloading.
+-->
+
+<div class="lhp-workout-container">
+    <div class="lhp-workout-header">
+        <div class="lhp-title-row">
+            <h2>💪 Weekly Movement Plan</h2>
+            <div class="lhp-actions">
+                <button class="lhp-btn-vibrant">📥 Download Plan</button>
+                <button class="lhp-btn-vibrant secondary">🔔 Set Reminder</button>
+            </div>
+        </div>
+        <p class="lhp-subtitle">Focus: Strength & Metabolic Flexibility</p>
+    </div>
+
+    <div class="lhp-workout-table-wrapper">
+        <table class="lhp-workout-table">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Activity</th>
+                    <th>Duration</th>
+                    <th>Intensity</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monday</td>
+                    <td><span class="lhp-activity-icon">🏃</span> Interval Sprints</td>
+                    <td>30 min</td>
+                    <td><span class="lhp-intensity high">High</span></td>
+                    <td><span class="lhp-status complete">✅ Done</span></td>
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td><span class="lhp-activity-icon">🧘</span> Restorative Flow</td>
+                    <td>45 min</td>
+                    <td><span class="lhp-intensity low">Low</span></td>
+                    <td><span class="lhp-status pending">⏳ Next</span></td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td><span class="lhp-activity-icon">🏋️</span> Functional Strength</td>
+                    <td>60 min</td>
+                    <td><span class="lhp-intensity med">Medium</span></td>
+                    <td><span class="lhp-status planned">📅 Planned</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="lhp-workout-footer">
+        <button class="lhp-add-session-btn">+ Log New Session</button>
+    </div>
+</div>
