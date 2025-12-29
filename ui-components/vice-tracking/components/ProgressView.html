@@ -1,22 +1,70 @@
-<div class="vice-progress-card">
-    <h3 id="active-vice-name">Habit Progress</h3>
-    <div class="stats-grid">
-        <div class="stat-item">
-            <span class="stat-label">Abstention Days</span>
-            <span id="abstention-days" class="stat-value">12</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-label">Current Streak</span>
-            <span id="current-streak" class="stat-value">5 days</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-label">Total Savings</span>
-            <span id="total-savings" class="stat-value">$120.00</span>
+<!--
+  ProgressView Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: Real-time abstention tracking with streak visualization.
+  Features:
+  - High-contrast metrics display
+  - Positive reinforcement messaging
+  - Streak reset with confirmation pattern
+-->
+
+<div class="lhp-vice-progress">
+    <div class="lhp-progress-header">
+        <h3><span id="active-vice-name">Your Progress</span></h3>
+        <div class="lhp-streak-badge">
+            <span class="lhp-flame">🔥</span>
+            <span id="current-streak" class="lhp-streak-count">5</span>
+            <span class="lhp-streak-label">Day Streak</span>
         </div>
     </div>
-    <div class="action-buttons">
-        <button id="abstain-btn" class="lhp-btn lhp-btn-success">I Abstained Today! ✨</button>
-        <button id="gone-back-btn" class="lhp-btn lhp-btn-outline">I Slipped Up (Reset Streak)</button>
+
+    <div class="lhp-metrics-grid">
+        <div class="lhp-metric-card">
+            <div class="lhp-metric-icon">📅</div>
+            <div class="lhp-metric-data">
+                <span class="lhp-metric-value" id="abstention-days">12</span>
+                <span class="lhp-metric-label">Total Days</span>
+            </div>
+        </div>
+        
+        <div class="lhp-metric-card success">
+            <div class="lhp-metric-icon">💰</div>
+            <div class="lhp-metric-data">
+                <span class="lhp-metric-value" id="total-savings">$120</span>
+                <span class="lhp-metric-label">Saved</span>
+            </div>
+        </div>
+        
+        <div class="lhp-metric-card">
+            <div class="lhp-metric-icon">⏱️</div>
+            <div class="lhp-metric-data">
+                <span class="lhp-metric-value" id="time-reclaimed">24h</span>
+                <span class="lhp-metric-label">Reclaimed</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="lhp-action-section">
+        <button id="abstain-btn" class="lhp-btn-primary" aria-label="Mark day as abstained">
+            ✨ I Abstained Today
+        </button>
+        <button id="reset-btn" class="lhp-btn-secondary" aria-label="Reset streak">
+            Reset Streak
+        </button>
+    </div>
+
+    <div class="lhp-motivational-message">
+        <p id="encouragement">Keep going! Every day is a victory. 🏆</p>
     </div>
 </div>
 
+<script>
+// Confirmation pattern for streak reset (best practice for destructive actions)
+document.getElementById('reset-btn')?.addEventListener('click', function() {
+    if (confirm('Are you sure you want to reset your streak? This action cannot be undone.')) {
+        // Reset logic would go here in real implementation
+        document.getElementById('current-streak').textContent = '0';
+    }
+});
+</script>

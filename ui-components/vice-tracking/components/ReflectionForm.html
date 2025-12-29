@@ -1,20 +1,76 @@
-<div class="vice-reflection-card">
+<!--
+  ReflectionForm Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: Psychological reflection interface for mood and challenge tracking.
+  Features:
+  - Emoji-based mood selector
+  - Structured prompt for qualitative data
+  - Character limit for focused responses
+-->
+
+<div class="lhp-vice-reflection">
     <h3>Daily Reflection</h3>
-    <form id="reflection-form" onsubmit="return false;">
-        <div class="form-group">
-            <label>How are you feeling today?</label>
-            <div class="mood-selector">
-                <span title="Great">😊</span>
-                <span title="OK">😐</span>
-                <span title="Struggling">😔</span>
-                <span title="Very Hard">😫</span>
-            </div>
+    <p class="lhp-subtitle">Track your emotional state and identify patterns in your journey</p>
+
+    <div class="lhp-form-group">
+        <label class="lhp-label">How are you feeling today?</label>
+        <div class="lhp-mood-selector">
+            <button type="button" class="lhp-mood-btn" data-mood="amazing" aria-label="Amazing">🤩</button>
+            <button type="button" class="lhp-mood-btn" data-mood="good" aria-label="Good">😊</button>
+            <button type="button" class="lhp-mood-btn" data-mood="neutral" aria-label="Neutral">😐</button>
+            <button type="button" class="lhp-mood-btn" data-mood="struggling" aria-label="Struggling">😔</button>
+            <button type="button" class="lhp-mood-btn" data-mood="difficult" aria-label="Very Difficult">😩</button>
         </div>
-        <div class="form-group">
-            <label>What was your biggest challenge?</label>
-            <textarea placeholder="Write your thoughts... (e.g., social pressure, stress, boredom)"></textarea>
+    </div>
+
+    <div class="lhp-form-group">
+        <label for="reflection-notes" class="lhp-label">What challenges did you face today?</label>
+        <textarea 
+            id="reflection-notes" 
+            class="lhp-textarea" 
+            placeholder="Describe any triggers, cravings, or difficult moments..."
+            maxlength="500"
+            aria-label="Reflection notes"
+        ></textarea>
+        <div class="lhp-char-count">
+            <span id="char-count">0</span> / 500 characters
         </div>
-        <button type="button" class="lhp-btn lhp-btn-success">Save Reflection</button>
-    </form>
+    </div>
+
+    <button type="button" class="lhp-btn-primary">Save Reflection</button>
 </div>
 
+<script>
+// Mood selector interaction
+document.querySelectorAll('.lhp-mood-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.lhp-mood-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+    });
+});
+
+// Character counter
+const textarea = document.getElementById('reflection-notes');
+const charCount = document.getElementById('char-count');
+if (textarea && charCount) {
+    textarea.addEventListener('input', function() {
+        charCount.textContent = this.value.length;
+    });
+}
+</script>
+
+<style>
+.lhp-char-count {
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--lhp-vice-text-muted);
+    margin-top: 4px;
+}
+
+.lhp-mood-btn.selected {
+    background: rgba(247, 148, 32, 0.15);
+    border-color: var(--lhp-vice-primary);
+    transform: scale(1.1);
+}
+</style>

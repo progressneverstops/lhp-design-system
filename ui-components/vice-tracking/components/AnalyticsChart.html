@@ -1,17 +1,45 @@
-<div class="vice-analytics-card">
-    <h3>Savings & Impact</h3>
-    <div class="chart-container">
-        <!-- Visualization Placeholder (UI only) -->
-        <div class="mock-chart">
-            <div class="bar" style="height: 40%"></div>
-            <div class="bar" style="height: 60%"></div>
-            <div class="bar" style="height: 85%"></div>
-            <div class="bar" style="height: 100%"></div>
+<!--
+  AnalyticsChart Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: Visual progress tracking over time.
+  Features:
+  - Clean chart placeholder for integration
+  - Time-based metrics display
+  - High-contrast design
+-->
+
+<div class="lhp-vice-analytics">
+    <h3>Analytics Overview</h3>
+    <p class="lhp-subtitle">Track your progress and identify patterns over time</p>
+
+    <div class="lhp-chart-placeholder">
+        <p>📊 Chart visualization would appear here<br><small>Integrate with your preferred charting library (Chart.js, D3, etc.)</small></p>
+    </div>
+
+    <div class="lhp-metrics-grid">
+        <div class="lhp-metric-card">
+            <div class="lhp-metric-icon">📈</div>
+            <div class="lhp-metric-data">
+                <span class="lhp-metric-value">87%</span>
+                <span class="lhp-metric-label">Success Rate</span>
+            </div>
+        </div>
+        
+        <div class="lhp-metric-card">
+            <div class="lhp-metric-icon">⏱️</div>
+            <div class="lhp-metric-data">
+                <span class="lhp-metric-value">24h</span>
+                <span class="lhp-metric-label">Time Saved</span>
+            </div>
+        </div>
+        
+        <div class="lhp-metric-card">
+            <div class="lhp-metric-icon">🎯</div>
+            <div class="lhp-metric-data">
+                <span class="lhp-metric-value">18</span>
+                <span class="lhp-metric-label">Longest Streak</span>
+            </div>
         </div>
     </div>
-    <div class="savings-breakdown">
-        <p>Monthly Potential: <span id="monthly-potential">$300.00</span></p>
-        <p>Time Reclaimed: <span id="time-reclaimed">24 hours</span></p>
-    </div>
 </div>
-

@@ -1,12 +1,58 @@
-<div class="vice-selector-card">
-    <h3>Select Your Habit</h3>
-    <select id="vice-selector" class="lhp-select">
-        <option value="Smoking">Smoking</option>
-        <option value="Sugar">Sugar</option>
-        <option value="Alcohol">Alcohol</option>
-        <option value="Caffeine">Caffeine</option>
-        <option value="custom">Add Custom Habit...</option>
-    </select>
-    <p class="helper-text">Focus on one habit at a time to build lasting change.</p>
+<!--
+  ViceSelector Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: High-contrast habit selection interface with accessibility support.
+  Features:
+  - Clear visual hierarchy
+  - Accessible labels and ARIA attributes
+  - Custom habit input support
+-->
+
+<div class="lhp-vice-selector">
+    <div class="lhp-selector-header">
+        <h3>Select Habit to Track</h3>
+        <p class="lhp-subtitle">Focus on one behavioral change at a time for maximum impact</p>
+    </div>
+    
+    <div class="lhp-form-group">
+        <label for="vice-selector" class="lhp-label">Current Focus</label>
+        <select id="vice-selector" class="lhp-select" aria-label="Select habit to track">
+            <option value="">Choose a habit...</option>
+            <option value="smoking">🚬 Smoking</option>
+            <option value="sugar">🍬 Sugar Consumption</option>
+            <option value="alcohol">🍺 Alcohol</option>
+            <option value="caffeine">☕ Caffeine</option>
+            <option value="screen-time">📱 Excess Screen Time</option>
+            <option value="custom">➕ Add Custom Habit</option>
+        </select>
+    </div>
+
+    <div id="custom-habit-input" class="lhp-custom-input" style="display: none;">
+        <label for="custom-habit-name" class="lhp-label">Custom Habit Name</label>
+        <input 
+            type="text" 
+            id="custom-habit-name" 
+            class="lhp-input" 
+            placeholder="e.g., Social Media, Procrastination..."
+            maxlength="50"
+            aria-label="Enter custom habit name"
+        >
+    </div>
+
+    <div class="lhp-helper-box">
+        <span class="lhp-icon">💡</span>
+        <p>Track one habit consistently for 30 days to establish lasting behavioral change.</p>
+    </div>
 </div>
 
+<script>
+document.getElementById('vice-selector')?.addEventListener('change', function(e) {
+    const customInput = document.getElementById('custom-habit-input');
+    if (e.target.value === 'custom' && customInput) {
+        customInput.style.display = 'block';
+    } else if (customInput) {
+        customInput.style.display = 'none';
+    }
+});
+</script>
