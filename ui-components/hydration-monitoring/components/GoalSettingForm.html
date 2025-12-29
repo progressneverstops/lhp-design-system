@@ -1,20 +1,239 @@
-<div class="hydration-goal-card">
-    <h3>Set Your Goal</h3>
-    <form class="goal-form" onsubmit="return false;">
-        <div class="form-group" style="margin-bottom: 16px; text-align: left;">
-            <label style="display: block; font-size: 0.875rem; margin-bottom: 8px;">Daily Target (ml)</label>
-            <input type="number" value="3000" class="lhp-input" style="margin-bottom: 0;">
+<!--
+  GoalSettingForm Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: Configurable hydration goal and reminder settings.
+  Features:
+  - Daily target customization
+  - Reminder frequency options
+  - Body weight-based recommendation
+  - Form validation
+-->
+
+<div class="lhp-hydration-goal">
+    <h3>Hydration Goals</h3>
+    <p class="lhp-subtitle">Customize your daily target and reminder schedule</p>
+
+    <form class="lhp-goal-form">
+        <div class="lhp-form-group">
+            <label for="daily-target" class="lhp-label">Daily Target</label>
+            <div class="lhp-input-group">
+                <input 
+                    type="number" 
+                    id="daily-target" 
+                    class="lhp-input" 
+                    value="3000"
+                    min="500"
+                    max="10000"
+                    step="100"
+                    aria-label="Daily hydration target in milliliters"
+                >
+                <span class="lhp-input-unit">ml</span>
+            </div>
+            <div class="lhp-helper-text">
+                💡 Recommended: 30-35ml per kg of body weight
+            </div>
         </div>
-        <div class="form-group" style="margin-bottom: 24px; text-align: left;">
-            <label style="display: block; font-size: 0.875rem; margin-bottom: 8px;">Reminder Frequency</label>
-            <select class="lhp-select" style="margin-bottom: 0;">
-                <option>Every 1 hour</option>
-                <option>Every 2 hours</option>
-                <option>Every 3 hours</option>
-                <option>Morning & Evening</option>
+
+        <div class="lhp-form-group">
+            <label for="reminder-frequency" class="lhp-label">Reminder Frequency</label>
+            <select 
+                id="reminder-frequency" 
+                class="lhp-select"
+                aria-label="Select reminder frequency"
+            >
+                <option value="disabled">No Reminders</option>
+                <option value="30">Every 30 minutes</option>
+                <option value="60" selected>Every hour</option>
+                <option value="120">Every 2 hours</option>
+                <option value="180">Every 3 hours</option>
+                <option value="morning-evening">Morning & Evening Only</option>
             </select>
         </div>
-        <button type="button" class="lhp-btn">Update Goal</button>
+
+        <div class="lhp-form-group">
+            <label class="lhp-checkbox-label">
+                <input type="checkbox" id="smart-reminders" class="lhp-checkbox" checked>
+                <span>Enable smart reminders (adjust based on activity)</span>
+            </label>
+        </div>
+
+        <div class="lhp-goal-preview">
+            <div class="lhp-preview-icon">📊</div>
+            <div class="lhp-preview-content">
+                <p class="lhp-preview-title">Goal Breakdown</p>
+                <p class="lhp-preview-detail">8 glasses × 375ml = 3000ml daily</p>
+            </div>
+        </div>
+
+        <button type="submit" class="lhp-btn-primary">Save Goal Settings</button>
     </form>
 </div>
 
+<script>
+// Form submission handler
+document.querySelector('.lhp-goal-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const target = document.getElementById('daily-target').value;
+    const frequency = document.getElementById('reminder-frequency').value;
+    const smartReminders = document.getElementById('smart-reminders').checked;
+    
+    // Validation
+    if (target < 500 || target > 10000) {
+        alert('Please enter a target between 500ml and 10,000ml');
+        return;
+    }
+    
+    // In real implementation, would save to backend
+    console.log('Goal saved:', { target, frequency, smartReminders });
+    
+    // Success feedback
+    const btn = this.querySelector('.lhp-btn-primary');
+    const originalText = btn.textContent;
+    btn.textContent = '✓ Saved!';
+    btn.style.background = '#10b981';
+    
+    setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+    }, 2000);
+});
+
+// Update preview when target changes
+document.getElementById('daily-target')?.addEventListener('input', function() {
+    const target = parseInt(this.value);
+    if (target && target > 0) {
+        const glasses = Math.ceil(target / 375);
+        const perGlass = Math.round(target / glasses);
+        document.querySelector('.lhp-preview-detail').textContent = 
+            `${glasses} glasses × ${perGlass}ml = ${target}ml daily`;
+    }
+});
+</script>
+
+<style>
+.lhp-hydration-goal {
+    background: var(--lhp-hydration-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-hydration-border, #e5e7eb);
+}
+
+.lhp-hydration-goal h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lhp-hydration-text, #1f2937);
+}
+
+.lhp-goal-form {
+    margin-top: 24px;
+}
+
+.lhp-form-group {
+    margin-bottom: 24px;
+}
+
+.lhp-helper-text {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--lhp-hydration-text-muted, #6b7280);
+    padding: 8px 12px;
+    background: rgba(59, 130, 246, 0.05);
+    border-radius: 6px;
+}
+
+.lhp-select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 2px solid var(--lhp-hydration-border, #e5e7eb);
+    background: var(--lhp-hydration-card, #ffffff);
+    color: var(--lhp-hydration-text, #1f2937);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.lhp-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.lhp-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--lhp-hydration-text, #1f2937);
+}
+
+.lhp-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #3b82f6;
+}
+
+.lhp-goal-preview {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(59, 130, 246, 0.08);
+    border-radius: 12px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    margin-bottom: 24px;
+}
+
+.lhp-preview-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.lhp-preview-content {
+    flex: 1;
+}
+
+.lhp-preview-title {
+    margin: 0 0 4px 0;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--lhp-hydration-text, #1f2937);
+}
+
+.lhp-preview-detail {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--lhp-hydration-text-muted, #6b7280);
+}
+
+.lhp-btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.lhp-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.lhp-btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+}
+</style>

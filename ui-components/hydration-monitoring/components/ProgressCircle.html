@@ -1,12 +1,216 @@
-<div class="hydration-progress-card">
-    <h3>Daily Progress</h3>
-    <div class="progress-circle-container">
-        <svg viewBox="0 0 100 100" class="progress-circle">
-            <circle cx="50" cy="50" r="45" class="bg-circle" />
-            <circle cx="50" cy="50" r="45" class="fg-circle" style="stroke-dasharray: 282.7; stroke-dashoffset: 70.6;" />
-            <text x="50" y="50" text-anchor="middle" dy=".3em" class="percentage-text">75%</text>
+<!--
+  ProgressCircle Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: Dynamic circular progress visualization for hydration tracking.
+  Features:
+  - SVG-based animated progress ring
+  - Real-time percentage display
+  - Goal completion status
+  - Accessibility labels
+-->
+
+<div class="lhp-hydration-progress">
+    <div class="lhp-progress-header">
+        <h3>Today's Hydration</h3>
+        <div class="lhp-goal-status">
+            <span class="lhp-status-icon">💧</span>
+            <span class="lhp-status-text">In Progress</span>
+        </div>
+    </div>
+
+    <div class="lhp-progress-circle-wrapper">
+        <svg viewBox="0 0 120 120" class="lhp-progress-circle" aria-label="Hydration progress: 75% complete">
+            <!-- Background circle -->
+            <circle 
+                cx="60" 
+                cy="60" 
+                r="52" 
+                class="lhp-circle-bg"
+                fill="none"
+                stroke-width="8"
+            />
+            <!-- Progress circle -->
+            <circle 
+                cx="60" 
+                cy="60" 
+                r="52" 
+                class="lhp-circle-progress"
+                fill="none"
+                stroke-width="8"
+                stroke-dasharray="326.7"
+                stroke-dashoffset="81.7"
+                transform="rotate(-90 60 60)"
+            />
+            <!-- Center text -->
+            <text x="60" y="55" text-anchor="middle" class="lhp-percentage">75%</text>
+            <text x="60" y="70" text-anchor="middle" class="lhp-percentage-label">Complete</text>
         </svg>
     </div>
-    <p style="text-align: center; color: #666;">2250ml of 3000ml goal</p>
+
+    <div class="lhp-progress-details">
+        <div class="lhp-intake-display">
+            <span class="lhp-current-intake">2250ml</span>
+            <span class="lhp-intake-separator">/</span>
+            <span class="lhp-goal-intake">3000ml</span>
+        </div>
+        <p class="lhp-remaining">750ml remaining to reach your goal</p>
+    </div>
+
+    <button type="button" class="lhp-btn-add-water">
+        <span class="lhp-btn-icon">➕</span>
+        Log Water Intake
+    </button>
 </div>
 
+<style>
+/* Progress Circle Styles */
+.lhp-hydration-progress {
+    background: var(--lhp-hydration-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-hydration-border, #e5e7eb);
+}
+
+.lhp-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.lhp-progress-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lhp-hydration-text, #1f2937);
+}
+
+.lhp-goal-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 20px;
+}
+
+.lhp-status-icon {
+    font-size: 1.2rem;
+}
+
+.lhp-status-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #3b82f6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.lhp-progress-circle-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 32px 0;
+}
+
+.lhp-progress-circle {
+    width: 180px;
+    height: 180px;
+    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2));
+}
+
+.lhp-circle-bg {
+    stroke: var(--lhp-hydration-bg, #e5e7eb);
+}
+
+.lhp-circle-progress {
+    stroke: url(#hydrationGradient);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.6s ease;
+}
+
+.lhp-percentage {
+    font-size: 2rem;
+    font-weight: 800;
+    fill: var(--lhp-hydration-text, #1f2937);
+}
+
+.lhp-percentage-label {
+    font-size: 0.75rem;
+    fill: var(--lhp-hydration-text-muted, #6b7280);
+    font-weight: 600;
+}
+
+.lhp-progress-details {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.lhp-intake-display {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.lhp-current-intake {
+    color: #3b82f6;
+}
+
+.lhp-intake-separator {
+    color: var(--lhp-hydration-text-muted, #6b7280);
+    margin: 0 8px;
+}
+
+.lhp-goal-intake {
+    color: var(--lhp-hydration-text-muted, #6b7280);
+}
+
+.lhp-remaining {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--lhp-hydration-text-muted, #6b7280);
+}
+
+.lhp-btn-add-water {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.lhp-btn-add-water:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.lhp-btn-add-water:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+}
+
+.lhp-btn-icon {
+    font-size: 1.2rem;
+}
+</style>
+
+<!-- SVG Gradient Definition -->
+<svg width="0" height="0">
+    <defs>
+        <linearGradient id="hydrationGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+</svg>

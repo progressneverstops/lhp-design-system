@@ -1,18 +1,151 @@
-<div class="hydration-stats-card">
+<!--
+  StatsCard Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: High-level hydration insights display.
+  Features:
+  - Multi-metric grid layout
+  - Icon-based visual hierarchy
+  - Streak tracking
+  - Daily average insights
+-->
+
+<div class="lhp-hydration-stats">
     <h3>Hydration Insights</h3>
-    <div class="stats-grid">
-        <div class="stat-item">
-            <span class="label">Daily Average</span>
-            <span class="value">2.4L</span>
+    
+    <div class="lhp-stats-grid">
+        <div class="lhp-stat-card primary">
+            <div class="lhp-stat-icon">📊</div>
+            <div class="lhp-stat-content">
+                <span class="lhp-stat-value">2.8L</span>
+                <span class="lhp-stat-label">Daily Average</span>
+            </div>
         </div>
-        <div class="stat-item">
-            <span class="label">Best Streak</span>
-            <span class="value">12 Days</span>
+
+        <div class="lhp-stat-card success">
+            <div class="lhp-stat-icon">🔥</div>
+            <div class="lhp-stat-content">
+                <span class="lhp-stat-value">7 Days</span>
+                <span class="lhp-stat-label">Current Streak</span>
+            </div>
         </div>
-        <div class="stat-item">
-            <span class="label">Frequency</span>
-            <span class="value">1.5 hrs</span>
+
+        <div class="lhp-stat-card">
+            <div class="lhp-stat-icon">🎯</div>
+            <div class="lhp-stat-content">
+                <span class="lhp-stat-value">85%</span>
+                <span class="lhp-stat-label">Goal Completion</span>
+            </div>
         </div>
+
+        <div class="lhp-stat-card">
+            <div class="lhp-stat-icon">📅</div>
+            <div class="lhp-stat-content">
+                <span class="lhp-stat-value">21 Days</span>
+                <span class="lhp-stat-label">Best Streak</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="lhp-insight-tip">
+        <span class="lhp-tip-icon">💡</span>
+        <p>You're 200ml above your weekly average! Keep up the excellent hydration routine.</p>
     </div>
 </div>
 
+<style>
+.lhp-hydration-stats {
+    background: var(--lhp-hydration-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-hydration-border, #e5e7eb);
+}
+
+.lhp-hydration-stats h3 {
+    margin: 0 0 24px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lhp-hydration-text, #1f2937);
+}
+
+.lhp-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.lhp-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    background: var(--lhp-hydration-bg, #f9fafb);
+    border-radius: 12px;
+    border: 1px solid var(--lhp-hydration-border, #e5e7eb);
+    transition: all 0.2s ease;
+}
+
+.lhp-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.lhp-stat-card.primary {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border-color: #3b82f6;
+}
+
+.lhp-stat-card.success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border-color: #10b981;
+}
+
+.lhp-stat-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.lhp-stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.lhp-stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--lhp-hydration-text, #1f2937);
+    line-height: 1.2;
+}
+
+.lhp-stat-label {
+    font-size: 0.75rem;
+    color: var(--lhp-hydration-text-muted, #6b7280);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.lhp-insight-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(16, 185, 129, 0.08);
+    border-left: 4px solid #10b981;
+    border-radius: 8px;
+}
+
+.lhp-tip-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.lhp-insight-tip p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--lhp-hydration-text, #1f2937);
+    line-height: 1.6;
+}
+</style>

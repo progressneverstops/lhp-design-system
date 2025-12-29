@@ -1,13 +1,274 @@
-<div class="hydration-log-card">
+<!--
+  WaterIntakeForm Component
+  Part of the Lighthouse Portal Design System
+  
+  Description: Quick-logging interface for water intake with preset and custom amounts.
+  Features:
+  - One-tap preset buttons
+  - Custom amount input
+  - Visual feedback on selection
+  - Input validation
+-->
+
+<div class="lhp-hydration-log">
     <h3>Log Water Intake</h3>
-    <div class="quick-log">
-        <button class="glass-btn" data-amount="250">💧 250ml</button>
-        <button class="glass-btn" data-amount="500">🥤 500ml</button>
-        <button class="glass-btn" data-amount="750">🍶 750ml</button>
+    <p class="lhp-subtitle">Quick-add common amounts or enter a custom volume</p>
+
+    <div class="lhp-quick-actions">
+        <button type="button" class="lhp-glass-btn" data-amount="250" aria-label="Log 250 milliliters">
+            <span class="lhp-glass-icon">💧</span>
+            <span class="lhp-glass-amount">250ml</span>
+            <span class="lhp-glass-label">Small Glass</span>
+        </button>
+        <button type="button" class="lhp-glass-btn" data-amount="500" aria-label="Log 500 milliliters">
+            <span class="lhp-glass-icon">🥤</span>
+            <span class="lhp-glass-amount">500ml</span>
+            <span class="lhp-glass-label">Large Glass</span>
+        </button>
+        <button type="button" class="lhp-glass-btn" data-amount="750" aria-label="Log 750 milliliters">
+            <span class="lhp-glass-icon">🍶</span>
+            <span class="lhp-glass-amount">750ml</span>
+            <span class="lhp-glass-label">Bottle</span>
+        </button>
+        <button type="button" class="lhp-glass-btn" data-amount="1000" aria-label="Log 1000 milliliters">
+            <span class="lhp-glass-icon">🧊</span>
+            <span class="lhp-glass-amount">1L</span>
+            <span class="lhp-glass-label">Large Bottle</span>
+        </button>
     </div>
-    <div class="custom-log">
-        <input type="number" id="custom-amount" class="lhp-input" style="margin-bottom: 0;" placeholder="Amount (ml)">
-        <button class="lhp-btn" style="width: auto; padding: 0 20px;">Add</button>
+
+    <div class="lhp-divider">
+        <span>or</span>
+    </div>
+
+    <div class="lhp-custom-log">
+        <label for="custom-amount" class="lhp-label">Custom Amount</label>
+        <div class="lhp-input-group">
+            <input 
+                type="number" 
+                id="custom-amount" 
+                class="lhp-input" 
+                placeholder="Enter amount..."
+                min="1"
+                max="5000"
+                step="50"
+                aria-label="Enter custom water amount in milliliters"
+            >
+            <span class="lhp-input-unit">ml</span>
+        </div>
+        <button type="button" class="lhp-btn-submit">Add to Log</button>
     </div>
 </div>
 
+<script>
+// Quick-log button interactions
+document.querySelectorAll('.lhp-glass-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const amount = this.dataset.amount;
+        // Visual feedback
+        this.classList.add('logged');
+        setTimeout(() => this.classList.remove('logged'), 600);
+        
+        // In real implementation, would call API here
+        console.log(`Logged ${amount}ml`);
+    });
+});
+
+// Custom amount validation
+const customInput = document.getElementById('custom-amount');
+const submitBtn = document.querySelector('.lhp-btn-submit');
+
+if (customInput && submitBtn) {
+    submitBtn.addEventListener('click', function() {
+        const amount = parseInt(customInput.value);
+        if (amount && amount > 0 && amount <= 5000) {
+            console.log(`Logged ${amount}ml`);
+            customInput.value = '';
+        } else {
+            alert('Please enter a valid amount between 1 and 5000ml');
+        }
+    });
+}
+</script>
+
+<style>
+.lhp-hydration-log {
+    background: var(--lhp-hydration-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-hydration-border, #e5e7eb);
+}
+
+.lhp-hydration-log h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lhp-hydration-text, #1f2937);
+}
+
+.lhp-subtitle {
+    margin: 0 0 24px 0;
+    font-size: 0.9rem;
+    color: var(--lhp-hydration-text-muted, #6b7280);
+}
+
+.lhp-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.lhp-glass-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 12px;
+    background: var(--lhp-hydration-bg, #f9fafb);
+    border: 2px solid var(--lhp-hydration-border, #e5e7eb);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.lhp-glass-btn:hover {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+}
+
+.lhp-glass-btn:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.lhp-glass-btn.logged {
+    background: #10b981;
+    border-color: #10b981;
+    transform: scale(1.05);
+}
+
+.lhp-glass-btn.logged .lhp-glass-icon,
+.lhp-glass-btn.logged .lhp-glass-amount,
+.lhp-glass-btn.logged .lhp-glass-label {
+    color: white;
+}
+
+.lhp-glass-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.lhp-glass-amount {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--lhp-hydration-text, #1f2937);
+}
+
+.lhp-glass-label {
+    font-size: 0.7rem;
+    color: var(--lhp-hydration-text-muted, #6b7280);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.lhp-divider {
+    position: relative;
+    text-align: center;
+    margin: 24px 0;
+}
+
+.lhp-divider::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: var(--lhp-hydration-border, #e5e7eb);
+}
+
+.lhp-divider span {
+    position: relative;
+    display: inline-block;
+    padding: 0 12px;
+    background: var(--lhp-hydration-card, #ffffff);
+    color: var(--lhp-hydration-text-muted, #6b7280);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.lhp-custom-log {
+    margin-top: 24px;
+}
+
+.lhp-label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--lhp-hydration-text, #1f2937);
+    margin-bottom: 8px;
+}
+
+.lhp-input-group {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.lhp-input {
+    width: 100%;
+    padding: 14px 50px 14px 16px;
+    border-radius: 10px;
+    border: 2px solid var(--lhp-hydration-border, #e5e7eb);
+    background: var(--lhp-hydration-card, #ffffff);
+    color: var(--lhp-hydration-text, #1f2937);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.lhp-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.lhp-input-unit {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 600;
+    color: var(--lhp-hydration-text-muted, #6b7280);
+    font-size: 0.875rem;
+}
+
+.lhp-btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.lhp-btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.lhp-btn-submit:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+}
+</style>
