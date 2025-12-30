@@ -1,0 +1,119 @@
+<!--
+  Theme Toggle Component
+  Reusable light/dark mode switcher for all pages
+-->
+<div id="theme-toggle-container" class="theme-toggle-container">
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light/dark mode" title="Toggle theme">
+        <span class="theme-icon" id="theme-icon">🌙</span>
+    </button>
+</div>
+
+<style>
+.theme-toggle-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+}
+
+.theme-toggle-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--lhp-orange, #f79420);
+    background: var(--lhp-card, #1e1e1e);
+    color: var(--lhp-orange, #f79420);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(247, 148, 32, 0.4);
+    background: var(--lhp-orange, #f79420);
+    color: var(--lhp-dark, #121212);
+}
+
+.theme-toggle-btn:focus {
+    outline: 3px solid var(--lhp-orange, #f79420);
+    outline-offset: 2px;
+}
+
+.theme-icon {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle-btn:hover .theme-icon {
+    transform: rotate(15deg);
+}
+
+/* Light mode adjustments */
+[data-theme="light"] .theme-toggle-btn {
+    background: #ffffff;
+    border-color: var(--lhp-orange, #f79420);
+    color: var(--lhp-orange, #f79420);
+}
+
+[data-theme="light"] .theme-toggle-btn:hover {
+    background: var(--lhp-orange, #f79420);
+    color: #ffffff;
+}
+</style>
+
+<script>
+(function() {
+    'use strict';
+    
+    // Get theme from localStorage or default to 'dark'
+    const getTheme = () => {
+        const saved = localStorage.getItem('lhp-theme');
+        return saved || 'dark';
+    };
+    
+    // Set theme
+    const setTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('lhp-theme', theme);
+        
+        // Update icon
+        const icon = document.getElementById('theme-icon');
+        if (icon) {
+            icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
+    };
+    
+    // Toggle theme
+    const toggleTheme = () => {
+        const current = getTheme();
+        const newTheme = current === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+    };
+    
+    // Initialize on page load
+    const initTheme = () => {
+        const theme = getTheme();
+        setTheme(theme);
+        
+        // Add click handler
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', toggleTheme);
+        }
+    };
+    
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTheme);
+    } else {
+        initTheme();
+    }
+})();
+</script>
+

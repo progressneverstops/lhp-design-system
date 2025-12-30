@@ -15,6 +15,34 @@
             --lhp-glass: rgba(255, 255, 255, 0.05);
         }
 
+        /* Light mode variables */
+        [data-theme="light"] {
+            --lhp-dark: #f5f5f5;
+            --lhp-card: #ffffff;
+            --lhp-text: #1a1a1a;
+            --lhp-text-muted: #666;
+            --lhp-glass: rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="light"] .hero {
+            background: radial-gradient(circle at top, #e8e8e8 0%, #f5f5f5 100%);
+        }
+
+        [data-theme="light"] .hero h1 {
+            background: linear-gradient(135deg, #1a1a1a 0%, var(--lhp-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .component-card {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .lhp-badge {
+            background: #ffffff;
+            border-color: #ddd;
+        }
+
         body {
             background-color: var(--lhp-dark);
             color: var(--lhp-text);
@@ -149,9 +177,73 @@
         }
 
         .lhp-badge span { color: var(--lhp-orange); font-weight: bold; }
+
+        /* Theme Toggle Styles */
+        .theme-toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .theme-toggle-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--lhp-orange);
+            background: var(--lhp-card);
+            color: var(--lhp-orange);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(247, 148, 32, 0.4);
+            background: var(--lhp-orange);
+            color: var(--lhp-dark);
+        }
+
+        .theme-toggle-btn:focus {
+            outline: 3px solid var(--lhp-orange);
+            outline-offset: 2px;
+        }
+
+        .theme-icon {
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover .theme-icon {
+            transform: rotate(15deg);
+        }
+
+        [data-theme="light"] .theme-toggle-btn {
+            background: #ffffff;
+            border-color: var(--lhp-orange);
+            color: var(--lhp-orange);
+        }
+
+        [data-theme="light"] .theme-toggle-btn:hover {
+            background: var(--lhp-orange);
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Theme Toggle -->
+    <div id="theme-toggle-container" class="theme-toggle-container">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light/dark mode" title="Toggle theme">
+            <span class="theme-icon" id="theme-icon">🌙</span>
+        </button>
+    </div>
 
     <section class="hero">
         <div class="lhp-badge"><span>🕯️</span> Public Design System</div>
@@ -218,6 +310,56 @@
         <p>&copy; Lighthouse Portal Inc. • Designed for clarity, health, and synthesis.</p>
         <p style="font-size: 0.7rem; margin-top: 10px;">Licensed under PolyForm Noncommercial 1.0.0</p>
     </footer>
+
+    <script>
+        (function() {
+            'use strict';
+            
+            // Get theme from localStorage or default to 'dark'
+            const getTheme = () => {
+                const saved = localStorage.getItem('lhp-theme');
+                return saved || 'dark';
+            };
+            
+            // Set theme
+            const setTheme = (theme) => {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('lhp-theme', theme);
+                
+                // Update icon
+                const icon = document.getElementById('theme-icon');
+                if (icon) {
+                    icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+                }
+            };
+            
+            // Toggle theme
+            const toggleTheme = () => {
+                const current = getTheme();
+                const newTheme = current === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+            };
+            
+            // Initialize on page load
+            const initTheme = () => {
+                const theme = getTheme();
+                setTheme(theme);
+                
+                // Add click handler
+                const toggleBtn = document.getElementById('theme-toggle');
+                if (toggleBtn) {
+                    toggleBtn.addEventListener('click', toggleTheme);
+                }
+            };
+            
+            // Run when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initTheme);
+            } else {
+                initTheme();
+            }
+        })();
+    </script>
 
 </body>
 </html>
