@@ -1,71 +1,257 @@
 <!--
-  NutritionCard Component
+  NutritionCard Component (Enhanced)
   Part of the Lighthouse Portal Design System
   
-  Description: A detailed nutrient breakdown card.
+  Description: Detailed nutrient breakdown with healing properties.
   Features:
-  - Visual density bars for macronutrients.
-  - Micro-nutrient highlights.
-  - Healing property tags.
-  - Sunrise/Sunset fasting reminder.
+  - Macro distribution visualization
+  - Healing property tags
+  - Lifestyle timing recommendations
+  - High-contrast design
 -->
 
 <div class="lhp-nutrition-card">
-    <div class="lhp-card-header">
-        <div class="lhp-title-section">
-            <h2 class="lhp-food-title">Organic Avocado</h2>
-            <span class="lhp-category">Healthy Fats • Heart Support</span>
+    <div class="lhp-nutrition-header">
+        <div class="lhp-food-title-section">
+            <h3>Organic Avocado</h3>
+            <p class="lhp-food-category">Healthy Fats • Heart Support</p>
         </div>
-        <div class="lhp-density-badge">
-            <span class="lhp-badge-label">Nutrient Density</span>
-            <div class="lhp-badge-value">92/100</div>
-        </div>
-    </div>
-
-    <div class="lhp-macro-breakdown">
-        <div class="lhp-macro">
-            <div class="lhp-macro-label">
-                <span>Healthy Fats</span>
-                <span class="lhp-percent">75%</span>
-            </div>
-            <div class="lhp-progress-bar">
-                <div class="lhp-progress-fill fat" style="width: 75%;"></div>
-            </div>
-        </div>
-        <div class="lhp-macro">
-            <div class="lhp-macro-label">
-                <span>Fiber</span>
-                <span class="lhp-percent">15%</span>
-            </div>
-            <div class="lhp-progress-bar">
-                <div class="lhp-progress-fill fiber" style="width: 15%;"></div>
-            </div>
-        </div>
-        <div class="lhp-macro">
-            <div class="lhp-macro-label">
-                <span>Protein</span>
-                <span class="lhp-percent">10%</span>
-            </div>
-            <div class="lhp-progress-bar">
-                <div class="lhp-progress-fill protein" style="width: 10%;"></div>
-            </div>
+        <div class="lhp-density-score">
+            <span class="lhp-score-value">92</span>
+            <span class="lhp-score-label">/100</span>
         </div>
     </div>
 
-    <div class="lhp-healing-properties">
-        <h3>Healing Properties</h3>
+    <div class="lhp-macros-section">
+        <h4 class="lhp-section-title">Macro Distribution</h4>
+        <div class="lhp-macro-grid">
+            <div class="lhp-macro-item">
+                <div class="lhp-macro-header">
+                    <span class="lhp-macro-name">Healthy Fats</span>
+                    <span class="lhp-macro-percent">75%</span>
+                </div>
+                <div class="lhp-macro-bar">
+                    <div class="lhp-macro-fill fat" style="width: 75%;"></div>
+                </div>
+            </div>
+
+            <div class="lhp-macro-item">
+                <div class="lhp-macro-header">
+                    <span class="lhp-macro-name">Fiber</span>
+                    <span class="lhp-macro-percent">15%</span>
+                </div>
+                <div class="lhp-macro-bar">
+                    <div class="lhp-macro-fill fiber" style="width: 15%;"></div>
+                </div>
+            </div>
+
+            <div class="lhp-macro-item">
+                <div class="lhp-macro-header">
+                    <span class="lhp-macro-name">Protein</span>
+                    <span class="lhp-macro-percent">10%</span>
+                </div>
+                <div class="lhp-macro-bar">
+                    <div class="lhp-macro-fill protein" style="width: 10%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lhp-healing-section">
+        <h4 class="lhp-section-title">Healing Properties</h4>
         <div class="lhp-tag-cloud">
-            <span class="lhp-tag anti-inflammatory">Anti-inflammatory</span>
-            <span class="lhp-tag brain-health">Brain Health</span>
-            <span class="lhp-tag skin-synthesis">Skin Synthesis</span>
+            <span class="lhp-property-tag anti-inflammatory">Anti-inflammatory</span>
+            <span class="lhp-property-tag brain">Brain Health</span>
+            <span class="lhp-property-tag skin">Skin Synthesis</span>
+            <span class="lhp-property-tag heart">Heart Support</span>
         </div>
     </div>
 
-    <div class="lhp-lifestyle-tip">
+    <div class="lhp-timing-tip">
         <div class="lhp-tip-icon">☀️</div>
         <div class="lhp-tip-content">
-            <strong>Optimal Consumption:</strong> Best enjoyed midday when your metabolic fire is strongest. 
-            Remember to fast from sunset to sunrise to allow for cellular repair.
+            <strong>Optimal Consumption:</strong> Best enjoyed midday when your metabolic fire is strongest. Remember to fast from sunset to sunrise to allow for cellular repair.
         </div>
     </div>
 </div>
+
+<style>
+.lhp-nutrition-card {
+    background: var(--lhp-food-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-food-border, #e5e7eb);
+}
+
+.lhp-nutrition-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--lhp-food-border, #e5e7eb);
+}
+
+.lhp-food-title-section h3 {
+    margin: 0 0 6px 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--lhp-food-text, #1f2937);
+}
+
+.lhp-food-category {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--lhp-food-text-muted, #6b7280);
+}
+
+.lhp-density-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background: linear-gradient(135deg, #f79420 0%, #e68a1c 100%);
+    border-radius: 12px;
+    min-width: 80px;
+    box-shadow: 0 4px 12px rgba(247, 148, 32, 0.3);
+}
+
+.lhp-score-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+}
+
+.lhp-score-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+}
+
+.lhp-section-title {
+    margin: 0 0 16px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--lhp-food-text, #1f2937);
+}
+
+.lhp-macros-section {
+    margin-bottom: 28px;
+}
+
+.lhp-macro-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lhp-macro-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lhp-macro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lhp-macro-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--lhp-food-text, #1f2937);
+}
+
+.lhp-macro-percent {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--lhp-food-text-muted, #6b7280);
+}
+
+.lhp-macro-bar {
+    height: 10px;
+    background: var(--lhp-food-border, #e5e7eb);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.lhp-macro-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.6s ease;
+}
+
+.lhp-macro-fill.fat { background: linear-gradient(90deg, #4db6ac 0%, #26a69a 100%); }
+.lhp-macro-fill.fiber { background: linear-gradient(90deg, #81c784 0%, #66bb6a 100%); }
+.lhp-macro-fill.protein { background: linear-gradient(90deg, #ff8a65 0%, #ff7043 100%); }
+
+.lhp-healing-section {
+    margin-bottom: 28px;
+}
+
+.lhp-tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.lhp-property-tag {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 2px solid;
+}
+
+.lhp-property-tag.anti-inflammatory {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #ef4444;
+    color: #dc2626;
+}
+
+.lhp-property-tag.brain {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: #a855f7;
+    color: #7c3aed;
+}
+
+.lhp-property-tag.skin {
+    background: rgba(236, 72, 153, 0.1);
+    border-color: #ec4899;
+    color: #db2777;
+}
+
+.lhp-property-tag.heart {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #ef4444;
+    color: #dc2626;
+}
+
+.lhp-timing-tip {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(247, 148, 32, 0.08);
+    border-left: 4px solid #f79420;
+    border-radius: 8px;
+}
+
+.lhp-tip-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.lhp-tip-content {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--lhp-food-text, #1f2937);
+    line-height: 1.6;
+}
+
+.lhp-tip-content strong {
+    color: #f79420;
+}
+</style>

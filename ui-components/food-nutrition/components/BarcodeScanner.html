@@ -1,45 +1,302 @@
 <!--
-  BarcodeScanner Component
+  BarcodeScanner Component (Enhanced)
   Part of the Lighthouse Portal Design System
   
-  Description: A UI placeholder and interface for food barcode scanning.
+  Description: Barcode scanning interface with manual entry fallback.
   Features:
-  - Responsive camera viewfinder layout.
-  - Scan overlay with focus area.
-  - Manual entry fallback.
-  - High-contrast action buttons.
+  - Camera viewfinder simulation
+  - Animated scan line
+  - Manual barcode entry
+  - Accessibility labels
 -->
 
-<div class="lhp-scanner-container">
+<div class="lhp-scanner">
     <div class="lhp-scanner-header">
-        <h2>Scan Food Item</h2>
+        <h3>Scan Food Item</h3>
         <button class="lhp-close-btn" aria-label="Close scanner">&times;</button>
     </div>
 
     <div class="lhp-viewfinder">
         <div class="lhp-scan-overlay">
             <div class="lhp-scan-frame">
-                <div class="lhp-corner top-left"></div>
-                <div class="lhp-corner top-right"></div>
-                <div class="lhp-corner bottom-left"></div>
-                <div class="lhp-corner bottom-right"></div>
+                <div class="lhp-corner tl"></div>
+                <div class="lhp-corner tr"></div>
+                <div class="lhp-corner bl"></div>
+                <div class="lhp-corner br"></div>
                 <div class="lhp-scan-line"></div>
             </div>
         </div>
-        <!-- Mock Video Feed -->
-        <div class="lhp-video-placeholder">
-            <span class="lhp-icon">📷</span>
-            <p>Camera Viewfinder Active</p>
+        <div class="lhp-camera-placeholder">
+            <span class="lhp-camera-icon">📷</span>
+            <p>Camera Viewfinder</p>
         </div>
     </div>
 
     <div class="lhp-scanner-controls">
-        <p class="lhp-instruction">Align barcode within the frame to scan.</p>
-        <div class="lhp-action-row">
+        <p class="lhp-instruction">Align barcode within the frame</p>
+        <div class="lhp-control-buttons">
             <button class="lhp-flash-btn" aria-label="Toggle flash">
                 <span class="lhp-icon">🔦</span>
+                <span class="lhp-btn-label">Flash</span>
             </button>
-            <button class="lhp-manual-btn">Enter Barcode Manually</button>
+            <button class="lhp-manual-btn">
+                <span class="lhp-icon">⌨️</span>
+                <span class="lhp-btn-label">Manual Entry</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="lhp-manual-input" style="display: none;">
+        <label for="barcode-input" class="lhp-label">Enter Barcode Number</label>
+        <div class="lhp-input-group">
+            <input 
+                type="text" 
+                id="barcode-input" 
+                class="lhp-input" 
+                placeholder="e.g., 012345678901"
+                pattern="[0-9]*"
+                maxlength="13"
+                aria-label="Enter barcode number"
+            >
+            <button class="lhp-submit-btn">Search</button>
         </div>
     </div>
 </div>
+
+<script>
+// Toggle manual input
+document.querySelector('.lhp-manual-btn')?.addEventListener('click', function() {
+    const manualInput = document.querySelector('.lhp-manual-input');
+    if (manualInput) {
+        manualInput.style.display = manualInput.style.display === 'none' ? 'block' : 'none';
+    }
+});
+
+// Flash toggle
+let flashEnabled = false;
+document.querySelector('.lhp-flash-btn')?.addEventListener('click', function() {
+    flashEnabled = !flashEnabled;
+    this.style.background = flashEnabled ? 'rgba(247, 148, 32, 0.2)' : '';
+    this.style.borderColor = flashEnabled ? '#f79420' : '';
+});
+</script>
+
+<style>
+.lhp-scanner {
+    background: var(--lhp-food-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-food-border, #e5e7eb);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.lhp-scanner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.lhp-scanner-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lhp-food-text, #1f2937);
+}
+
+.lhp-close-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    background: transparent;
+    font-size: 1.5rem;
+    color: var(--lhp-food-text-muted, #6b7280);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lhp-close-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.lhp-viewfinder {
+    position: relative;
+    height: 300px;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.lhp-scan-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.lhp-scan-frame {
+    position: relative;
+    width: 250px;
+    height: 150px;
+}
+
+.lhp-corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-color: #f79420;
+    border-style: solid;
+}
+
+.lhp-corner.tl { border-width: 4px 0 0 4px; top: 0; left: 0; }
+.lhp-corner.tr { border-width: 4px 4px 0 0; top: 0; right: 0; }
+.lhp-corner.bl { border-width: 0 0 4px 4px; bottom: 0; left: 0; }
+.lhp-corner.br { border-width: 0 4px 4px 0; bottom: 0; right: 0; }
+
+.lhp-scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #f79420;
+    box-shadow: 0 0 10px #f79420;
+    animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+    0% { top: 0; }
+    50% { top: 100%; }
+    100% { top: 0; }
+}
+
+.lhp-camera-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    z-index: 1;
+}
+
+.lhp-camera-icon {
+    font-size: 4rem;
+    margin-bottom: 12px;
+    opacity: 0.5;
+}
+
+.lhp-scanner-controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.lhp-instruction {
+    margin: 0 0 20px 0;
+    font-size: 0.9rem;
+    color: var(--lhp-food-text-muted, #6b7280);
+}
+
+.lhp-control-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.lhp-flash-btn,
+.lhp-manual-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
+    background: var(--lhp-food-bg, #f9fafb);
+    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.lhp-flash-btn:hover,
+.lhp-manual-btn:hover {
+    background: rgba(247, 148, 32, 0.08);
+    border-color: #f79420;
+    transform: translateY(-2px);
+}
+
+.lhp-icon {
+    font-size: 1.8rem;
+}
+
+.lhp-btn-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--lhp-food-text, #1f2937);
+}
+
+.lhp-manual-input {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--lhp-food-border, #e5e7eb);
+}
+
+.lhp-label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--lhp-food-text, #1f2937);
+    margin-bottom: 8px;
+}
+
+.lhp-input-group {
+    display: flex;
+    gap: 12px;
+}
+
+.lhp-input {
+    flex: 1;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    background: var(--lhp-food-card, #ffffff);
+    color: var(--lhp-food-text, #1f2937);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.lhp-input:focus {
+    outline: none;
+    border-color: #f79420;
+    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.15);
+}
+
+.lhp-submit-btn {
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #f79420 0%, #e68a1c 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lhp-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(247, 148, 32, 0.3);
+}
+</style>

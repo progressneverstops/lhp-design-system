@@ -1,60 +1,316 @@
 <!--
-  ProgressTracker Component
+  ProgressTracker Component (Enhanced)
   Part of the Lighthouse Portal Design System
   
-  Description: A visualization for tracking exercise progress over time.
+  Description: Visual progress tracking over time with milestones.
   Features:
-  - Metric selection (Volume, 1RM, Reps).
-  - Time range filtering.
-  - Mock chart area.
-  - Achievement milestones.
+  - Exercise selection
+  - Time range filtering
+  - Mock bar chart visualization
+  - Performance metrics
+  - Personal best highlighting
 -->
 
 <div class="lhp-progress-tracker">
     <div class="lhp-tracker-header">
-        <h2>📈 Strength Progression</h2>
+        <h3>📈 Strength Progression</h3>
         <div class="lhp-tracker-controls">
-            <select class="lhp-select-small">
+            <select class="lhp-exercise-select" aria-label="Select exercise">
                 <option>Back Squat</option>
                 <option>Deadlift</option>
                 <option>Bench Press</option>
+                <option>Overhead Press</option>
             </select>
-            <div class="lhp-period-toggle">
-                <button class="active">1M</button>
-                <button>3M</button>
-                <button>YTD</button>
+            <div class="lhp-period-selector">
+                <button class="lhp-period-btn">1M</button>
+                <button class="lhp-period-btn active">3M</button>
+                <button class="lhp-period-btn">YTD</button>
             </div>
         </div>
     </div>
 
-    <div class="lhp-chart-container">
-        <!-- Mock Chart Visualization -->
+    <div class="lhp-chart-area">
         <div class="lhp-mock-chart">
-            <div class="lhp-bar" style="height: 40%;"></div>
-            <div class="lhp-bar" style="height: 55%;"></div>
-            <div class="lhp-bar" style="height: 50%;"></div>
-            <div class="lhp-bar" style="height: 70%;"></div>
-            <div class="lhp-bar highlighted" style="height: 85%;">
-                <span class="lhp-milestone">⭐ PB</span>
+            <div class="lhp-bar-group">
+                <div class="lhp-bar" style="height: 40%;"></div>
+                <span class="lhp-bar-label">Week 1</span>
             </div>
-        </div>
-        <div class="lhp-chart-labels">
-            <span>Nov 01</span>
-            <span>Nov 08</span>
-            <span>Nov 15</span>
-            <span>Nov 22</span>
-            <span>Nov 29</span>
+            <div class="lhp-bar-group">
+                <div class="lhp-bar" style="height: 55%;"></div>
+                <span class="lhp-bar-label">Week 2</span>
+            </div>
+            <div class="lhp-bar-group">
+                <div class="lhp-bar" style="height: 50%;"></div>
+                <span class="lhp-bar-label">Week 3</span>
+            </div>
+            <div class="lhp-bar-group">
+                <div class="lhp-bar" style="height: 70%;"></div>
+                <span class="lhp-bar-label">Week 4</span>
+            </div>
+            <div class="lhp-bar-group pb">
+                <div class="lhp-bar highlighted" style="height: 85%;">
+                    <span class="lhp-pb-badge">⭐ PB</span>
+                </div>
+                <span class="lhp-bar-label">Week 5</span>
+            </div>
         </div>
     </div>
 
-    <div class="lhp-tracker-stats">
-        <div class="lhp-stat-pill">
-            <span class="label">Volume Increase</span>
-            <span class="value positive">+12%</span>
+    <div class="lhp-progress-stats">
+        <div class="lhp-stat-pill success">
+            <span class="lhp-stat-label">Volume Increase</span>
+            <span class="lhp-stat-value positive">+12%</span>
         </div>
         <div class="lhp-stat-pill">
-            <span class="label">Consistency Score</span>
-            <span class="value">95%</span>
+            <span class="lhp-stat-label">Consistency</span>
+            <span class="lhp-stat-value">95%</span>
         </div>
+        <div class="lhp-stat-pill">
+            <span class="lhp-stat-label">Personal Best</span>
+            <span class="lhp-stat-value">120kg</span>
+        </div>
+    </div>
+
+    <div class="lhp-insight-box">
+        <span class="lhp-insight-icon">💡</span>
+        <p>You've increased your training volume by 12% over the past month. Keep focusing on progressive overload!</p>
     </div>
 </div>
+
+<script>
+// Period selector interaction
+document.querySelectorAll('.lhp-period-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.lhp-period-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+</script>
+
+<style>
+.lhp-progress-tracker {
+    background: var(--lhp-workout-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-workout-border, #e5e7eb);
+    max-width: 600px;
+}
+
+.lhp-tracker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.lhp-tracker-header h3 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--lhp-workout-text, #1f2937);
+}
+
+.lhp-tracker-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.lhp-exercise-select {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 2px solid var(--lhp-workout-border, #e5e7eb);
+    background: var(--lhp-workout-card, #ffffff);
+    color: var(--lhp-workout-text, #1f2937);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.lhp-period-selector {
+    display: flex;
+    gap: 4px;
+    background: var(--lhp-workout-bg, #f9fafb);
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.lhp-period-btn {
+    padding: 6px 14px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--lhp-workout-text-muted, #6b7280);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.lhp-period-btn.active {
+    background: #ff8c00;
+    color: white;
+}
+
+.lhp-period-btn:hover:not(.active) {
+    background: rgba(255, 140, 0, 0.1);
+    color: #ff8c00;
+}
+
+.lhp-chart-area {
+    margin-bottom: 28px;
+    padding: 24px;
+    background: var(--lhp-workout-bg, #f9fafb);
+    border-radius: 12px;
+}
+
+.lhp-mock-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    height: 200px;
+    padding-bottom: 30px;
+    position: relative;
+}
+
+.lhp-mock-chart::after {
+    content: '';
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--lhp-workout-border, #e5e7eb);
+}
+
+.lhp-bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.lhp-bar {
+    width: 100%;
+    background: linear-gradient(180deg, #ff8c00 0%, #ff6b35 100%);
+    border-radius: 6px 6px 0 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.lhp-bar:hover {
+    opacity: 0.8;
+    transform: translateY(-4px);
+}
+
+.lhp-bar.highlighted {
+    background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.lhp-pb-badge {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #10b981;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.lhp-bar-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--lhp-workout-text-muted, #6b7280);
+}
+
+.lhp-progress-stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.lhp-stat-pill {
+    flex: 1;
+    min-width: 140px;
+    padding: 16px;
+    background: var(--lhp-workout-bg, #f9fafb);
+    border-radius: 12px;
+    border: 2px solid var(--lhp-workout-border, #e5e7eb);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lhp-stat-pill.success {
+    background: rgba(16, 185, 129, 0.08);
+    border-color: #10b981;
+}
+
+.lhp-stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--lhp-workout-text-muted, #6b7280);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.lhp-stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--lhp-workout-text, #1f2937);
+}
+
+.lhp-stat-value.positive {
+    color: #10b981;
+}
+
+.lhp-insight-box {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(255, 140, 0, 0.08);
+    border-left: 4px solid #ff8c00;
+    border-radius: 8px;
+}
+
+.lhp-insight-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.lhp-insight-box p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--lhp-workout-text, #1f2937);
+    line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+    .lhp-tracker-header {
+        flex-direction: column;
+    }
+
+    .lhp-tracker-controls {
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .lhp-mock-chart {
+        gap: 12px;
+    }
+}
+</style>

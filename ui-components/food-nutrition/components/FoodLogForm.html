@@ -1,54 +1,278 @@
 <!--
-  FoodLogForm Component
+  FoodLogForm Component (Enhanced)
   Part of the Lighthouse Portal Design System
   
-  Description: Form for logging food consumption with serving sizes and meal types.
+  Description: Meal logging with circadian rhythm alignment.
   Features:
-  - Meal type selection (Sunrise, Midday, Sunset).
-  - Serving size input.
-  - Note field for body awareness/symptoms.
-  - Integration with "Food as Medicine" philosophy.
+  - Meal window selection
+  - Serving size with units
+  - Body awareness notes
+  - Food-as-medicine philosophy integration
 -->
 
-<div class="lhp-food-log-container">
-    <div class="lhp-form-header">
-        <h2>Log Nourishment</h2>
-    </div>
+<div class="lhp-food-log">
+    <h3>Log Nourishment</h3>
+    <p class="lhp-subtitle">Track what you eat and how it makes you feel</p>
 
     <form class="lhp-log-form">
         <div class="lhp-form-group">
-            <label for="meal-type">Meal Window:</label>
-            <select id="meal-type" class="lhp-select">
-                <option value="sunrise">Sunrise (Energy)</option>
-                <option value="midday" selected>Midday (Substantial)</option>
-                <option value="sunset">Sunset (Light)</option>
-                <option value="snack">Mindful Snack</option>
+            <label for="meal-window" class="lhp-label">Meal Window</label>
+            <select id="meal-window" class="lhp-select" aria-label="Select meal window">
+                <option value="sunrise">🌅 Sunrise (Energy & Fruits)</option>
+                <option value="midday" selected>☀️ Midday (Substantial Meal)</option>
+                <option value="sunset">🌆 Sunset (Light & Digestible)</option>
+                <option value="snack">🍎 Mindful Snack</option>
             </select>
-            <small class="lhp-input-tip">Recall: Substantial meals are best during daylight hours.</small>
+            <div class="lhp-helper-text">
+                💡 Substantial meals are best during daylight hours
+            </div>
         </div>
 
         <div class="lhp-form-group">
-            <label for="serving-size">Serving Size:</label>
-            <div class="lhp-input-with-unit">
-                <input type="number" id="serving-size" value="1" step="0.5">
-                <select id="unit" class="lhp-unit-select">
+            <label for="serving-size" class="lhp-label">Serving Size</label>
+            <div class="lhp-serving-input">
+                <input 
+                    type="number" 
+                    id="serving-size" 
+                    class="lhp-input" 
+                    value="1"
+                    min="0.1"
+                    max="20"
+                    step="0.5"
+                    aria-label="Serving size"
+                >
+                <select id="unit" class="lhp-unit-select" aria-label="Serving unit">
                     <option value="cup">Cups</option>
                     <option value="oz">Ounces</option>
                     <option value="g">Grams</option>
                     <option value="piece">Pieces</option>
+                    <option value="tbsp">Tablespoons</option>
                 </select>
             </div>
         </div>
 
         <div class="lhp-form-group">
-            <label for="symptoms">Body Awareness Notes:</label>
-            <textarea id="symptoms" placeholder="How do you feel? (e.g., energized, light, bloating, etc.)"></textarea>
-            <small class="lhp-input-tip">Connecting food to feeling is the first step in healing.</small>
+            <label for="body-notes" class="lhp-label">Body Awareness Notes</label>
+            <textarea 
+                id="body-notes" 
+                class="lhp-textarea" 
+                placeholder="How do you feel? (e.g., energized, light, bloating, clarity...)"
+                maxlength="300"
+                aria-label="Body awareness notes"
+            ></textarea>
+            <div class="lhp-char-count">
+                <span id="note-count">0</span> / 300 characters
+            </div>
+            <div class="lhp-helper-text">
+                🌟 Connecting food to feeling is the first step in healing
+            </div>
+        </div>
+
+        <div class="lhp-quick-feelings">
+            <label class="lhp-label">Quick Feelings</label>
+            <div class="lhp-feeling-pills">
+                <button type="button" class="lhp-feeling-pill">😊 Energized</button>
+                <button type="button" class="lhp-feeling-pill">🧘 Calm</button>
+                <button type="button" class="lhp-feeling-pill">😌 Satisfied</button>
+                <button type="button" class="lhp-feeling-pill">🤔 Heavy</button>
+                <button type="button" class="lhp-feeling-pill">😴 Sluggish</button>
+            </div>
         </div>
 
         <div class="lhp-form-actions">
-            <button type="button" class="lhp-cancel-btn">Cancel</button>
-            <button type="submit" class="lhp-log-btn">Log Entry</button>
+            <button type="button" class="lhp-btn-cancel">Cancel</button>
+            <button type="submit" class="lhp-btn-submit">Log Entry</button>
         </div>
     </form>
 </div>
+
+<script>
+// Character counter
+const textarea = document.getElementById('body-notes');
+const charCount = document.getElementById('note-count');
+if (textarea && charCount) {
+    textarea.addEventListener('input', function() {
+        charCount.textContent = this.value.length;
+    });
+}
+
+// Feeling pills interaction
+document.querySelectorAll('.lhp-feeling-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+        this.classList.toggle('active');
+    });
+});
+
+// Form submission
+document.querySelector('.lhp-log-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const mealWindow = document.getElementById('meal-window').value;
+    const servingSize = document.getElementById('serving-size').value;
+    const unit = document.getElementById('unit').value;
+    const notes = document.getElementById('body-notes').value;
+    
+    // Get selected feelings
+    const feelings = Array.from(document.querySelectorAll('.lhp-feeling-pill.active'))
+        .map(p => p.textContent.trim());
+    
+    console.log('Logged:', { mealWindow, servingSize, unit, notes, feelings });
+    
+    // Success feedback
+    const btn = this.querySelector('.lhp-btn-submit');
+    const originalText = btn.textContent;
+    btn.textContent = '✓ Logged!';
+    btn.style.background = '#10b981';
+    
+    setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        this.reset();
+        document.querySelectorAll('.lhp-feeling-pill').forEach(p => p.classList.remove('active'));
+        charCount.textContent = '0';
+    }, 2000);
+});
+</script>
+
+<style>
+.lhp-food-log {
+    background: var(--lhp-food-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-food-border, #e5e7eb);
+}
+
+.lhp-food-log h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lhp-food-text, #1f2937);
+}
+
+.lhp-log-form {
+    margin-top: 24px;
+}
+
+.lhp-serving-input {
+    display: flex;
+    gap: 12px;
+}
+
+.lhp-serving-input .lhp-input {
+    flex: 1;
+}
+
+.lhp-unit-select {
+    min-width: 120px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    background: var(--lhp-food-card, #ffffff);
+    color: var(--lhp-food-text, #1f2937);
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.lhp-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    background: var(--lhp-food-card, #ffffff);
+    color: var(--lhp-food-text, #1f2937);
+    font-size: 0.95rem;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: all 0.2s ease;
+}
+
+.lhp-textarea:focus {
+    outline: none;
+    border-color: #f79420;
+    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.15);
+}
+
+.lhp-char-count {
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--lhp-food-text-muted, #6b7280);
+    margin-top: 4px;
+}
+
+.lhp-quick-feelings {
+    margin-bottom: 24px;
+}
+
+.lhp-feeling-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.lhp-feeling-pill {
+    padding: 8px 16px;
+    background: var(--lhp-food-bg, #f9fafb);
+    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.lhp-feeling-pill:hover {
+    background: rgba(247, 148, 32, 0.08);
+    border-color: #f79420;
+}
+
+.lhp-feeling-pill.active {
+    background: #f79420;
+    border-color: #f79420;
+    color: white;
+}
+
+.lhp-form-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.lhp-btn-cancel,
+.lhp-btn-submit {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-family: inherit;
+}
+
+.lhp-btn-cancel {
+    background: transparent;
+    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    color: var(--lhp-food-text-muted, #6b7280);
+}
+
+.lhp-btn-cancel:hover {
+    background: var(--lhp-food-bg, #f9fafb);
+}
+
+.lhp-btn-submit {
+    background: linear-gradient(135deg, #f79420 0%, #e68a1c 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(247, 148, 32, 0.3);
+}
+
+.lhp-btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(247, 148, 32, 0.4);
+}
+</style>

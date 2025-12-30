@@ -1,36 +1,305 @@
 <!--
-  ProgressIndicator Component
+  ProgressIndicator Component (Enhanced)
   Part of the Lighthouse Portal Design System
   
-  Description: A visual indicator showing progress towards the next rank or major achievement.
+  Description: Multi-stage rank progression visualization.
   Features:
-  - Multi-stage progress bar.
-  - Rank icons.
-  - Percentage display.
-  - Motivational feedback.
+  - Three-stage progression (Novice → Guardian → Master)
+  - Visual progress fill
+  - Streak tracking
+  - XP display
 -->
 
-<div class="lhp-progress-indicator-container">
-    <div class="lhp-progress-header">
-        <span class="lhp-current-rank">Rank: Novice Healer</span>
-        <span class="lhp-next-rank">Next: Body Guardian</span>
-    </div>
-
-    <div class="lhp-multi-stage-bar">
-        <div class="lhp-stage complete" title="Novice">
-            <span class="lhp-stage-icon">🌱</span>
-        </div>
-        <div class="lhp-stage active" title="Guardian">
-            <div class="lhp-stage-fill" style="width: 45%;"></div>
-            <span class="lhp-stage-icon">🛡️</span>
-        </div>
-        <div class="lhp-stage locked" title="Master">
-            <span class="lhp-stage-icon">👑</span>
+<div class="lhp-rank-progress">
+    <div class="lhp-rank-header">
+        <div class="lhp-current-rank-info">
+            <span class="lhp-rank-badge current">Novice Healer</span>
+            <span class="lhp-rank-arrow">→</span>
+            <span class="lhp-rank-badge next">Body Guardian</span>
         </div>
     </div>
 
-    <div class="lhp-progress-footer">
-        <p>450 / 1000 XP to next rank</p>
-        <span class="lhp-streak-info">🔥 12 Day Streak</span>
+    <div class="lhp-progression-track">
+        <!-- Stage 1: Completed -->
+        <div class="lhp-stage complete">
+            <div class="lhp-stage-icon">🌱</div>
+            <div class="lhp-stage-line filled"></div>
+            <span class="lhp-stage-label">Novice</span>
+        </div>
+
+        <!-- Stage 2: In Progress -->
+        <div class="lhp-stage active">
+            <div class="lhp-stage-icon">🛡️</div>
+            <div class="lhp-stage-progress">
+                <div class="lhp-progress-fill" style="width: 45%;"></div>
+            </div>
+            <div class="lhp-stage-line partial"></div>
+            <span class="lhp-stage-label">Guardian</span>
+        </div>
+
+        <!-- Stage 3: Locked -->
+        <div class="lhp-stage locked">
+            <div class="lhp-stage-icon">👑</div>
+            <span class="lhp-stage-label">Master</span>
+        </div>
+    </div>
+
+    <div class="lhp-progress-details">
+        <div class="lhp-xp-display">
+            <div class="lhp-xp-bar">
+                <div class="lhp-xp-fill" style="width: 45%;"></div>
+            </div>
+            <p class="lhp-xp-text">450 / 1000 XP to next rank</p>
+        </div>
+
+        <div class="lhp-streak-display">
+            <span class="lhp-streak-icon">🔥</span>
+            <span class="lhp-streak-text">12 Day Streak</span>
+        </div>
+    </div>
+
+    <div class="lhp-motivation-message">
+        <p>💪 You're 55% of the way to Body Guardian! Keep pushing forward.</p>
     </div>
 </div>
+
+<style>
+.lhp-rank-progress {
+    background: var(--lhp-achievement-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-achievement-border, #e5e7eb);
+}
+
+.lhp-rank-header {
+    margin-bottom: 32px;
+}
+
+.lhp-current-rank-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.lhp-rank-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 2px solid;
+}
+
+.lhp-rank-badge.current {
+    background: linear-gradient(135deg, #f79420 0%, #e68a1c 100%);
+    border-color: #f79420;
+    color: white;
+}
+
+.lhp-rank-badge.next {
+    background: var(--lhp-achievement-bg, #f9fafb);
+    border-color: var(--lhp-achievement-border, #e5e7eb);
+    color: var(--lhp-achievement-text-muted, #6b7280);
+}
+
+.lhp-rank-arrow {
+    font-size: 1.5rem;
+    color: var(--lhp-achievement-text-muted, #6b7280);
+}
+
+.lhp-progression-track {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 32px;
+    padding: 0 20px;
+}
+
+.lhp-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.lhp-stage-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--lhp-achievement-bg, #f9fafb);
+    border: 3px solid var(--lhp-achievement-border, #e5e7eb);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+}
+
+.lhp-stage.complete .lhp-stage-icon {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-color: #10b981;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.lhp-stage.active .lhp-stage-icon {
+    background: linear-gradient(135deg, #f79420 0%, #e68a1c 100%);
+    border-color: #f79420;
+    box-shadow: 0 4px 12px rgba(247, 148, 32, 0.3);
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.lhp-stage.locked .lhp-stage-icon {
+    opacity: 0.4;
+    filter: grayscale(1);
+}
+
+.lhp-stage-line {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    right: -50%;
+    height: 4px;
+    background: var(--lhp-achievement-border, #e5e7eb);
+    z-index: 1;
+}
+
+.lhp-stage-line.filled {
+    background: linear-gradient(90deg, #10b981 0%, #f79420 100%);
+}
+
+.lhp-stage-line.partial {
+    background: linear-gradient(90deg, #f79420 0%, #f79420 45%, var(--lhp-achievement-border, #e5e7eb) 45%);
+}
+
+.lhp-stage:last-child .lhp-stage-line {
+    display: none;
+}
+
+.lhp-stage-progress {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    right: -50%;
+    height: 8px;
+    background: var(--lhp-achievement-border, #e5e7eb);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.lhp-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f79420 0%, #e68a1c 100%);
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.lhp-stage-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--lhp-achievement-text-muted, #6b7280);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.lhp-stage.complete .lhp-stage-label {
+    color: #10b981;
+}
+
+.lhp-stage.active .lhp-stage-label {
+    color: #f79420;
+}
+
+.lhp-progress-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.lhp-xp-bar {
+    height: 12px;
+    background: var(--lhp-achievement-border, #e5e7eb);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.lhp-xp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f79420 0%, #10b981 100%);
+    border-radius: 6px;
+    transition: width 0.6s ease;
+}
+
+.lhp-xp-text {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--lhp-achievement-text-muted, #6b7280);
+    text-align: center;
+}
+
+.lhp-streak-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(255, 82, 82, 0.08);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 82, 82, 0.2);
+}
+
+.lhp-streak-icon {
+    font-size: 1.5rem;
+}
+
+.lhp-streak-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ff5252;
+}
+
+.lhp-motivation-message {
+    text-align: center;
+    padding: 16px;
+    background: rgba(247, 148, 32, 0.08);
+    border-left: 4px solid #f79420;
+    border-radius: 8px;
+}
+
+.lhp-motivation-message p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--lhp-achievement-text, #1f2937);
+    font-weight: 600;
+}
+
+@media (max-width: 640px) {
+    .lhp-progression-track {
+        padding: 0 10px;
+    }
+
+    .lhp-stage-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .lhp-stage-label {
+        font-size: 0.7rem;
+    }
+}
+</style>

@@ -1,32 +1,222 @@
 <!--
-  BadgeDisplay Component
+  BadgeDisplay Component (Enhanced)
   Part of the Lighthouse Portal Design System
   
-  Description: A premium, glowing badge display for major milestones.
+  Description: Premium badge display with silver glow animation.
   Features:
-  - Video/Animation placeholder.
-  - Custom "Silver Glow" or "Gold Radiance" effects.
-  - Download and share actions for social proof.
-  - Participation trophy subtext (humorous brand voice).
+  - Animated 3D badge placeholder
+  - Multiple download options
+  - Silver glow effect
+  - Humorous brand voice (participation trophy)
 -->
 
-<div class="lhp-badge-display-container silver-glow">
+<div class="lhp-badge-display silver-glow">
     <div class="lhp-badge-header">
-        <h2 class="lhp-badge-title">WELCOME BADGE</h2>
-        <p class="lhp-badge-subtext">The closest you'll ever get to a participation trophy with LHP.</p>
+        <h3 class="lhp-badge-title">WELCOME BADGE</h3>
+        <p class="lhp-badge-subtitle">The closest you'll ever get to a participation trophy with LHP.</p>
     </div>
 
     <div class="lhp-badge-media">
-        <!-- Placeholder for 3D/Video Badge -->
-        <div class="lhp-badge-placeholder">
+        <div class="lhp-badge-visual">
+            <div class="lhp-badge-shine"></div>
             <span class="lhp-badge-emoji">🥈</span>
-            <p>Animated Badge Preview</p>
         </div>
     </div>
 
     <div class="lhp-badge-actions">
-        <button class="lhp-action-btn vibrant">DOWNLOAD GIF</button>
-        <button class="lhp-action-btn">CLAIM NFT SOURCE</button>
-        <button class="lhp-action-btn">SHARE TO COMMUNITY</button>
+        <button class="lhp-action-btn primary">
+            <span class="lhp-btn-icon">💾</span>
+            DOWNLOAD GIF
+        </button>
+        <button class="lhp-action-btn">
+            <span class="lhp-btn-icon">🎨</span>
+            CLAIM NFT SOURCE
+        </button>
+        <button class="lhp-action-btn">
+            <span class="lhp-btn-icon">📤</span>
+            SHARE TO COMMUNITY
+        </button>
     </div>
 </div>
+
+<script>
+// Button interactions with feedback
+document.querySelectorAll('.lhp-action-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const originalText = this.innerHTML;
+        this.innerHTML = '<span class="lhp-btn-icon">✓</span> SUCCESS';
+        this.style.background = '#10b981';
+        
+        setTimeout(() => {
+            this.innerHTML = originalText;
+            this.style.background = '';
+        }, 2000);
+    });
+});
+</script>
+
+<style>
+.lhp-badge-display {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 2px solid #C0C0C0;
+}
+
+.silver-glow {
+    box-shadow: 0 0 30px rgba(192, 192, 192, 0.4), 0 0 60px rgba(192, 192, 192, 0.2);
+    animation: silverPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes silverPulse {
+    from {
+        box-shadow: 0 0 20px rgba(192, 192, 192, 0.3), 0 0 40px rgba(192, 192, 192, 0.15);
+        border-color: rgba(192, 192, 192, 0.8);
+    }
+    to {
+        box-shadow: 0 0 50px rgba(192, 192, 192, 0.6), 0 0 100px rgba(192, 192, 192, 0.3);
+        border-color: rgba(192, 192, 192, 1);
+    }
+}
+
+.lhp-badge-header {
+    margin-bottom: 40px;
+}
+
+.lhp-badge-title {
+    margin: 0 0 12px 0;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.lhp-badge-subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #888;
+    font-style: italic;
+}
+
+.lhp-badge-media {
+    margin: 40px 0;
+    perspective: 1000px;
+}
+
+.lhp-badge-visual {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    background: radial-gradient(circle, rgba(192, 192, 192, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #C0C0C0;
+    animation: badgeFloat 3s ease-in-out infinite;
+}
+
+@keyframes badgeFloat {
+    0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+    50% { transform: translateY(-10px) rotateZ(5deg); }
+}
+
+.lhp-badge-shine {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
+    border-radius: 50%;
+    animation: shineRotate 4s linear infinite;
+}
+
+@keyframes shineRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.lhp-badge-emoji {
+    font-size: 5rem;
+    filter: drop-shadow(0 0 20px rgba(192, 192, 192, 0.8));
+    animation: emojiPulse 2s ease-in-out infinite;
+}
+
+@keyframes emojiPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.lhp-badge-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lhp-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(192, 192, 192, 0.3);
+    color: #ffffff;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.lhp-action-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #C0C0C0;
+    transform: scale(1.02);
+}
+
+.lhp-action-btn.primary {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+    color: #000000;
+    border-color: #C0C0C0;
+    box-shadow: 0 4px 12px rgba(192, 192, 192, 0.3);
+}
+
+.lhp-action-btn.primary:hover {
+    background: linear-gradient(135deg, #D0D0D0 0%, #C0C0C0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(192, 192, 192, 0.4);
+}
+
+.lhp-btn-icon {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 640px) {
+    .lhp-badge-display {
+        padding: 28px 20px;
+    }
+
+    .lhp-badge-title {
+        font-size: 1.5rem;
+    }
+
+    .lhp-badge-visual {
+        width: 160px;
+        height: 160px;
+    }
+
+    .lhp-badge-emoji {
+        font-size: 4rem;
+    }
+}
+</style>

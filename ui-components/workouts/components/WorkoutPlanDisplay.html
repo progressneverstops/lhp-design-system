@@ -1,28 +1,33 @@
 <!--
-  WorkoutPlanDisplay Component
+  WorkoutPlanDisplay Component (Enhanced)
   Part of the Lighthouse Portal Design System
   
-  Description: A structured display for weekly workout plans and individual sessions.
+  Description: Weekly workout plan with vibrant UI.
   Features:
-  - Weekly view with status indicators.
-  - High-contrast table for session details.
-  - Vibrant action buttons for logging and downloading.
+  - Status-based color coding
+  - Intensity indicators
+  - Download and reminder actions [[memory:8346854]]
+  - High-contrast table design
 -->
 
-<div class="lhp-workout-container">
-    <div class="lhp-workout-header">
-        <div class="lhp-title-row">
-            <h2>💪 Weekly Movement Plan</h2>
-            <div class="lhp-actions">
-                <button class="lhp-btn-vibrant">📥 Download Plan</button>
-                <button class="lhp-btn-vibrant secondary">🔔 Set Reminder</button>
-            </div>
+<div class="lhp-workout-plan">
+    <div class="lhp-plan-header">
+        <div class="lhp-title-section">
+            <h3>💪 Weekly Movement Plan</h3>
+            <p class="lhp-subtitle">Focus: Strength & Metabolic Flexibility</p>
         </div>
-        <p class="lhp-subtitle">Focus: Strength & Metabolic Flexibility</p>
+        <div class="lhp-action-buttons">
+            <button class="lhp-btn-action primary" aria-label="Download plan">
+                📥 Download Plan
+            </button>
+            <button class="lhp-btn-action secondary" aria-label="Set reminder">
+                🔔 Set Reminder
+            </button>
+        </div>
     </div>
 
-    <div class="lhp-workout-table-wrapper">
-        <table class="lhp-workout-table">
+    <div class="lhp-plan-table-wrapper">
+        <table class="lhp-plan-table">
             <thead>
                 <tr>
                     <th>Day</th>
@@ -33,32 +38,220 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Monday</td>
+                <tr class="completed">
+                    <td><strong>Monday</strong></td>
                     <td><span class="lhp-activity-icon">🏃</span> Interval Sprints</td>
                     <td>30 min</td>
                     <td><span class="lhp-intensity high">High</span></td>
-                    <td><span class="lhp-status complete">✅ Done</span></td>
+                    <td><span class="lhp-status done">✅ Done</span></td>
                 </tr>
-                <tr>
-                    <td>Tuesday</td>
+                <tr class="active">
+                    <td><strong>Tuesday</strong></td>
                     <td><span class="lhp-activity-icon">🧘</span> Restorative Flow</td>
                     <td>45 min</td>
                     <td><span class="lhp-intensity low">Low</span></td>
-                    <td><span class="lhp-status pending">⏳ Next</span></td>
+                    <td><span class="lhp-status current">⏳ Today</span></td>
                 </tr>
                 <tr>
-                    <td>Wednesday</td>
+                    <td><strong>Wednesday</strong></td>
                     <td><span class="lhp-activity-icon">🏋️</span> Functional Strength</td>
                     <td>60 min</td>
                     <td><span class="lhp-intensity med">Medium</span></td>
+                    <td><span class="lhp-status planned">📅 Planned</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Thursday</strong></td>
+                    <td><span class="lhp-activity-icon">🏊</span> Swimming</td>
+                    <td>45 min</td>
+                    <td><span class="lhp-intensity med">Medium</span></td>
+                    <td><span class="lhp-status planned">📅 Planned</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Friday</strong></td>
+                    <td><span class="lhp-activity-icon">🚴</span> Cycling</td>
+                    <td>40 min</td>
+                    <td><span class="lhp-intensity high">High</span></td>
                     <td><span class="lhp-status planned">📅 Planned</span></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <div class="lhp-workout-footer">
-        <button class="lhp-add-session-btn">+ Log New Session</button>
-    </div>
+    <button class="lhp-btn-add-session">+ Log New Session</button>
 </div>
+
+<style>
+.lhp-workout-plan {
+    background: var(--lhp-workout-card, #ffffff);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-workout-border, #e5e7eb);
+}
+
+.lhp-plan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.lhp-title-section h3 {
+    margin: 0 0 6px 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--lhp-workout-text, #1f2937);
+}
+
+.lhp-action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.lhp-btn-action {
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-family: inherit;
+}
+
+.lhp-btn-action.primary {
+    background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+}
+
+.lhp-btn-action.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
+}
+
+.lhp-btn-action.secondary {
+    background: var(--lhp-workout-bg, #f9fafb);
+    border: 2px solid var(--lhp-workout-border, #e5e7eb);
+    color: var(--lhp-workout-text, #1f2937);
+}
+
+.lhp-btn-action.secondary:hover {
+    background: rgba(255, 140, 0, 0.08);
+    border-color: #ff8c00;
+}
+
+.lhp-plan-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 24px;
+}
+
+.lhp-plan-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lhp-plan-table thead {
+    background: var(--lhp-workout-bg, #f9fafb);
+    border-bottom: 2px solid var(--lhp-workout-border, #e5e7eb);
+}
+
+.lhp-plan-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--lhp-workout-text-muted, #6b7280);
+}
+
+.lhp-plan-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--lhp-workout-border, #e5e7eb);
+    font-size: 0.95rem;
+    color: var(--lhp-workout-text, #1f2937);
+}
+
+.lhp-plan-table tbody tr.completed {
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.lhp-plan-table tbody tr.active {
+    background: rgba(255, 140, 0, 0.08);
+    border-left: 4px solid #ff8c00;
+}
+
+.lhp-activity-icon {
+    font-size: 1.2rem;
+    margin-right: 8px;
+}
+
+.lhp-intensity {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.lhp-intensity.high {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+}
+
+.lhp-intensity.med {
+    background: rgba(251, 146, 60, 0.15);
+    color: #ea580c;
+}
+
+.lhp-intensity.low {
+    background: rgba(34, 197, 94, 0.15);
+    color: #16a34a;
+}
+
+.lhp-status {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.lhp-status.done { color: #16a34a; }
+.lhp-status.current { color: #ff8c00; }
+.lhp-status.planned { color: var(--lhp-workout-text-muted, #6b7280); }
+
+.lhp-btn-add-session {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 2px dashed #ff8c00;
+    color: #ff8c00;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.lhp-btn-add-session:hover {
+    background: rgba(255, 140, 0, 0.08);
+    border-style: solid;
+}
+
+@media (max-width: 640px) {
+    .lhp-plan-header {
+        flex-direction: column;
+    }
+
+    .lhp-action-buttons {
+        width: 100%;
+    }
+
+    .lhp-btn-action {
+        flex: 1;
+    }
+}
+</style>

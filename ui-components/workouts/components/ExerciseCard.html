@@ -1,54 +1,248 @@
 <!--
-  ExerciseCard Component
+  ExerciseCard Component (Enhanced)
   Part of the Lighthouse Portal Design System
   
-  Description: A card displaying details for a specific exercise.
+  Description: Individual exercise details with form cues and quick-log.
   Features:
-  - Video/Image placeholder.
-  - Instructions and key cues.
-  - Target muscle groups.
-  - Quick-log fields.
+  - Video/image placeholder
+  - Technique cues
+  - Quick-log sets/reps/weight
+  - Target muscle groups
 -->
 
 <div class="lhp-exercise-card">
     <div class="lhp-exercise-media">
-        <div class="lhp-video-placeholder">
+        <div class="lhp-video-preview">
             <span class="lhp-play-icon">▶️</span>
-            <p>Form Technique Video</p>
+            <p class="lhp-media-label">Form Technique Video</p>
         </div>
     </div>
 
     <div class="lhp-exercise-content">
         <div class="lhp-exercise-header">
-            <h3>Goblet Squat</h3>
-            <span class="lhp-badge muscle">Quads & Glutes</span>
+            <div>
+                <h4 class="lhp-exercise-name">Goblet Squat</h4>
+                <span class="lhp-muscle-badge">🔥 Quads & Glutes</span>
+            </div>
         </div>
 
-        <div class="lhp-exercise-cues">
-            <h4>Key Technique Cues:</h4>
-            <ul>
-                <li>Keep chest tall and core engaged.</li>
-                <li>Hips back and down, knees track over toes.</li>
-                <li>Drive through heels to stand.</li>
+        <div class="lhp-technique-cues">
+            <h5 class="lhp-cues-title">Key Technique Cues:</h5>
+            <ul class="lhp-cues-list">
+                <li>Keep chest tall and core engaged</li>
+                <li>Hips back and down, knees track over toes</li>
+                <li>Drive through heels to stand</li>
+                <li>Control the descent for 3 seconds</li>
             </ul>
         </div>
 
-        <form class="lhp-quick-log">
-            <div class="lhp-log-inputs">
+        <form class="lhp-quick-log-form">
+            <h5 class="lhp-log-title">Quick Log</h5>
+            <div class="lhp-log-fields">
                 <div class="lhp-field">
-                    <label>Sets</label>
-                    <input type="number" value="3">
+                    <label for="sets" class="lhp-field-label">Sets</label>
+                    <input type="number" id="sets" class="lhp-field-input" value="3" min="1" max="10">
                 </div>
                 <div class="lhp-field">
-                    <label>Reps</label>
-                    <input type="number" value="12">
+                    <label for="reps" class="lhp-field-label">Reps</label>
+                    <input type="number" id="reps" class="lhp-field-input" value="12" min="1" max="100">
                 </div>
                 <div class="lhp-field">
-                    <label>Weight (kg)</label>
-                    <input type="number" value="16">
+                    <label for="weight" class="lhp-field-label">Weight (kg)</label>
+                    <input type="number" id="weight" class="lhp-field-input" value="16" min="0" step="2.5">
                 </div>
             </div>
-            <button type="submit" class="lhp-save-set-btn">Save Set</button>
+            <button type="submit" class="lhp-save-btn">Save Set</button>
         </form>
     </div>
 </div>
+
+<script>
+document.querySelector('.lhp-quick-log-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const sets = document.getElementById('sets').value;
+    const reps = document.getElementById('reps').value;
+    const weight = document.getElementById('weight').value;
+    
+    console.log('Set logged:', { sets, reps, weight });
+    
+    // Success feedback
+    const btn = this.querySelector('.lhp-save-btn');
+    const originalText = btn.textContent;
+    btn.textContent = '✓ Saved!';
+    btn.style.background = '#10b981';
+    
+    setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+    }, 1500);
+});
+</script>
+
+<style>
+.lhp-exercise-card {
+    background: var(--lhp-workout-card, #ffffff);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--lhp-workout-border, #e5e7eb);
+    max-width: 500px;
+}
+
+.lhp-exercise-media {
+    margin-bottom: 24px;
+}
+
+.lhp-video-preview {
+    height: 200px;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border: 2px dashed #444;
+}
+
+.lhp-play-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    opacity: 0.7;
+}
+
+.lhp-media-label {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.lhp-exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.lhp-exercise-name {
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lhp-workout-text, #1f2937);
+}
+
+.lhp-muscle-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255, 140, 0, 0.15);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ff8c00;
+}
+
+.lhp-technique-cues {
+    margin-bottom: 24px;
+    padding: 20px;
+    background: var(--lhp-workout-bg, #f9fafb);
+    border-radius: 12px;
+    border-left: 4px solid #ff8c00;
+}
+
+.lhp-cues-title {
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ff8c00;
+}
+
+.lhp-cues-list {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--lhp-workout-text-muted, #6b7280);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.lhp-cues-list li {
+    margin-bottom: 6px;
+}
+
+.lhp-quick-log-form {
+    padding-top: 24px;
+    border-top: 2px solid var(--lhp-workout-border, #e5e7eb);
+}
+
+.lhp-log-title {
+    margin: 0 0 16px 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--lhp-workout-text, #1f2937);
+}
+
+.lhp-log-fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.lhp-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.lhp-field-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--lhp-workout-text-muted, #6b7280);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.lhp-field-input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid var(--lhp-workout-border, #e5e7eb);
+    background: var(--lhp-workout-card, #ffffff);
+    color: var(--lhp-workout-text, #1f2937);
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.lhp-field-input:focus {
+    outline: none;
+    border-color: #ff8c00;
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.15);
+}
+
+.lhp-save-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+    font-family: inherit;
+}
+
+.lhp-save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
+}
+
+.lhp-save-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.25);
+}
+</style>

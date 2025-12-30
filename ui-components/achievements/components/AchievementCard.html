@@ -1,38 +1,228 @@
 <!--
-  AchievementCard Component
+  AchievementCard Component (Enhanced)
   Part of the Lighthouse Portal Design System
   
-  Description: A card for individual user achievements.
+  Description: Individual achievement display with earned/locked states.
   Features:
-  - Icon/Badge display.
-  - Achievement name and description.
-  - Earned date placeholder.
-  - Social share actions.
+  - Visual earned/locked states
+  - Progress indicators for locked achievements
+  - Social share button
+  - High-contrast design
 -->
 
-<div class="lhp-achievement-card earned">
-    <div class="lhp-achievement-icon">
-        <span class="lhp-icon">🔥</span>
-    </div>
-    <div class="lhp-achievement-details">
-        <h3>7-Day Streak</h3>
-        <p>You've logged your vitals for 7 consecutive days! Keep the momentum going.</p>
-        <span class="lhp-earned-date">Earned: Recently</span>
-    </div>
-    <div class="lhp-achievement-actions">
-        <button class="lhp-share-btn" aria-label="Share achievement">📤</button>
-    </div>
+<div class="lhp-achievements-container">
+    <!-- Earned Achievement -->
+    <article class="lhp-achievement-card earned">
+        <div class="lhp-achievement-icon-wrapper">
+            <span class="lhp-achievement-icon">🔥</span>
+        </div>
+        <div class="lhp-achievement-details">
+            <h4 class="lhp-achievement-title">7-Day Streak</h4>
+            <p class="lhp-achievement-description">
+                You've logged your vitals for 7 consecutive days! Keep the momentum going.
+            </p>
+            <span class="lhp-earned-date">✨ Earned recently</span>
+        </div>
+        <button class="lhp-share-btn" aria-label="Share achievement">
+            <span class="lhp-share-icon">📤</span>
+        </button>
+    </article>
+
+    <!-- Locked Achievement (In Progress) -->
+    <article class="lhp-achievement-card locked">
+        <div class="lhp-achievement-icon-wrapper">
+            <span class="lhp-achievement-icon">🔒</span>
+        </div>
+        <div class="lhp-achievement-details">
+            <h4 class="lhp-achievement-title">Early Riser</h4>
+            <p class="lhp-achievement-description">
+                Log a sunrise meal 5 days in a row to unlock this badge.
+            </p>
+            <div class="lhp-progress-mini">
+                <div class="lhp-progress-bar">
+                    <div class="lhp-progress-fill" style="width: 60%;"></div>
+                </div>
+                <span class="lhp-progress-text">3/5 days</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- Locked Achievement (Not Started) -->
+    <article class="lhp-achievement-card locked">
+        <div class="lhp-achievement-icon-wrapper">
+            <span class="lhp-achievement-icon">🔒</span>
+        </div>
+        <div class="lhp-achievement-details">
+            <h4 class="lhp-achievement-title">Hydration Master</h4>
+            <p class="lhp-achievement-description">
+                Meet your daily hydration goal for 30 consecutive days.
+            </p>
+            <div class="lhp-progress-mini">
+                <div class="lhp-progress-bar">
+                    <div class="lhp-progress-fill" style="width: 0%;"></div>
+                </div>
+                <span class="lhp-progress-text">0/30 days</span>
+            </div>
+        </div>
+    </article>
 </div>
 
-<div class="lhp-achievement-card locked">
-    <div class="lhp-achievement-icon">
-        <span class="lhp-icon">🔒</span>
-    </div>
-    <div class="lhp-achievement-details">
-        <h3>Early Riser</h3>
-        <p>Log a sunrise meal 5 days in a row to unlock this badge.</p>
-        <div class="lhp-mini-progress">
-            <div class="lhp-bar" style="width: 60%;"></div>
-        </div>
-    </div>
-</div>
+<script>
+// Share button interaction
+document.querySelectorAll('.lhp-share-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // In real implementation, would trigger share sheet
+        console.log('Share achievement');
+        alert('Share functionality would trigger here!');
+    });
+});
+</script>
+
+<style>
+.lhp-achievements-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lhp-achievement-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: var(--lhp-achievement-card, #ffffff);
+    border-radius: 16px;
+    border: 2px solid var(--lhp-achievement-border, #e5e7eb);
+    transition: all 0.3s ease;
+}
+
+.lhp-achievement-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.lhp-achievement-card.earned {
+    border-color: #f79420;
+    background: linear-gradient(135deg, rgba(247, 148, 32, 0.05) 0%, rgba(247, 148, 32, 0.02) 100%);
+    box-shadow: 0 4px 12px rgba(247, 148, 32, 0.15);
+}
+
+.lhp-achievement-card.locked {
+    opacity: 0.7;
+    filter: grayscale(0.3);
+}
+
+.lhp-achievement-icon-wrapper {
+    min-width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--lhp-achievement-bg, #f9fafb);
+    border-radius: 16px;
+    border: 2px solid var(--lhp-achievement-border, #e5e7eb);
+}
+
+.lhp-achievement-card.earned .lhp-achievement-icon-wrapper {
+    background: linear-gradient(135deg, #f79420 0%, #e68a1c 100%);
+    border-color: #f79420;
+}
+
+.lhp-achievement-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.lhp-achievement-card.earned .lhp-achievement-icon {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.lhp-achievement-details {
+    flex: 1;
+}
+
+.lhp-achievement-title {
+    margin: 0 0 6px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--lhp-achievement-text, #1f2937);
+}
+
+.lhp-achievement-description {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    color: var(--lhp-achievement-text-muted, #6b7280);
+    line-height: 1.5;
+}
+
+.lhp-earned-date {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(247, 148, 32, 0.15);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #f79420;
+}
+
+.lhp-progress-mini {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lhp-progress-bar {
+    height: 8px;
+    background: var(--lhp-achievement-border, #e5e7eb);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.lhp-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f79420 0%, #10b981 100%);
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.lhp-progress-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--lhp-achievement-text-muted, #6b7280);
+}
+
+.lhp-share-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--lhp-achievement-border, #e5e7eb);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lhp-share-btn:hover {
+    background: rgba(247, 148, 32, 0.1);
+    border-color: #f79420;
+    transform: scale(1.1);
+}
+
+.lhp-share-icon {
+    font-size: 1.3rem;
+}
+
+@media (max-width: 640px) {
+    .lhp-achievement-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .lhp-share-btn {
+        align-self: center;
+    }
+}
+</style>
