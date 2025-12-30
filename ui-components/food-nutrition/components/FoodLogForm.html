@@ -227,8 +227,12 @@ document.querySelector('.lhp-log-form')?.addEventListener('submit', function(e) 
 }
 
 .lhp-feeling-pill:hover {
-    background: rgba(247, 148, 32, 0.08);
+    background: rgba(247, 148, 32, 0.15);
     border-color: #f79420;
+}
+
+[data-theme="light"] .lhp-feeling-pill:hover {
+    background: rgba(247, 148, 32, 0.2);
 }
 
 .lhp-feeling-pill.active {

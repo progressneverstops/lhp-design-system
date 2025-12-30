@@ -213,11 +213,23 @@
     letter-spacing: 0.05em;
 }
 
+[data-theme="light"] .lhp-stage-label {
+    color: #4b5563;
+}
+
 .lhp-stage.complete .lhp-stage-label {
-    color: #10b981;
+    color: #059669;
+}
+
+[data-theme="light"] .lhp-stage.complete .lhp-stage-label {
+    color: #047857;
 }
 
 .lhp-stage.active .lhp-stage-label {
+    color: #c96a00;
+}
+
+[data-theme="light"] .lhp-stage.active .lhp-stage-label {
     color: #f79420;
 }
 
@@ -251,15 +263,24 @@
     text-align: center;
 }
 
+[data-theme="light"] .lhp-xp-text {
+    color: #4b5563;
+}
+
 .lhp-streak-display {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     padding: 12px;
-    background: rgba(255, 82, 82, 0.08);
+    background: rgba(255, 82, 82, 0.15);
     border-radius: 12px;
-    border: 2px solid rgba(255, 82, 82, 0.2);
+    border: 2px solid rgba(255, 82, 82, 0.3);
+}
+
+[data-theme="light"] .lhp-streak-display {
+    background: rgba(255, 82, 82, 0.2);
+    border-color: rgba(255, 82, 82, 0.4);
 }
 
 .lhp-streak-icon {
@@ -269,15 +290,23 @@
 .lhp-streak-text {
     font-size: 1rem;
     font-weight: 700;
-    color: #ff5252;
+    color: #dc2626;
+}
+
+[data-theme="light"] .lhp-streak-text {
+    color: #b91c1c;
 }
 
 .lhp-motivation-message {
     text-align: center;
     padding: 16px;
-    background: rgba(247, 148, 32, 0.08);
+    background: rgba(247, 148, 32, 0.12);
     border-left: 4px solid #f79420;
     border-radius: 8px;
+}
+
+[data-theme="light"] .lhp-motivation-message {
+    background: rgba(247, 148, 32, 0.15);
 }
 
 .lhp-motivation-message p {
@@ -285,6 +314,10 @@
     font-size: 0.9rem;
     color: var(--lhp-achievement-text, #1f2937);
     font-weight: 600;
+}
+
+[data-theme="light"] .lhp-motivation-message p {
+    color: #1a1a1a;
 }
 
 @media (max-width: 640px) {

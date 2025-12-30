@@ -207,36 +207,60 @@
 }
 
 .lhp-property-tag.anti-inflammatory {
-    background: rgba(239, 68, 68, 0.1);
+    background: rgba(239, 68, 68, 0.2);
     border-color: #ef4444;
-    color: #dc2626;
+    color: #b91c1c;
+    font-weight: 700;
 }
 
 .lhp-property-tag.brain {
-    background: rgba(168, 85, 247, 0.1);
+    background: rgba(168, 85, 247, 0.2);
     border-color: #a855f7;
-    color: #7c3aed;
+    color: #6d28d9;
+    font-weight: 700;
 }
 
 .lhp-property-tag.skin {
-    background: rgba(236, 72, 153, 0.1);
+    background: rgba(236, 72, 153, 0.2);
     border-color: #ec4899;
-    color: #db2777;
+    color: #be185d;
+    font-weight: 700;
 }
 
 .lhp-property-tag.heart {
-    background: rgba(239, 68, 68, 0.1);
+    background: rgba(239, 68, 68, 0.2);
     border-color: #ef4444;
-    color: #dc2626;
+    color: #b91c1c;
+    font-weight: 700;
+}
+
+[data-theme="light"] .lhp-property-tag.anti-inflammatory {
+    color: #991b1b;
+}
+
+[data-theme="light"] .lhp-property-tag.brain {
+    color: #5b21b6;
+}
+
+[data-theme="light"] .lhp-property-tag.skin {
+    color: #9f1239;
+}
+
+[data-theme="light"] .lhp-property-tag.heart {
+    color: #991b1b;
 }
 
 .lhp-timing-tip {
     display: flex;
     gap: 16px;
     padding: 20px;
-    background: rgba(247, 148, 32, 0.08);
+    background: rgba(247, 148, 32, 0.12);
     border-left: 4px solid #f79420;
     border-radius: 8px;
+}
+
+[data-theme="light"] .lhp-timing-tip {
+    background: rgba(247, 148, 32, 0.15);
 }
 
 .lhp-tip-icon {
@@ -269,6 +293,10 @@
 }
 
 .lhp-tip-content strong {
+    color: #c96a00 !important;
+}
+
+[data-theme="light"] .lhp-tip-content strong {
     color: #f79420 !important;
 }
 </style>

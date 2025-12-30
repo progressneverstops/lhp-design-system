@@ -104,8 +104,12 @@ document.querySelectorAll('.lhp-share-btn').forEach(btn => {
 
 .lhp-achievement-card.earned {
     border-color: #f79420;
-    background: linear-gradient(135deg, rgba(247, 148, 32, 0.05) 0%, rgba(247, 148, 32, 0.02) 100%);
+    background: linear-gradient(135deg, rgba(247, 148, 32, 0.1) 0%, rgba(247, 148, 32, 0.05) 100%);
     box-shadow: 0 4px 12px rgba(247, 148, 32, 0.15);
+}
+
+[data-theme="light"] .lhp-achievement-card.earned {
+    background: linear-gradient(135deg, rgba(247, 148, 32, 0.15) 0%, rgba(247, 148, 32, 0.08) 100%);
 }
 
 .lhp-achievement-card.locked {
@@ -149,21 +153,35 @@ document.querySelectorAll('.lhp-share-btn').forEach(btn => {
     color: var(--lhp-achievement-text, #1f2937);
 }
 
+[data-theme="light"] .lhp-achievement-title {
+    color: #1a1a1a;
+}
+
 .lhp-achievement-description {
     margin: 0 0 10px 0;
     font-size: 0.9rem;
     color: var(--lhp-achievement-text-muted, #6b7280);
     line-height: 1.5;
+    font-weight: 500;
+}
+
+[data-theme="light"] .lhp-achievement-description {
+    color: #4b5563;
 }
 
 .lhp-earned-date {
     display: inline-block;
     padding: 4px 10px;
-    background: rgba(247, 148, 32, 0.15);
+    background: rgba(247, 148, 32, 0.2);
     border-radius: 12px;
     font-size: 0.75rem;
     font-weight: 700;
-    color: #f79420;
+    color: #c96a00;
+}
+
+[data-theme="light"] .lhp-earned-date {
+    background: rgba(247, 148, 32, 0.25);
+    color: #b85a00;
 }
 
 .lhp-progress-mini {
@@ -206,9 +224,13 @@ document.querySelectorAll('.lhp-share-btn').forEach(btn => {
 }
 
 .lhp-share-btn:hover {
-    background: rgba(247, 148, 32, 0.1);
+    background: rgba(247, 148, 32, 0.15);
     border-color: #f79420;
     transform: scale(1.1);
+}
+
+[data-theme="light"] .lhp-share-btn:hover {
+    background: rgba(247, 148, 32, 0.2);
 }
 
 .lhp-share-icon {

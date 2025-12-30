@@ -46,10 +46,16 @@
 .lhp-tip {
     font-size: 0.9rem;
     color: var(--lhp-food-text-muted);
-    background: rgba(247, 148, 32, 0.1);
+    background: rgba(247, 148, 32, 0.15);
     padding: 10px;
     border-radius: 6px;
     border-left: 4px solid var(--lhp-food-accent);
+    font-weight: 500;
+}
+
+[data-theme="light"] .lhp-tip {
+    background: rgba(247, 148, 32, 0.2);
+    color: #1a1a1a;
 }
 
 /* Forms & Inputs */
@@ -149,9 +155,15 @@
     display: flex;
     gap: 15px;
     padding: 16px;
-    background: rgba(247, 148, 32, 0.05);
+    background: rgba(247, 148, 32, 0.12);
     border-radius: 8px;
     font-size: 0.9rem;
+    font-weight: 500;
+}
+
+[data-theme="light"] .lhp-lifestyle-tip {
+    background: rgba(247, 148, 32, 0.15);
+    color: #1a1a1a;
 }
 
 /* Scanner Specifics */

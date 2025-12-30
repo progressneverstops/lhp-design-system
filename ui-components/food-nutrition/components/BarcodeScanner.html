@@ -232,9 +232,14 @@ document.querySelector('.lhp-flash-btn')?.addEventListener('click', function() {
 
 .lhp-flash-btn:hover,
 .lhp-manual-btn:hover {
-    background: rgba(247, 148, 32, 0.08);
+    background: rgba(247, 148, 32, 0.15);
     border-color: #f79420;
     transform: translateY(-2px);
+}
+
+[data-theme="light"] .lhp-flash-btn:hover,
+[data-theme="light"] .lhp-manual-btn:hover {
+    background: rgba(247, 148, 32, 0.2);
 }
 
 .lhp-icon {
