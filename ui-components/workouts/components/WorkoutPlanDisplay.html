@@ -176,12 +176,30 @@
 }
 
 .lhp-plan-table tbody tr.completed {
-    background: rgba(16, 185, 129, 0.05);
+    background: rgba(16, 185, 129, 0.1);
 }
 
 .lhp-plan-table tbody tr.active {
-    background: rgba(255, 140, 0, 0.08);
+    background: rgba(255, 140, 0, 0.12);
     border-left: 4px solid #ff8c00;
+}
+
+[data-theme="light"] .lhp-plan-table tbody tr.completed {
+    background: rgba(16, 185, 129, 0.15);
+}
+
+[data-theme="light"] .lhp-plan-table tbody tr.active {
+    background: rgba(255, 140, 0, 0.15);
+}
+
+.lhp-plan-table tbody tr.completed td {
+    color: var(--lhp-workout-text, #1f2937);
+    font-weight: 500;
+}
+
+.lhp-plan-table tbody tr.active td {
+    color: var(--lhp-workout-text, #1f2937);
+    font-weight: 600;
 }
 
 .lhp-activity-icon {
@@ -199,18 +217,21 @@
 }
 
 .lhp-intensity.high {
-    background: rgba(239, 68, 68, 0.15);
-    color: #dc2626;
+    background: rgba(239, 68, 68, 0.2);
+    color: #b91c1c;
+    font-weight: 700;
 }
 
 .lhp-intensity.med {
-    background: rgba(251, 146, 60, 0.15);
-    color: #ea580c;
+    background: rgba(251, 146, 60, 0.2);
+    color: #c2410c;
+    font-weight: 700;
 }
 
 .lhp-intensity.low {
-    background: rgba(34, 197, 94, 0.15);
-    color: #16a34a;
+    background: rgba(34, 197, 94, 0.2);
+    color: #15803d;
+    font-weight: 700;
 }
 
 .lhp-status {
@@ -218,9 +239,26 @@
     font-weight: 600;
 }
 
-.lhp-status.done { color: #16a34a; }
-.lhp-status.current { color: #ff8c00; }
-.lhp-status.planned { color: var(--lhp-workout-text-muted, #6b7280); }
+.lhp-status.done { 
+    color: #15803d; 
+    font-weight: 700;
+}
+.lhp-status.current { 
+    color: #c96a00; 
+    font-weight: 700;
+}
+.lhp-status.planned { 
+    color: var(--lhp-workout-text-muted, #6b7280); 
+    font-weight: 500;
+}
+
+[data-theme="light"] .lhp-status.done {
+    color: #16a34a;
+}
+
+[data-theme="light"] .lhp-status.current {
+    color: #ff8c00;
+}
 
 .lhp-btn-add-session {
     width: 100%;

@@ -115,22 +115,37 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(247, 148, 32, 0.15);
+            background: rgba(247, 148, 32, 0.25);
             border-top: 2px solid var(--accent);
             padding: 16px 24px;
             z-index: 9999;
             backdrop-filter: blur(10px);
         }
 
+        [data-theme="light"] .warning-banner {
+            background: rgba(247, 148, 32, 0.2);
+        }
+
         .warning-banner p {
             margin: 0;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text);
             text-align: center;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        [data-theme="light"] .warning-banner p {
+            color: #1a1a1a;
         }
 
         .warning-banner strong {
             color: var(--accent);
+            font-weight: 700;
+        }
+
+        [data-theme="light"] .warning-banner strong {
+            color: #c96a00;
         }
     </style>
 </head>

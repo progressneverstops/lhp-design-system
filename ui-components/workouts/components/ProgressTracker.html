@@ -156,10 +156,16 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
 .lhp-period-btn.active {
     background: #ff8c00;
     color: white;
+    font-weight: 700;
 }
 
 .lhp-period-btn:hover:not(.active) {
-    background: rgba(255, 140, 0, 0.1);
+    background: rgba(255, 140, 0, 0.15);
+    color: #c96a00;
+    font-weight: 700;
+}
+
+[data-theme="light"] .lhp-period-btn:hover:not(.active) {
     color: #ff8c00;
 }
 
@@ -282,9 +288,13 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
     display: flex;
     gap: 16px;
     padding: 20px;
-    background: rgba(255, 140, 0, 0.08);
+    background: rgba(255, 140, 0, 0.12);
     border-left: 4px solid #ff8c00;
     border-radius: 8px;
+}
+
+[data-theme="light"] .lhp-insight-box {
+    background: rgba(255, 140, 0, 0.15);
 }
 
 .lhp-insight-icon {
@@ -297,6 +307,11 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
     font-size: 0.9rem;
     color: var(--lhp-workout-text, #1f2937);
     line-height: 1.6;
+    font-weight: 500;
+}
+
+[data-theme="light"] .lhp-insight-box p {
+    color: #1a1a1a;
 }
 
 @media (max-width: 640px) {
