@@ -1,0 +1,378 @@
+<!--
+  3D Body Visualizer Component (UI/UX Only - Stripped)
+  Part of the Lighthouse Portal Design System
+  
+  Description: 3D body mesh visualization with minimal safe controls.
+  Features:
+  - 3D viewport with actual mesh rendering (open-source base mesh)
+  - Wireframe toggle (safe control)
+  - Pause animation toggle (safe control)
+  - Theme switching
+  - Responsive layout
+  
+  NOTE: This is a UI/UX showcase only. Proprietary body morphing algorithms,
+  hormone receptor calculations, and measurement formulas are NOT included.
+  The mesh shown is the open-source base rigged model - no proprietary transformations.
+-->
+
+<div class="lhp-3d-visualizer-container">
+    <div class="lhp-3d-viewport" id="lhp-3d-canvas">
+        <!-- Three.js will render here -->
+    </div>
+
+    <div class="lhp-3d-controls-panel">
+        <div class="lhp-3d-header">
+            <h3>View Options</h3>
+            <button class="lhp-theme-toggle" id="lhp-3d-theme-toggle" aria-label="Toggle theme">
+                <span id="lhp-3d-theme-icon">🌙</span>
+            </button>
+        </div>
+
+        <div class="lhp-control-section">
+            <div class="lhp-toggle-group">
+                <label class="lhp-toggle-label">
+                    <input type="checkbox" id="wireframe-mode" class="lhp-toggle">
+                    <span class="lhp-toggle-text">Wireframe Mode</span>
+                </label>
+            </div>
+
+            <div class="lhp-toggle-group">
+                <label class="lhp-toggle-label">
+                    <input type="checkbox" id="pause-animation" class="lhp-toggle">
+                    <span class="lhp-toggle-text">Pause Animation</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="lhp-info-box">
+            <p class="lhp-info-text">
+                <strong>UI/UX Showcase:</strong> This component demonstrates the 3D visualization interface. 
+                The mesh shown is the open-source base rigged model. Proprietary body morphing algorithms 
+                and calculations are NOT included.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js';
+import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/controls/OrbitControls.js';
+
+// Scene setup
+const container = document.getElementById('lhp-3d-canvas');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+camera.position.set(0, 1.6, 3);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// Orbit controls for camera
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.minDistance = 2;
+controls.maxDistance = 8;
+
+// Lighting
+const ambientLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+directionalLight.position.set(2, 4, 2);
+scene.add(directionalLight);
+
+// State
+let bodyMesh = null;
+let isWireframe = false;
+let isPaused = false;
+let animationId = null;
+
+// Load open-source base mesh
+// NOTE: Replace this path with your actual open-source base mesh location
+const loader = new GLTFLoader();
+const meshPath = 'https://threejs.org/examples/models/gltf/Duck/glTF-Binary/Duck.glb'; // Placeholder - replace with your base mesh
+
+loader.load(
+    meshPath,
+    function(gltf) {
+        bodyMesh = gltf.scene;
+        
+        // Center and scale the mesh
+        const box = new THREE.Box3().setFromObject(bodyMesh);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 1.5 / maxDim;
+        
+        bodyMesh.scale.multiplyScalar(scale);
+        bodyMesh.position.sub(center.multiplyScalar(scale));
+        bodyMesh.position.y = 0;
+        
+        scene.add(bodyMesh);
+        
+        // If mesh fails to load, show a simple placeholder geometry
+        if (!bodyMesh) {
+            createPlaceholderMesh();
+        }
+    },
+    function(progress) {
+        // Loading progress (optional)
+    },
+    function(error) {
+        console.warn('Mesh loading failed, using placeholder:', error);
+        createPlaceholderMesh();
+    }
+);
+
+// Placeholder mesh if GLB fails to load
+function createPlaceholderMesh() {
+    const geometry = new THREE.BoxGeometry(1, 2, 0.5);
+    const material = new THREE.MeshPhongMaterial({ 
+        color: 0xf79420,
+        wireframe: false 
+    });
+    bodyMesh = new THREE.Mesh(geometry, material);
+    bodyMesh.position.y = 1;
+    scene.add(bodyMesh);
+}
+
+// Wireframe toggle
+document.getElementById('wireframe-mode').addEventListener('change', function(e) {
+    isWireframe = e.target.checked;
+    if (bodyMesh) {
+        bodyMesh.traverse(function(child) {
+            if (child.isMesh) {
+                child.material.wireframe = isWireframe;
+            }
+        });
+    }
+});
+
+// Pause animation toggle
+document.getElementById('pause-animation').addEventListener('change', function(e) {
+    isPaused = e.target.checked;
+});
+
+// Animation loop
+function animate() {
+    animationId = requestAnimationFrame(animate);
+    
+    if (!isPaused && bodyMesh) {
+        bodyMesh.rotation.y += 0.005;
+    }
+    
+    controls.update();
+    renderer.render(scene, camera);
+}
+
+// Handle resize
+function handleResize() {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+}
+
+window.addEventListener('resize', handleResize);
+
+// Start animation
+animate();
+
+// Theme toggle
+(function() {
+    const toggleBtn = document.getElementById('lhp-3d-theme-toggle');
+    const icon = document.getElementById('lhp-3d-theme-icon');
+    
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('lhp-theme', newTheme);
+            icon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+            
+            // Update scene background based on theme
+            scene.background = newTheme === 'dark' 
+                ? new THREE.Color(0x1a1a1a) 
+                : new THREE.Color(0xe8e8e8);
+        });
+        
+        // Initialize theme
+        const savedTheme = localStorage.getItem('lhp-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        icon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+        scene.background = savedTheme === 'dark' 
+            ? new THREE.Color(0x1a1a1a) 
+            : new THREE.Color(0xe8e8e8);
+    }
+})();
+</script>
+
+<style>
+.lhp-3d-visualizer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--lhp-3d-bg, #0a0a0a);
+    color: var(--lhp-3d-text, #ffffff);
+}
+
+[data-theme="light"] .lhp-3d-visualizer-container {
+    background: var(--lhp-3d-bg, #f5f5f5);
+    color: var(--lhp-3d-text, #1a1a1a);
+}
+
+.lhp-3d-viewport {
+    flex: 1;
+    position: relative;
+    background: var(--lhp-3d-scene-bg, #1a1a1a);
+    overflow: hidden;
+}
+
+[data-theme="light"] .lhp-3d-viewport {
+    background: var(--lhp-3d-scene-bg, #e8e8e8);
+}
+
+.lhp-3d-viewport canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.lhp-3d-controls-panel {
+    background: var(--lhp-3d-panel-bg, #1e1e1e);
+    border-top: 1px solid var(--lhp-3d-border, #333);
+    padding: 24px;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+[data-theme="light"] .lhp-3d-controls-panel {
+    background: var(--lhp-3d-panel-bg, #ffffff);
+    border-top: 1px solid var(--lhp-3d-border, #e5e7eb);
+}
+
+.lhp-3d-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.lhp-3d-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--lhp-3d-text, #ffffff);
+}
+
+.lhp-theme-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--lhp-orange, #f79420);
+    background: transparent;
+    color: var(--lhp-orange, #f79420);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.lhp-theme-toggle:hover {
+    background: var(--lhp-orange, #f79420);
+    color: var(--lhp-3d-bg, #0a0a0a);
+    transform: scale(1.1);
+}
+
+.lhp-control-section {
+    margin-bottom: 28px;
+}
+
+.lhp-toggle-group {
+    margin-bottom: 16px;
+}
+
+.lhp-toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.lhp-toggle {
+    width: 44px;
+    height: 24px;
+    border-radius: 12px;
+    background: var(--lhp-3d-border, #333);
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.lhp-toggle:checked {
+    background: var(--lhp-orange, #f79420);
+}
+
+.lhp-toggle::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.2s ease;
+}
+
+.lhp-toggle:checked::before {
+    transform: translateX(20px);
+}
+
+.lhp-toggle-text {
+    font-size: 0.9rem;
+    color: var(--lhp-3d-text, #ffffff);
+}
+
+.lhp-info-box {
+    margin-top: 24px;
+    padding: 16px;
+    background: rgba(247, 148, 32, 0.1);
+    border-left: 4px solid var(--lhp-orange, #f79420);
+    border-radius: 8px;
+}
+
+.lhp-info-text {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--lhp-3d-text, #ffffff);
+}
+
+.lhp-info-text strong {
+    color: var(--lhp-orange, #f79420);
+}
+
+@media (min-width: 768px) {
+    .lhp-3d-visualizer-container {
+        flex-direction: row;
+    }
+    
+    .lhp-3d-controls-panel {
+        width: 350px;
+        max-height: 100vh;
+        border-top: none;
+        border-left: 1px solid var(--lhp-3d-border, #333);
+    }
+}
+</style>
