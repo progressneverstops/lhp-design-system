@@ -19,9 +19,14 @@
 
 h3 {
     margin-top: 0;
-    color: #4db6ac;
+    color: #004d40;
     font-size: 1.25rem;
     margin-bottom: 16px;
+    font-weight: 700;
+}
+
+[data-theme="dark"] h3 {
+    color: #4db6ac;
 }
 
 /* Water Log Buttons */
@@ -38,10 +43,15 @@ h3 {
     border-radius: 8px;
     border: 1px solid #4db6ac;
     background: #e0f2f1;
-    color: #00796b;
-    font-weight: 600;
+    color: #004d40;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
+}
+
+[data-theme="dark"] .glass-btn {
+    background: rgba(77, 182, 172, 0.3);
+    color: #ffffff;
 }
 
 .glass-btn:hover {
@@ -82,7 +92,7 @@ h3 {
 .percentage-text {
     font-size: 18px;
     font-weight: 700;
-    fill: #00796b;
+    fill: #004d40;
     transform: rotate(90deg);
     transform-origin: center;
 }
@@ -105,15 +115,24 @@ h3 {
 .label {
     display: block;
     font-size: 0.7rem;
-    color: #666;
+    color: #000000;
     text-transform: uppercase;
     margin-bottom: 4px;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .label {
+    color: #cccccc;
 }
 
 .value {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #00796b;
+    color: #004d40;
+}
+
+[data-theme="dark"] .value {
+    color: #4db6ac;
 }
 
 /* Form Controls */

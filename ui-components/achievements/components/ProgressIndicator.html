@@ -208,28 +208,36 @@
 .lhp-stage-label {
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--lhp-achievement-text-muted, #6b7280);
+    color: #000000;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-[data-theme="light"] .lhp-stage-label {
-    color: #4b5563;
+[data-theme="dark"] .lhp-stage-label {
+    color: #cccccc;
 }
 
 .lhp-stage.complete .lhp-stage-label {
-    color: #059669;
+    color: #064e3b;
 }
 
 [data-theme="light"] .lhp-stage.complete .lhp-stage-label {
-    color: #047857;
+    color: #065f46;
+}
+
+[data-theme="dark"] .lhp-stage.complete .lhp-stage-label {
+    color: #10b981;
 }
 
 .lhp-stage.active .lhp-stage-label {
-    color: #c96a00;
+    color: #7a3d00;
 }
 
 [data-theme="light"] .lhp-stage.active .lhp-stage-label {
+    color: #c96a00;
+}
+
+[data-theme="dark"] .lhp-stage.active .lhp-stage-label {
     color: #f79420;
 }
 
@@ -258,13 +266,13 @@
 .lhp-xp-text {
     margin: 0;
     font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--lhp-achievement-text-muted, #6b7280);
+    font-weight: 700;
+    color: #000000;
     text-align: center;
 }
 
-[data-theme="light"] .lhp-xp-text {
-    color: #4b5563;
+[data-theme="dark"] .lhp-xp-text {
+    color: #e5e5e5;
 }
 
 .lhp-streak-display {
@@ -273,14 +281,19 @@
     justify-content: center;
     gap: 8px;
     padding: 12px;
-    background: rgba(255, 82, 82, 0.15);
+    background: rgba(255, 82, 82, 0.25);
     border-radius: 12px;
-    border: 2px solid rgba(255, 82, 82, 0.3);
+    border: 2px solid rgba(255, 82, 82, 0.4);
 }
 
 [data-theme="light"] .lhp-streak-display {
-    background: rgba(255, 82, 82, 0.2);
-    border-color: rgba(255, 82, 82, 0.4);
+    background: rgba(255, 82, 82, 0.3);
+    border-color: rgba(255, 82, 82, 0.5);
+}
+
+[data-theme="dark"] .lhp-streak-display {
+    background: rgba(255, 82, 82, 0.35);
+    border-color: rgba(255, 82, 82, 0.6);
 }
 
 .lhp-streak-icon {
@@ -290,34 +303,42 @@
 .lhp-streak-text {
     font-size: 1rem;
     font-weight: 700;
-    color: #dc2626;
+    color: #7f1d1d;
 }
 
 [data-theme="light"] .lhp-streak-text {
-    color: #b91c1c;
+    color: #991b1b;
+}
+
+[data-theme="dark"] .lhp-streak-text {
+    color: #ffffff;
 }
 
 .lhp-motivation-message {
     text-align: center;
     padding: 16px;
-    background: rgba(247, 148, 32, 0.12);
+    background: rgba(247, 148, 32, 0.25);
     border-left: 4px solid #f79420;
     border-radius: 8px;
 }
 
 [data-theme="light"] .lhp-motivation-message {
-    background: rgba(247, 148, 32, 0.15);
+    background: rgba(247, 148, 32, 0.3);
+}
+
+[data-theme="dark"] .lhp-motivation-message {
+    background: rgba(247, 148, 32, 0.35);
 }
 
 .lhp-motivation-message p {
     margin: 0;
     font-size: 0.9rem;
-    color: var(--lhp-achievement-text, #1f2937);
-    font-weight: 600;
+    color: #000000;
+    font-weight: 700;
 }
 
-[data-theme="light"] .lhp-motivation-message p {
-    color: #1a1a1a;
+[data-theme="dark"] .lhp-motivation-message p {
+    color: #ffffff;
 }
 
 @media (max-width: 640px) {

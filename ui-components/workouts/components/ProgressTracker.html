@@ -89,12 +89,17 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
 
 <style>
 .lhp-progress-tracker {
-    background: var(--lhp-workout-card, #ffffff);
+    background: #0a0a0a;
     border-radius: 16px;
     padding: 28px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--lhp-workout-border, #e5e7eb);
+    border: 1px solid #333333;
     max-width: 600px;
+}
+
+[data-theme="light"] .lhp-progress-tracker {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
 }
 
 .lhp-tracker-header {
@@ -110,7 +115,11 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
     margin: 0;
     font-size: 1.75rem;
     font-weight: 700;
-    color: var(--lhp-workout-text, #1f2937);
+    color: #ffffff;
+}
+
+[data-theme="light"] .lhp-tracker-header h3 {
+    color: #000000 !important;
 }
 
 .lhp-tracker-controls {
@@ -123,21 +132,31 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
 .lhp-exercise-select {
     padding: 8px 14px;
     border-radius: 8px;
-    border: 2px solid var(--lhp-workout-border, #e5e7eb);
-    background: var(--lhp-workout-card, #ffffff);
-    color: var(--lhp-workout-text, #1f2937);
+    border: 2px solid #333333;
+    background: #1a1a1a;
+    color: #ffffff;
     font-size: 0.9rem;
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;
 }
 
+[data-theme="light"] .lhp-exercise-select {
+    border: 2px solid #e5e7eb !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
 .lhp-period-selector {
     display: flex;
     gap: 4px;
-    background: var(--lhp-workout-bg, #f9fafb);
+    background: #1a1a1a;
     padding: 4px;
     border-radius: 8px;
+}
+
+[data-theme="light"] .lhp-period-selector {
+    background: #f9fafb !important;
 }
 
 .lhp-period-btn {
@@ -147,10 +166,14 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--lhp-workout-text-muted, #6b7280);
+    color: #cccccc;
     cursor: pointer;
     transition: all 0.2s ease;
     font-family: inherit;
+}
+
+[data-theme="light"] .lhp-period-btn {
+    color: #000000;
 }
 
 .lhp-period-btn.active {
@@ -160,20 +183,30 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
 }
 
 .lhp-period-btn:hover:not(.active) {
-    background: rgba(255, 140, 0, 0.15);
-    color: #c96a00;
+    background: rgba(255, 140, 0, 0.3);
+    color: #7a3d00;
     font-weight: 700;
 }
 
 [data-theme="light"] .lhp-period-btn:hover:not(.active) {
+    color: #c96a00;
+    background: rgba(255, 140, 0, 0.35);
+}
+
+[data-theme="dark"] .lhp-period-btn:hover:not(.active) {
     color: #ff8c00;
+    background: rgba(255, 140, 0, 0.4);
 }
 
 .lhp-chart-area {
     margin-bottom: 28px;
     padding: 24px;
-    background: var(--lhp-workout-bg, #f9fafb);
+    background: #1a1a1a;
     border-radius: 12px;
+}
+
+[data-theme="light"] .lhp-chart-area {
+    background: #f9fafb !important;
 }
 
 .lhp-mock-chart {
@@ -238,8 +271,12 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
 
 .lhp-bar-label {
     font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--lhp-workout-text-muted, #6b7280);
+    font-weight: 700;
+    color: #cccccc;
+}
+
+[data-theme="light"] .lhp-bar-label {
+    color: #000000;
 }
 
 .lhp-progress-stats {
@@ -253,34 +290,63 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
     flex: 1;
     min-width: 140px;
     padding: 16px;
-    background: var(--lhp-workout-bg, #f9fafb);
+    background: #1a1a1a;
     border-radius: 12px;
-    border: 2px solid var(--lhp-workout-border, #e5e7eb);
+    border: 2px solid #333333;
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
+[data-theme="light"] .lhp-stat-pill {
+    background: #f9fafb !important;
+    border: 2px solid #e5e7eb !important;
+}
+
 .lhp-stat-pill.success {
-    background: rgba(16, 185, 129, 0.08);
+    background: rgba(16, 185, 129, 0.25);
     border-color: #10b981;
+}
+
+[data-theme="light"] .lhp-stat-pill.success {
+    background: rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="dark"] .lhp-stat-pill.success {
+    background: rgba(16, 185, 129, 0.35);
 }
 
 .lhp-stat-label {
     font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--lhp-workout-text-muted, #6b7280);
+    font-weight: 700;
+    color: #cccccc;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+[data-theme="light"] .lhp-stat-label {
+    color: #000000;
 }
 
 .lhp-stat-value {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--lhp-workout-text, #1f2937);
+    color: #ffffff;
+}
+
+[data-theme="light"] .lhp-stat-value {
+    color: #000000;
 }
 
 .lhp-stat-value.positive {
+    color: #064e3b;
+}
+
+[data-theme="light"] .lhp-stat-value.positive {
+    color: #065f46;
+}
+
+[data-theme="dark"] .lhp-stat-value.positive {
     color: #10b981;
 }
 
@@ -288,13 +354,17 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
     display: flex;
     gap: 16px;
     padding: 20px;
-    background: rgba(255, 140, 0, 0.12);
+    background: rgba(255, 140, 0, 0.3);
     border-left: 4px solid #ff8c00;
     border-radius: 8px;
 }
 
 [data-theme="light"] .lhp-insight-box {
-    background: rgba(255, 140, 0, 0.15);
+    background: rgba(255, 140, 0, 0.35);
+}
+
+[data-theme="dark"] .lhp-insight-box {
+    background: rgba(255, 140, 0, 0.4);
 }
 
 .lhp-insight-icon {
@@ -305,13 +375,13 @@ document.querySelectorAll('.lhp-period-btn').forEach(btn => {
 .lhp-insight-box p {
     margin: 0;
     font-size: 0.9rem;
-    color: var(--lhp-workout-text, #1f2937);
+    color: #ffffff;
     line-height: 1.6;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 [data-theme="light"] .lhp-insight-box p {
-    color: #1a1a1a;
+    color: #000000;
 }
 
 @media (max-width: 640px) {

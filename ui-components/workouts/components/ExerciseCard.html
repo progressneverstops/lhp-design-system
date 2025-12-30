@@ -82,12 +82,17 @@ document.querySelector('.lhp-quick-log-form')?.addEventListener('submit', functi
 
 <style>
 .lhp-exercise-card {
-    background: var(--lhp-workout-card, #ffffff);
+    background: #0a0a0a;
     border-radius: 16px;
     padding: 24px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--lhp-workout-border, #e5e7eb);
+    border: 1px solid #333333;
     max-width: 500px;
+}
+
+[data-theme="light"] .lhp-exercise-card {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
 }
 
 .lhp-exercise-media {
@@ -129,7 +134,11 @@ document.querySelector('.lhp-quick-log-form')?.addEventListener('submit', functi
     margin: 0 0 8px 0;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--lhp-workout-text, #1f2937);
+    color: #ffffff;
+}
+
+[data-theme="light"] .lhp-exercise-name {
+    color: #000000 !important;
 }
 
 .lhp-muscle-badge {
@@ -145,9 +154,13 @@ document.querySelector('.lhp-quick-log-form')?.addEventListener('submit', functi
 .lhp-technique-cues {
     margin-bottom: 24px;
     padding: 20px;
-    background: var(--lhp-workout-bg, #f9fafb);
+    background: #1a1a1a;
     border-radius: 12px;
     border-left: 4px solid #ff8c00;
+}
+
+[data-theme="light"] .lhp-technique-cues {
+    background: #f9fafb !important;
 }
 
 .lhp-cues-title {
@@ -160,9 +173,14 @@ document.querySelector('.lhp-quick-log-form')?.addEventListener('submit', functi
 .lhp-cues-list {
     margin: 0;
     padding-left: 20px;
-    color: var(--lhp-workout-text-muted, #6b7280);
+    color: #e5e5e5;
     font-size: 0.9rem;
     line-height: 1.7;
+    font-weight: 500;
+}
+
+[data-theme="light"] .lhp-cues-list {
+    color: #4b5563 !important;
 }
 
 .lhp-cues-list li {
@@ -178,7 +196,11 @@ document.querySelector('.lhp-quick-log-form')?.addEventListener('submit', functi
     margin: 0 0 16px 0;
     font-size: 1rem;
     font-weight: 700;
-    color: var(--lhp-workout-text, #1f2937);
+    color: #ffffff;
+}
+
+[data-theme="light"] .lhp-log-title {
+    color: #000000 !important;
 }
 
 .lhp-log-fields {
@@ -196,23 +218,33 @@ document.querySelector('.lhp-quick-log-form')?.addEventListener('submit', functi
 .lhp-field-label {
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--lhp-workout-text-muted, #6b7280);
+    color: #cccccc;
     margin-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
+[data-theme="light"] .lhp-field-label {
+    color: #4b5563 !important;
+}
+
 .lhp-field-input {
     padding: 10px;
     border-radius: 8px;
-    border: 2px solid var(--lhp-workout-border, #e5e7eb);
-    background: var(--lhp-workout-card, #ffffff);
-    color: var(--lhp-workout-text, #1f2937);
+    border: 2px solid #333333;
+    background: #1a1a1a;
+    color: #ffffff;
     font-size: 1rem;
     font-weight: 700;
     text-align: center;
     font-family: inherit;
     transition: all 0.2s ease;
+}
+
+[data-theme="light"] .lhp-field-input {
+    border: 2px solid #e5e7eb !important;
+    background: #ffffff !important;
+    color: #000000 !important;
 }
 
 .lhp-field-input:focus {

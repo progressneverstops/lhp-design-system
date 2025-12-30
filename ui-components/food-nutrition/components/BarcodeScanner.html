@@ -230,16 +230,32 @@ document.querySelector('.lhp-flash-btn')?.addEventListener('click', function() {
     font-family: inherit;
 }
 
+.lhp-flash-btn,
+.lhp-manual-btn {
+    color: #000000;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .lhp-flash-btn,
+[data-theme="dark"] .lhp-manual-btn {
+    color: #ffffff;
+}
+
 .lhp-flash-btn:hover,
 .lhp-manual-btn:hover {
-    background: rgba(247, 148, 32, 0.15);
+    background: rgba(247, 148, 32, 0.3);
     border-color: #f79420;
     transform: translateY(-2px);
 }
 
 [data-theme="light"] .lhp-flash-btn:hover,
 [data-theme="light"] .lhp-manual-btn:hover {
-    background: rgba(247, 148, 32, 0.2);
+    background: rgba(247, 148, 32, 0.35);
+}
+
+[data-theme="dark"] .lhp-flash-btn:hover,
+[data-theme="dark"] .lhp-manual-btn:hover {
+    background: rgba(247, 148, 32, 0.4);
 }
 
 .lhp-icon {

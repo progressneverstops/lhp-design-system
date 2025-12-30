@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Body Visualizer Component</title>
+    <link rel="icon" href="data:,">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Import map is REQUIRED because Three.js addons (OrbitControls/GLTFLoader) import `three` as a bare specifier. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+        }
+      }
+    </script>
+</head>
+<body style="margin: 0; padding: 0; overflow: hidden;">
+<a class="lhp-back-link" href="../../../index.html">← Design System Home</a>
 <!--
   3D Body Visualizer Component (UI/UX Only - Stripped)
   Part of the Lighthouse Portal Design System
@@ -29,6 +50,23 @@
         </div>
 
         <div class="lhp-control-section">
+            <div class="lhp-control-block">
+                <div class="lhp-control-label">Model</div>
+                <div class="lhp-segmented" role="group" aria-label="Select model (male/female)">
+                    <button type="button" class="lhp-seg-btn is-active" data-sex="female" aria-pressed="true">Female</button>
+                    <button type="button" class="lhp-seg-btn" data-sex="male" aria-pressed="false">Male</button>
+                </div>
+
+                <label class="lhp-control-label" for="lhp-mesh-variant">Variant</label>
+                <select id="lhp-mesh-variant" class="lhp-mesh-select" aria-label="Select mesh variant">
+                    <!-- populated by JS -->
+                </select>
+
+                <div class="lhp-control-helper">
+                    Open-source base meshes for designers to enhance. No morphing logic included.
+                </div>
+            </div>
+
             <div class="lhp-toggle-group">
                 <label class="lhp-toggle-label">
                     <input type="checkbox" id="wireframe-mode" class="lhp-toggle">
@@ -44,6 +82,27 @@
             </div>
         </div>
 
+        <!-- Soft gate: UI/UX designers can still view the demo, but controls stay locked until acknowledged. -->
+        <div class="lhp-3d-ack-overlay" id="lhp-3d-ack" aria-hidden="true">
+            <div class="lhp-3d-ack-card" role="dialog" aria-modal="true" aria-labelledby="lhp-3d-ack-title">
+                <div class="lhp-3d-ack-kicker">3D Designers Only</div>
+                <h4 id="lhp-3d-ack-title" class="lhp-3d-ack-title">UI/UX showcase with open-source meshes</h4>
+                <ul class="lhp-3d-ack-list">
+                    <li>Visual + interaction design only</li>
+                    <li>No morphing, formulas, or parameter mapping</li>
+                    <li>Meshes are provided for enhancement/iteration</li>
+                </ul>
+                <label class="lhp-3d-ack-check">
+                    <input type="checkbox" id="lhp-3d-ack-check" />
+                    <span>I understand — I’m working on UI/UX or 3D visuals only.</span>
+                </label>
+                <button type="button" class="lhp-3d-ack-btn" id="lhp-3d-ack-btn" disabled>Enter 3D Designer Mode</button>
+                <div class="lhp-3d-ack-note">
+                    Note: this isn’t “security” — it’s a scope guardrail so we don’t drift into proprietary work.
+                </div>
+            </div>
+        </div>
+
         <div class="lhp-info-box">
             <p class="lhp-info-text">
                 <strong>UI/UX Showcase:</strong> This component demonstrates the 3D visualization interface. 
@@ -55,9 +114,9 @@
 </div>
 
 <script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js';
-import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/controls/OrbitControls.js';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 // Scene setup
 const container = document.getElementById('lhp-3d-canvas');
@@ -91,42 +150,187 @@ let isWireframe = false;
 let isPaused = false;
 let animationId = null;
 
-// Load open-source base mesh
-// NOTE: Replace this path with your actual open-source base mesh location
+// Load open-source base meshes (bundled inside this public design system)
 const loader = new GLTFLoader();
-const meshPath = 'https://threejs.org/examples/models/gltf/Duck/glTF-Binary/Duck.glb'; // Placeholder - replace with your base mesh
+const MESH_BASE = new URL('../assets/meshes/', import.meta.url).toString();
+const meshCatalog = {
+    female: [
+        { key: 'female_base', label: 'Female — Base (Rigged)', file: 'free_human_body_base_mesh_female.glb' },
+        { key: 'female_alt', label: 'Female — Base (Alt)', file: 'female_base_mesh.glb' },
+        { key: 'female_stylized', label: 'Female — Stylized', file: 'stylized_female_body_base_mesh.glb' }
+    ],
+    male: [
+        { key: 'male_base', label: 'Male — Base', file: 'human_body_base_mesh_male.glb' }
+    ]
+};
 
-loader.load(
-    meshPath,
-    function(gltf) {
-        bodyMesh = gltf.scene;
-        
-        // Center and scale the mesh
-        const box = new THREE.Box3().setFromObject(bodyMesh);
-        const center = box.getCenter(new THREE.Vector3());
-        const size = box.getSize(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 1.5 / maxDim;
-        
-        bodyMesh.scale.multiplyScalar(scale);
-        bodyMesh.position.sub(center.multiplyScalar(scale));
-        bodyMesh.position.y = 0;
-        
-        scene.add(bodyMesh);
-        
-        // If mesh fails to load, show a simple placeholder geometry
-        if (!bodyMesh) {
+const sexButtons = Array.from(document.querySelectorAll('.lhp-seg-btn'));
+const variantSelect = document.getElementById('lhp-mesh-variant');
+const wireframeToggle = document.getElementById('wireframe-mode');
+const pauseToggle = document.getElementById('pause-animation');
+
+// Soft gate state
+const ACK_KEY = 'lhp-3d-ack-v1';
+const ackOverlay = document.getElementById('lhp-3d-ack');
+const ackCheck = document.getElementById('lhp-3d-ack-check');
+const ackBtn = document.getElementById('lhp-3d-ack-btn');
+
+function setControlsEnabled(enabled) {
+    sexButtons.forEach((b) => { b.disabled = !enabled; });
+    if (variantSelect) variantSelect.disabled = !enabled;
+    if (wireframeToggle) wireframeToggle.disabled = !enabled;
+    if (pauseToggle) pauseToggle.disabled = !enabled;
+    document.documentElement.classList.toggle('lhp-3d-controls-locked', !enabled);
+}
+
+function openAckOverlay() {
+    if (!ackOverlay) return;
+    ackOverlay.style.display = 'flex';
+    ackOverlay.setAttribute('aria-hidden', 'false');
+}
+
+function closeAckOverlay() {
+    if (!ackOverlay) return;
+    ackOverlay.style.display = 'none';
+    ackOverlay.setAttribute('aria-hidden', 'true');
+}
+
+function initSoftGate() {
+    const acknowledged = localStorage.getItem(ACK_KEY) === '1';
+    if (ackCheck) ackCheck.checked = false;
+    if (ackBtn) ackBtn.disabled = true;
+
+    if (acknowledged) {
+        closeAckOverlay();
+        setControlsEnabled(true);
+        return;
+    }
+
+    setControlsEnabled(false);
+    openAckOverlay();
+
+    if (ackCheck && ackBtn) {
+        ackCheck.addEventListener('change', () => {
+            ackBtn.disabled = !ackCheck.checked;
+        });
+        ackBtn.addEventListener('click', () => {
+            localStorage.setItem(ACK_KEY, '1');
+            closeAckOverlay();
+            setControlsEnabled(true);
+        });
+    }
+}
+
+let activeSex = localStorage.getItem('lhp-3d-sex') || 'female';
+let activeVariantKey = localStorage.getItem('lhp-3d-variant') || meshCatalog[activeSex][0].key;
+
+function disposeObject3D(obj) {
+    if (!obj) return;
+    obj.traverse((child) => {
+        if (child.isMesh) {
+            if (child.geometry) child.geometry.dispose?.();
+            if (child.material) {
+                if (Array.isArray(child.material)) {
+                    child.material.forEach((m) => m?.dispose?.());
+                } else {
+                    child.material.dispose?.();
+                }
+            }
+        }
+    });
+}
+
+function applyWireframeToCurrentMesh() {
+    if (!bodyMesh) return;
+    bodyMesh.traverse((child) => {
+        if (child.isMesh && child.material) {
+            child.material.wireframe = isWireframe;
+            child.material.needsUpdate = true;
+        }
+    });
+}
+
+function centerAndScale(meshRoot) {
+    const box = new THREE.Box3().setFromObject(meshRoot);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z) || 1;
+    const scale = 1.65 / maxDim;
+
+    meshRoot.scale.setScalar(scale);
+    meshRoot.position.sub(center.multiplyScalar(scale));
+    meshRoot.position.y = 0;
+
+    // keep camera/controls reasonably framed
+    controls.target.set(0, 0.9, 0);
+    controls.update();
+}
+
+function loadMeshByFile(fileName) {
+    const url = new URL(fileName, MESH_BASE).toString();
+    // cleanup old mesh
+    if (bodyMesh) {
+        scene.remove(bodyMesh);
+        disposeObject3D(bodyMesh);
+        bodyMesh = null;
+    }
+
+    loader.load(
+        url,
+        (gltf) => {
+            bodyMesh = gltf.scene;
+            centerAndScale(bodyMesh);
+            scene.add(bodyMesh);
+            applyWireframeToCurrentMesh();
+        },
+        undefined,
+        (error) => {
+            console.warn('Mesh loading failed, using placeholder:', error);
             createPlaceholderMesh();
         }
-    },
-    function(progress) {
-        // Loading progress (optional)
-    },
-    function(error) {
-        console.warn('Mesh loading failed, using placeholder:', error);
-        createPlaceholderMesh();
-    }
-);
+    );
+}
+
+function setActiveSex(sex) {
+    activeSex = sex;
+    localStorage.setItem('lhp-3d-sex', sex);
+
+    sexButtons.forEach((btn) => {
+        const isActive = btn.dataset.sex === sex;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+
+    // rebuild variant dropdown
+    const variants = meshCatalog[sex] || [];
+    variantSelect.innerHTML = variants
+        .map((v) => `<option value="${v.key}">${v.label}</option>`)
+        .join('');
+
+    const desired = variants.find((v) => v.key === activeVariantKey) ? activeVariantKey : (variants[0]?.key || '');
+    variantSelect.value = desired;
+    activeVariantKey = desired;
+    localStorage.setItem('lhp-3d-variant', desired);
+
+    const chosen = variants.find((v) => v.key === desired);
+    if (chosen) loadMeshByFile(chosen.file);
+}
+
+function setActiveVariant(key) {
+    activeVariantKey = key;
+    localStorage.setItem('lhp-3d-variant', key);
+    const chosen = (meshCatalog[activeSex] || []).find((v) => v.key === key);
+    if (chosen) loadMeshByFile(chosen.file);
+}
+
+sexButtons.forEach((btn) => {
+    btn.addEventListener('click', () => setActiveSex(btn.dataset.sex));
+});
+variantSelect.addEventListener('change', (e) => setActiveVariant(e.target.value));
+
+// initial load
+setActiveSex(activeSex);
+initSoftGate();
 
 // Placeholder mesh if GLB fails to load
 function createPlaceholderMesh() {
@@ -141,19 +345,13 @@ function createPlaceholderMesh() {
 }
 
 // Wireframe toggle
-document.getElementById('wireframe-mode').addEventListener('change', function(e) {
+wireframeToggle.addEventListener('change', function(e) {
     isWireframe = e.target.checked;
-    if (bodyMesh) {
-        bodyMesh.traverse(function(child) {
-            if (child.isMesh) {
-                child.material.wireframe = isWireframe;
-            }
-        });
-    }
+    applyWireframeToCurrentMesh();
 });
 
 // Pause animation toggle
-document.getElementById('pause-animation').addEventListener('change', function(e) {
+pauseToggle.addEventListener('change', function(e) {
     isPaused = e.target.checked;
 });
 
@@ -214,6 +412,32 @@ animate();
 </script>
 
 <style>
+.lhp-back-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10050;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 8px 14px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="light"] .lhp-back-link {
+    color: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.lhp-back-link:hover {
+    color: var(--lhp-orange, #f79420);
+}
+
 .lhp-3d-visualizer-container {
     display: flex;
     flex-direction: column;
@@ -250,6 +474,7 @@ animate();
     padding: 24px;
     max-height: 50vh;
     overflow-y: auto;
+    position: relative;
 }
 
 [data-theme="light"] .lhp-3d-controls-panel {
@@ -298,6 +523,105 @@ animate();
 
 .lhp-control-section {
     margin-bottom: 28px;
+}
+
+.lhp-control-block {
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid var(--lhp-3d-border, #333);
+    background: rgba(255, 255, 255, 0.03);
+    margin-bottom: 18px;
+}
+
+[data-theme="light"] .lhp-control-block {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: var(--lhp-3d-border, #e5e7eb);
+}
+
+.lhp-control-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--lhp-3d-text, #ffffff);
+    margin: 0 0 10px 0;
+}
+
+[data-theme="light"] .lhp-control-label {
+    color: #1a1a1a;
+}
+
+.lhp-control-helper {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--lhp-3d-text, #ffffff);
+    opacity: 0.85;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+[data-theme="light"] .lhp-control-helper {
+    color: #1a1a1a;
+    opacity: 0.85;
+}
+
+.lhp-segmented {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.lhp-seg-btn {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 2px solid var(--lhp-3d-border, #333);
+    background: #1a1a1a;
+    color: #ffffff;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+[data-theme="light"] .lhp-seg-btn {
+    background: #ffffff;
+    color: #1a1a1a;
+    border-color: #e5e7eb;
+}
+
+.lhp-seg-btn.is-active {
+    background: var(--lhp-orange, #f79420);
+    border-color: var(--lhp-orange, #f79420);
+    color: #0a0a0a;
+}
+
+.lhp-seg-btn:focus {
+    outline: 3px solid rgba(247, 148, 32, 0.55);
+    outline-offset: 2px;
+}
+
+.lhp-mesh-select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 2px solid var(--lhp-3d-border, #333);
+    background: #1a1a1a;
+    color: #ffffff;
+    font-weight: 700;
+    font-family: inherit;
+}
+
+[data-theme="light"] .lhp-mesh-select {
+    background: #ffffff;
+    color: #1a1a1a;
+    border-color: #e5e7eb;
+}
+
+.lhp-mesh-select:focus {
+    outline: none;
+    border-color: var(--lhp-orange, #f79420);
+    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.3);
 }
 
 .lhp-toggle-group {
@@ -382,6 +706,142 @@ animate();
     color: #c96a00;
 }
 
+.lhp-3d-ack-overlay {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    z-index: 30;
+}
+
+[data-theme="light"] .lhp-3d-ack-overlay {
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.lhp-3d-ack-card {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 16px;
+    padding: 18px 18px 16px 18px;
+    background: rgba(20, 20, 20, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    color: #ffffff;
+}
+
+[data-theme="light"] .lhp-3d-ack-card {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #111111;
+}
+
+.lhp-3d-ack-kicker {
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--lhp-orange, #f79420);
+}
+
+.lhp-3d-ack-title {
+    margin: 8px 0 10px 0;
+    font-size: 1.05rem;
+    font-weight: 900;
+}
+
+.lhp-3d-ack-list {
+    margin: 0 0 12px 18px;
+    padding: 0;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.95;
+}
+
+.lhp-3d-ack-check {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin: 12px 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.lhp-3d-ack-check input {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+}
+
+.lhp-3d-ack-btn {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 2px solid var(--lhp-orange, #f79420);
+    background: var(--lhp-orange, #f79420);
+    color: #0a0a0a;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.lhp-3d-ack-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.lhp-3d-ack-note {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+.lhp-3d-controls-locked .lhp-control-section,
+.lhp-3d-controls-locked .lhp-info-box {
+    filter: blur(0.5px);
+}
+
+.lhp-warning-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10050;
+    background: rgba(247, 148, 32, 0.22);
+    border-top: 2px solid var(--lhp-orange, #f79420);
+    padding: 12px 16px;
+    backdrop-filter: blur(10px);
+}
+
+.lhp-warning-banner p {
+    margin: 0;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.4;
+}
+
+[data-theme="light"] .lhp-warning-banner p {
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.lhp-warning-banner strong {
+    color: var(--lhp-orange, #f79420);
+    font-weight: 900;
+}
+
+[data-theme="light"] .lhp-warning-banner strong {
+    color: #c96a00;
+}
+
 @media (min-width: 768px) {
     .lhp-3d-visualizer-container {
         flex-direction: row;
@@ -395,3 +855,8 @@ animate();
     }
 }
 </style>
+<div class="lhp-warning-banner" role="note" aria-label="UI/UX showcase only notice">
+    <p><strong>UI/UX Showcase Only:</strong> No proprietary morphing algorithms, hormone receptor calculations, or measurement formulas are included.</p>
+</div>
+</body>
+</html>

@@ -82,11 +82,21 @@
 
 <style>
 .lhp-workout-plan {
-    background: var(--lhp-workout-card, #ffffff);
+    background: #0a0a0a;
     border-radius: 16px;
     padding: 28px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--lhp-workout-border, #e5e7eb);
+    border: 1px solid #333333;
+}
+
+[data-theme="dark"] .lhp-workout-plan {
+    background: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+}
+
+[data-theme="light"] .lhp-workout-plan {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
 }
 
 .lhp-plan-header {
@@ -101,8 +111,40 @@
 .lhp-title-section h3 {
     margin: 0 0 6px 0;
     font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--lhp-workout-text, #1f2937);
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .lhp-title-section h3 {
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .lhp-title-section h3 {
+    color: #000000 !important;
+    text-shadow: none;
+}
+
+.lhp-workout-plan[data-theme="light"] .lhp-title-section h3,
+[data-theme="light"] .lhp-workout-plan .lhp-title-section h3 {
+    color: #000000 !important;
+    text-shadow: none;
+}
+
+.lhp-subtitle {
+    color: #e5e5e5;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .lhp-subtitle {
+    color: #e5e5e5 !important;
+}
+
+[data-theme="light"] .lhp-subtitle {
+    color: #4b5563 !important;
 }
 
 .lhp-action-buttons {
@@ -135,12 +177,25 @@
 .lhp-btn-action.secondary {
     background: var(--lhp-workout-bg, #f9fafb);
     border: 2px solid var(--lhp-workout-border, #e5e7eb);
-    color: var(--lhp-workout-text, #1f2937);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+[data-theme="light"] .lhp-btn-action.secondary {
+    color: #000000;
 }
 
 .lhp-btn-action.secondary:hover {
-    background: rgba(255, 140, 0, 0.08);
+    background: rgba(255, 140, 0, 0.3);
     border-color: #ff8c00;
+}
+
+[data-theme="light"] .lhp-btn-action.secondary:hover {
+    background: rgba(255, 140, 0, 0.35);
+}
+
+[data-theme="dark"] .lhp-btn-action.secondary:hover {
+    background: rgba(255, 140, 0, 0.4);
 }
 
 .lhp-plan-table-wrapper {
@@ -154,8 +209,13 @@
 }
 
 .lhp-plan-table thead {
-    background: var(--lhp-workout-bg, #f9fafb);
+    background: #1a1a1a;
     border-bottom: 2px solid var(--lhp-workout-border, #e5e7eb);
+}
+
+[data-theme="light"] .lhp-plan-table thead {
+    background: #f0f0f0;
+    border-bottom: 2px solid #d0d0d0;
 }
 
 .lhp-plan-table th {
@@ -165,41 +225,67 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--lhp-workout-text-muted, #6b7280);
+    color: #ffffff;
+}
+
+[data-theme="light"] .lhp-plan-table th {
+    color: #000000;
+    background: #f0f0f0;
 }
 
 .lhp-plan-table td {
     padding: 16px;
     border-bottom: 1px solid var(--lhp-workout-border, #e5e7eb);
     font-size: 0.95rem;
-    color: var(--lhp-workout-text, #1f2937);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+[data-theme="light"] .lhp-plan-table td {
+    color: #000000;
 }
 
 .lhp-plan-table tbody tr.completed {
-    background: rgba(16, 185, 129, 0.1);
+    background: rgba(16, 185, 129, 0.25);
 }
 
 .lhp-plan-table tbody tr.active {
-    background: rgba(255, 140, 0, 0.12);
+    background: rgba(255, 140, 0, 0.3);
     border-left: 4px solid #ff8c00;
 }
 
 [data-theme="light"] .lhp-plan-table tbody tr.completed {
-    background: rgba(16, 185, 129, 0.15);
+    background: rgba(16, 185, 129, 0.3);
 }
 
 [data-theme="light"] .lhp-plan-table tbody tr.active {
-    background: rgba(255, 140, 0, 0.15);
+    background: rgba(255, 140, 0, 0.35);
+}
+
+[data-theme="dark"] .lhp-plan-table tbody tr.completed {
+    background: rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="dark"] .lhp-plan-table tbody tr.active {
+    background: rgba(255, 140, 0, 0.4);
 }
 
 .lhp-plan-table tbody tr.completed td {
-    color: var(--lhp-workout-text, #1f2937);
-    font-weight: 500;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+[data-theme="light"] .lhp-plan-table tbody tr.completed td {
+    color: #000000;
 }
 
 .lhp-plan-table tbody tr.active td {
-    color: var(--lhp-workout-text, #1f2937);
-    font-weight: 600;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+[data-theme="light"] .lhp-plan-table tbody tr.active td {
+    color: #000000;
 }
 
 .lhp-activity-icon {
@@ -217,21 +303,51 @@
 }
 
 .lhp-intensity.high {
-    background: rgba(239, 68, 68, 0.2);
-    color: #b91c1c;
+    background: rgba(239, 68, 68, 0.35);
+    color: #7f1d1d;
     font-weight: 700;
+}
+
+[data-theme="light"] .lhp-intensity.high {
+    background: rgba(239, 68, 68, 0.4);
+    color: #7f1d1d;
+}
+
+[data-theme="dark"] .lhp-intensity.high {
+    color: #ffffff;
+    background: rgba(239, 68, 68, 0.45);
 }
 
 .lhp-intensity.med {
-    background: rgba(251, 146, 60, 0.2);
-    color: #c2410c;
+    background: rgba(251, 146, 60, 0.35);
+    color: #7c2d12;
     font-weight: 700;
 }
 
+[data-theme="light"] .lhp-intensity.med {
+    background: rgba(251, 146, 60, 0.4);
+    color: #7c2d12;
+}
+
+[data-theme="dark"] .lhp-intensity.med {
+    color: #ffffff;
+    background: rgba(251, 146, 60, 0.45);
+}
+
 .lhp-intensity.low {
-    background: rgba(34, 197, 94, 0.2);
-    color: #15803d;
+    background: rgba(34, 197, 94, 0.35);
+    color: #14532d;
     font-weight: 700;
+}
+
+[data-theme="light"] .lhp-intensity.low {
+    background: rgba(34, 197, 94, 0.4);
+    color: #14532d;
+}
+
+[data-theme="dark"] .lhp-intensity.low {
+    color: #ffffff;
+    background: rgba(34, 197, 94, 0.45);
 }
 
 .lhp-status {
@@ -240,24 +356,38 @@
 }
 
 .lhp-status.done { 
-    color: #15803d; 
+    color: #14532d; 
     font-weight: 700;
-}
-.lhp-status.current { 
-    color: #c96a00; 
-    font-weight: 700;
-}
-.lhp-status.planned { 
-    color: var(--lhp-workout-text-muted, #6b7280); 
-    font-weight: 500;
 }
 
 [data-theme="light"] .lhp-status.done {
-    color: #16a34a;
+    color: #166534;
+}
+
+[data-theme="dark"] .lhp-status.done {
+    color: #10b981;
+}
+
+.lhp-status.current { 
+    color: #7a3d00; 
+    font-weight: 700;
 }
 
 [data-theme="light"] .lhp-status.current {
+    color: #c96a00;
+}
+
+[data-theme="dark"] .lhp-status.current {
     color: #ff8c00;
+}
+
+.lhp-status.planned { 
+    color: #cccccc; 
+    font-weight: 700;
+}
+
+[data-theme="light"] .lhp-status.planned {
+    color: #000000;
 }
 
 .lhp-btn-add-session {
@@ -274,9 +404,21 @@
     font-family: inherit;
 }
 
+[data-theme="light"] .lhp-btn-add-session {
+    color: #c96a00;
+}
+
 .lhp-btn-add-session:hover {
-    background: rgba(255, 140, 0, 0.08);
+    background: rgba(255, 140, 0, 0.3);
     border-style: solid;
+}
+
+[data-theme="light"] .lhp-btn-add-session:hover {
+    background: rgba(255, 140, 0, 0.35);
+}
+
+[data-theme="dark"] .lhp-btn-add-session:hover {
+    background: rgba(255, 140, 0, 0.4);
 }
 
 @media (max-width: 640px) {

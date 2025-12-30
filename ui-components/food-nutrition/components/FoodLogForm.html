@@ -11,7 +11,7 @@
 -->
 
 <div class="lhp-food-log">
-    <h3 style="color: #000000;">Log Nourishment</h3>
+    <h3>Log Nourishment</h3>
     <p class="lhp-subtitle">Track what you eat and how it makes you feel</p>
 
     <form class="lhp-log-form">
@@ -136,18 +136,27 @@ document.querySelector('.lhp-log-form')?.addEventListener('submit', function(e) 
 
 <style>
 .lhp-food-log {
-    background: var(--lhp-food-card, #ffffff);
+    background: #0a0a0a;
     border-radius: 16px;
     padding: 28px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--lhp-food-border, #e5e7eb);
+    border: 1px solid #333333;
+}
+
+[data-theme="light"] .lhp-food-log {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
 }
 
 .lhp-food-log h3 {
     margin: 0 0 8px 0;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--lhp-food-text, #1f2937);
+    color: #ffffff;
+}
+
+[data-theme="light"] .lhp-food-log h3 {
+    color: #000000 !important;
 }
 
 .lhp-log-form {
@@ -159,20 +168,42 @@ document.querySelector('.lhp-log-form')?.addEventListener('submit', function(e) 
     gap: 12px;
 }
 
-.lhp-serving-input .lhp-input {
+.lhp-serving-input .lhp-input,
+.lhp-serving-input input[type="number"],
+.lhp-serving-input #serving-size {
     flex: 1;
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    border: 2px solid #333333 !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+}
+
+[data-theme="light"] .lhp-serving-input .lhp-input,
+[data-theme="light"] .lhp-serving-input input[type="number"],
+[data-theme="light"] .lhp-serving-input #serving-size {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #e5e7eb !important;
 }
 
 .lhp-unit-select {
     min-width: 120px;
     padding: 14px 16px;
     border-radius: 10px;
-    border: 2px solid var(--lhp-food-border, #e5e7eb);
-    background: var(--lhp-food-card, #ffffff);
-    color: var(--lhp-food-text, #1f2937);
+    border: 2px solid #333333;
+    background: #1a1a1a;
+    color: #ffffff;
     font-size: 1rem;
     font-family: inherit;
     cursor: pointer;
+    font-weight: 600;
+}
+
+[data-theme="light"] .lhp-unit-select {
+    border: 2px solid #e5e7eb !important;
+    background: #ffffff !important;
+    color: #000000 !important;
 }
 
 .lhp-textarea {
@@ -180,14 +211,21 @@ document.querySelector('.lhp-log-form')?.addEventListener('submit', function(e) 
     min-height: 100px;
     padding: 14px;
     border-radius: 10px;
-    border: 2px solid var(--lhp-food-border, #e5e7eb);
-    background: var(--lhp-food-card, #ffffff);
-    color: var(--lhp-food-text, #1f2937);
+    border: 2px solid #333333;
+    background: #1a1a1a;
+    color: #ffffff;
     font-size: 0.95rem;
     font-family: inherit;
     line-height: 1.6;
     resize: vertical;
     transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+[data-theme="light"] .lhp-textarea {
+    border: 2px solid #e5e7eb !important;
+    background: #ffffff !important;
+    color: #000000 !important;
 }
 
 .lhp-textarea:focus {
@@ -199,8 +237,94 @@ document.querySelector('.lhp-log-form')?.addEventListener('submit', function(e) 
 .lhp-char-count {
     text-align: right;
     font-size: 0.75rem;
-    color: var(--lhp-food-text-muted, #6b7280);
+    color: #cccccc;
     margin-top: 4px;
+    font-weight: 600;
+}
+
+[data-theme="light"] .lhp-char-count {
+    color: #4b5563 !important;
+}
+
+.lhp-label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: 0.01em;
+}
+
+[data-theme="light"] .lhp-label {
+    color: #000000 !important;
+}
+
+.lhp-input,
+.lhp-select,
+input[type="number"].lhp-input,
+#serving-size,
+.lhp-food-log input[type="number"],
+.lhp-food-log .lhp-input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 2px solid #333333;
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    font-size: 1rem !important;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    font-weight: 700 !important;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+input[type="number"].lhp-input::-webkit-inner-spin-button,
+input[type="number"].lhp-input::-webkit-outer-spin-button,
+#serving-size::-webkit-inner-spin-button,
+#serving-size::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+[data-theme="light"] .lhp-input,
+[data-theme="light"] .lhp-select,
+[data-theme="light"] input[type="number"].lhp-input,
+[data-theme="light"] #serving-size,
+[data-theme="light"] .lhp-food-log input[type="number"],
+[data-theme="light"] .lhp-food-log .lhp-input {
+    border: 2px solid #e5e7eb !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+.lhp-input:focus,
+.lhp-select:focus {
+    outline: none;
+    border-color: #f79420;
+    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.3);
+}
+
+.lhp-helper-text {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #cccccc;
+    font-weight: 500;
+}
+
+[data-theme="light"] .lhp-helper-text {
+    color: #4b5563 !important;
+}
+
+.lhp-subtitle {
+    color: #cccccc;
+    margin: 0 0 24px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+[data-theme="light"] .lhp-subtitle {
+    color: #4b5563 !important;
 }
 
 .lhp-quick-feelings {
@@ -216,23 +340,34 @@ document.querySelector('.lhp-log-form')?.addEventListener('submit', function(e) 
 
 .lhp-feeling-pill {
     padding: 8px 16px;
-    background: var(--lhp-food-bg, #f9fafb);
-    border: 2px solid var(--lhp-food-border, #e5e7eb);
+    background: #1a1a1a;
+    border: 2px solid #333333;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     font-family: inherit;
+    color: #ffffff;
+}
+
+[data-theme="light"] .lhp-feeling-pill {
+    background: #f9fafb !important;
+    border: 2px solid #e5e7eb !important;
+    color: #000000 !important;
 }
 
 .lhp-feeling-pill:hover {
-    background: rgba(247, 148, 32, 0.15);
+    background: rgba(247, 148, 32, 0.3);
     border-color: #f79420;
 }
 
 [data-theme="light"] .lhp-feeling-pill:hover {
-    background: rgba(247, 148, 32, 0.2);
+    background: rgba(247, 148, 32, 0.35);
+}
+
+[data-theme="dark"] .lhp-feeling-pill:hover {
+    background: rgba(247, 148, 32, 0.4);
 }
 
 .lhp-feeling-pill.active {
@@ -261,12 +396,21 @@ document.querySelector('.lhp-log-form')?.addEventListener('submit', function(e) 
 
 .lhp-btn-cancel {
     background: transparent;
-    border: 2px solid var(--lhp-food-border, #e5e7eb);
-    color: var(--lhp-food-text-muted, #6b7280);
+    border: 2px solid #333333;
+    color: #ffffff;
+}
+
+[data-theme="light"] .lhp-btn-cancel {
+    border: 2px solid #e5e7eb !important;
+    color: #000000 !important;
 }
 
 .lhp-btn-cancel:hover {
-    background: var(--lhp-food-bg, #f9fafb);
+    background: #1a1a1a;
+}
+
+[data-theme="light"] .lhp-btn-cancel:hover {
+    background: #f9fafb !important;
 }
 
 .lhp-btn-submit {

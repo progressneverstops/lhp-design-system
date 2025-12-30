@@ -64,13 +64,26 @@ if (textarea && charCount) {
 .lhp-char-count {
     text-align: right;
     font-size: 0.75rem;
-    color: var(--lhp-vice-text-muted);
+    color: #000000;
     margin-top: 4px;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .lhp-char-count {
+    color: #cccccc;
 }
 
 .lhp-mood-btn.selected {
-    background: rgba(247, 148, 32, 0.15);
+    background: rgba(247, 148, 32, 0.3);
     border-color: var(--lhp-vice-primary);
     transform: scale(1.1);
+}
+
+[data-theme="light"] .lhp-mood-btn.selected {
+    background: rgba(247, 148, 32, 0.35);
+}
+
+[data-theme="dark"] .lhp-mood-btn.selected {
+    background: rgba(247, 148, 32, 0.4);
 }
 </style>

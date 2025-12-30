@@ -277,13 +277,19 @@
 }
 
 .lhp-food-badge.medicine {
-    background: rgba(168, 85, 247, 0.2);
-    color: #6d28d9;
+    background: rgba(168, 85, 247, 0.35);
+    color: #4c1d95;
     font-weight: 700;
 }
 
 [data-theme="light"] .lhp-food-badge.medicine {
-    color: #5b21b6;
+    color: #4c1d95;
+    background: rgba(168, 85, 247, 0.4);
+}
+
+[data-theme="dark"] .lhp-food-badge.medicine {
+    color: #ffffff;
+    background: rgba(168, 85, 247, 0.45);
 }
 
 .lhp-food-info {
@@ -294,22 +300,22 @@
     margin: 0 0 4px 0;
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--lhp-food-text, #1f2937);
+    color: #000000;
 }
 
-[data-theme="light"] .lhp-food-name {
-    color: #1a1a1a;
+[data-theme="dark"] .lhp-food-name {
+    color: #ffffff;
 }
 
 .lhp-food-meta {
     margin: 0;
     font-size: 0.85rem;
-    color: var(--lhp-food-text-muted, #6b7280);
-    font-weight: 500;
+    color: #000000;
+    font-weight: 600;
 }
 
-[data-theme="light"] .lhp-food-meta {
-    color: #4b5563;
+[data-theme="dark"] .lhp-food-meta {
+    color: #e5e5e5;
 }
 
 .lhp-food-density {

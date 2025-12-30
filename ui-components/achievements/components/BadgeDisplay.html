@@ -98,13 +98,13 @@ document.querySelectorAll('.lhp-action-btn').forEach(btn => {
 .lhp-badge-subtitle {
     margin: 0;
     font-size: 0.9rem;
-    color: #aaaaaa;
+    color: #000000;
     font-style: italic;
-    font-weight: 500;
+    font-weight: 600;
 }
 
-[data-theme="light"] .lhp-badge-subtitle {
-    color: #4b5563;
+[data-theme="dark"] .lhp-badge-subtitle {
+    color: #e5e5e5;
 }
 
 .lhp-badge-media {
@@ -171,9 +171,9 @@ document.querySelectorAll('.lhp-action-btn').forEach(btn => {
     gap: 10px;
     width: 100%;
     padding: 16px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 2px solid rgba(192, 192, 192, 0.4);
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(192, 192, 192, 0.6);
+    color: #000000;
     border-radius: 12px;
     font-weight: 700;
     font-size: 0.9rem;
@@ -183,21 +183,21 @@ document.querySelectorAll('.lhp-action-btn').forEach(btn => {
     font-family: inherit;
 }
 
-[data-theme="light"] .lhp-action-btn {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.2);
-    color: #1a1a1a;
+[data-theme="dark"] .lhp-action-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(192, 192, 192, 0.7);
+    color: #ffffff;
 }
 
 .lhp-action-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.4);
     border-color: #C0C0C0;
     transform: scale(1.02);
 }
 
-[data-theme="light"] .lhp-action-btn:hover {
-    background: rgba(0, 0, 0, 0.1);
-    border-color: rgba(0, 0, 0, 0.3);
+[data-theme="dark"] .lhp-action-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: #C0C0C0;
 }
 
 .lhp-action-btn.primary {

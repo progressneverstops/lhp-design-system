@@ -161,14 +161,22 @@
 
 .lhp-macro-name {
     font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--lhp-food-text, #1f2937);
+    font-weight: 700;
+    color: #000000;
+}
+
+[data-theme="dark"] .lhp-macro-name {
+    color: #ffffff;
 }
 
 .lhp-macro-percent {
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--lhp-food-text-muted, #6b7280);
+    color: #000000;
+}
+
+[data-theme="dark"] .lhp-macro-percent {
+    color: #cccccc;
 }
 
 .lhp-macro-bar {
@@ -207,60 +215,76 @@
 }
 
 .lhp-property-tag.anti-inflammatory {
-    background: rgba(239, 68, 68, 0.2);
+    background: rgba(239, 68, 68, 0.3);
     border-color: #ef4444;
-    color: #b91c1c;
+    color: #7f1d1d;
     font-weight: 700;
 }
 
 .lhp-property-tag.brain {
-    background: rgba(168, 85, 247, 0.2);
+    background: rgba(168, 85, 247, 0.3);
     border-color: #a855f7;
-    color: #6d28d9;
+    color: #4c1d95;
     font-weight: 700;
 }
 
 .lhp-property-tag.skin {
-    background: rgba(236, 72, 153, 0.2);
+    background: rgba(236, 72, 153, 0.3);
     border-color: #ec4899;
-    color: #be185d;
+    color: #831843;
     font-weight: 700;
 }
 
 .lhp-property-tag.heart {
-    background: rgba(239, 68, 68, 0.2);
+    background: rgba(239, 68, 68, 0.3);
     border-color: #ef4444;
-    color: #b91c1c;
+    color: #7f1d1d;
     font-weight: 700;
 }
 
 [data-theme="light"] .lhp-property-tag.anti-inflammatory {
-    color: #991b1b;
+    color: #7f1d1d;
+    background: rgba(239, 68, 68, 0.35);
 }
 
 [data-theme="light"] .lhp-property-tag.brain {
-    color: #5b21b6;
+    color: #4c1d95;
+    background: rgba(168, 85, 247, 0.35);
 }
 
 [data-theme="light"] .lhp-property-tag.skin {
-    color: #9f1239;
+    color: #831843;
+    background: rgba(236, 72, 153, 0.35);
 }
 
 [data-theme="light"] .lhp-property-tag.heart {
-    color: #991b1b;
+    color: #7f1d1d;
+    background: rgba(239, 68, 68, 0.35);
+}
+
+[data-theme="dark"] .lhp-property-tag.anti-inflammatory,
+[data-theme="dark"] .lhp-property-tag.brain,
+[data-theme="dark"] .lhp-property-tag.skin,
+[data-theme="dark"] .lhp-property-tag.heart {
+    color: #ffffff;
+    background: rgba(239, 68, 68, 0.4);
 }
 
 .lhp-timing-tip {
     display: flex;
     gap: 16px;
     padding: 20px;
-    background: rgba(247, 148, 32, 0.12);
+    background: rgba(247, 148, 32, 0.3);
     border-left: 4px solid #f79420;
     border-radius: 8px;
 }
 
 [data-theme="light"] .lhp-timing-tip {
-    background: rgba(247, 148, 32, 0.15);
+    background: rgba(247, 148, 32, 0.35);
+}
+
+[data-theme="dark"] .lhp-timing-tip {
+    background: rgba(247, 148, 32, 0.4);
 }
 
 .lhp-tip-icon {
@@ -293,10 +317,14 @@
 }
 
 .lhp-tip-content strong {
-    color: #c96a00 !important;
+    color: #7a3d00 !important;
 }
 
 [data-theme="light"] .lhp-tip-content strong {
-    color: #f79420 !important;
+    color: #8b4513 !important;
+}
+
+[data-theme="dark"] .lhp-tip-content strong {
+    color: #ffffff !important;
 }
 </style>

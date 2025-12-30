@@ -36,7 +36,9 @@ This component is designed for **3D designers and UI/UX designers** who want to:
 ```
 3d-body-visualizer/
 ├── components/
-│   └── BodyVisualizer.html    # Main component with mesh + safe controls
+│   └── BodyVisualizer.html    # Main component with mesh + safe controls + "3D Designers Only" acknowledgement
+├── assets/
+│   └── meshes/                # Open-source base meshes shipped for designers to enhance
 ├── examples/
 │   └── example-usage.html     # Showcase page
 └── README.md                   # This file
@@ -52,14 +54,14 @@ The component loads and displays the open-source base rigged mesh. The mesh rota
 
 ### Mesh Loading
 
-The component attempts to load a GLB mesh from a specified path. If the mesh fails to load, it falls back to a simple placeholder geometry.
+The design system ships a small set of open-source base meshes in `assets/meshes/`. The component loads them from that local folder and lets designers switch between available variants.
 
-**To use your own open-source base mesh:**
-1. Place your GLB file in a publicly accessible location
-2. Update the `meshPath` variable in `BodyVisualizer.html`:
-   ```javascript
-   const meshPath = '/path/to/your/open-source-base-mesh.glb';
-   ```
+If a mesh fails to load, it falls back to a simple placeholder geometry.
+
+### “3D Designers Only” Acknowledgement (Soft Gate)
+This repository is public. We use an acknowledgement overlay as a **scope guardrail**:
+- It keeps UI/UX work focused on visuals and interaction patterns
+- It does **not** provide security or protect proprietary logic (which is not present here)
 
 ## Design Patterns
 

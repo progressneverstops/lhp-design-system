@@ -49,14 +49,24 @@
     margin: 0 0 8px 0;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--lhp-vice-text);
+    color: #000000;
+}
+
+[data-theme="dark"] .lhp-selector-header h3,
+[data-theme="dark"] .lhp-progress-header h3 {
+    color: #ffffff;
 }
 
 .lhp-subtitle {
-    color: var(--lhp-vice-text-muted);
+    color: #000000;
     font-size: 0.9rem;
     margin: 0;
     line-height: 1.5;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .lhp-subtitle {
+    color: #e5e5e5;
 }
 
 /* Form Elements */
@@ -66,11 +76,15 @@
 
 .lhp-label {
     display: block;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.875rem;
-    color: var(--lhp-vice-text);
+    color: #000000;
     margin-bottom: 8px;
     letter-spacing: 0.01em;
+}
+
+[data-theme="dark"] .lhp-label {
+    color: #ffffff;
 }
 
 .lhp-select,
@@ -80,17 +94,23 @@
     border-radius: 10px;
     border: 2px solid var(--lhp-vice-border);
     background: var(--lhp-vice-card);
-    color: var(--lhp-vice-text);
+    color: #000000;
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .lhp-select,
+[data-theme="dark"] .lhp-input {
+    color: #ffffff;
 }
 
 .lhp-select:focus,
 .lhp-input:focus {
     outline: none;
     border-color: var(--lhp-vice-primary);
-    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.15);
+    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.3);
 }
 
 .lhp-select:hover,
@@ -109,10 +129,18 @@
     align-items: flex-start;
     gap: 12px;
     padding: 16px;
-    background: rgba(247, 148, 32, 0.08);
+    background: rgba(247, 148, 32, 0.3);
     border-left: 4px solid var(--lhp-vice-primary);
     border-radius: 8px;
     margin-top: 24px;
+}
+
+[data-theme="light"] .lhp-helper-box {
+    background: rgba(247, 148, 32, 0.35);
+}
+
+[data-theme="dark"] .lhp-helper-box {
+    background: rgba(247, 148, 32, 0.4);
 }
 
 .lhp-helper-box .lhp-icon {
@@ -123,8 +151,13 @@
 .lhp-helper-box p {
     margin: 0;
     font-size: 0.875rem;
-    color: var(--lhp-vice-text-muted);
+    color: #000000;
     line-height: 1.6;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .lhp-helper-box p {
+    color: #ffffff;
 }
 
 /* Progress Header */
@@ -210,16 +243,24 @@
 .lhp-metric-value {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--lhp-vice-text);
+    color: #000000;
     line-height: 1.2;
+}
+
+[data-theme="dark"] .lhp-metric-value {
+    color: #ffffff;
 }
 
 .lhp-metric-label {
     font-size: 0.75rem;
-    color: var(--lhp-vice-text-muted);
+    color: #000000;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    font-weight: 600;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .lhp-metric-label {
+    color: #cccccc;
 }
 
 /* Action Section */
@@ -266,33 +307,54 @@
 .lhp-btn-secondary {
     background: transparent;
     border: 2px solid var(--lhp-vice-border);
-    color: var(--lhp-vice-text-muted);
+    color: #000000;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .lhp-btn-secondary {
+    color: #ffffff;
 }
 
 .lhp-btn-secondary:hover {
     background: var(--lhp-vice-bg);
-    border-color: var(--lhp-vice-text-muted);
+    border-color: #000000;
+}
+
+[data-theme="dark"] .lhp-btn-secondary:hover {
+    border-color: #ffffff;
 }
 
 .lhp-btn-secondary:focus {
     outline: none;
     border-color: var(--lhp-vice-primary);
-    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.15);
+    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.3);
 }
 
 /* Motivational Message */
 .lhp-motivational-message {
     text-align: center;
     padding: 16px;
-    background: rgba(247, 148, 32, 0.08);
+    background: rgba(247, 148, 32, 0.3);
     border-radius: 12px;
+}
+
+[data-theme="light"] .lhp-motivational-message {
+    background: rgba(247, 148, 32, 0.35);
+}
+
+[data-theme="dark"] .lhp-motivational-message {
+    background: rgba(247, 148, 32, 0.4);
 }
 
 .lhp-motivational-message p {
     margin: 0;
     font-size: 0.95rem;
-    color: var(--lhp-vice-text);
-    font-weight: 600;
+    color: #000000;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .lhp-motivational-message p {
+    color: #ffffff;
 }
 
 /* Analytics Chart */
@@ -303,10 +365,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--lhp-vice-text-muted);
+    color: #000000;
     font-size: 0.9rem;
     margin: 20px 0;
     border: 2px dashed var(--lhp-vice-border);
+    font-weight: 600;
+}
+
+[data-theme="dark"] .lhp-chart-placeholder {
+    color: #cccccc;
 }
 
 /* Mood Selector */
@@ -346,18 +413,23 @@
     border-radius: 10px;
     border: 2px solid var(--lhp-vice-border);
     background: var(--lhp-vice-card);
-    color: var(--lhp-vice-text);
+    color: #000000;
     font-family: inherit;
     font-size: 0.95rem;
     line-height: 1.6;
     resize: vertical;
     transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .lhp-textarea {
+    color: #ffffff;
 }
 
 .lhp-textarea:focus {
     outline: none;
     border-color: var(--lhp-vice-primary);
-    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.15);
+    box-shadow: 0 0 0 3px rgba(247, 148, 32, 0.3);
 }
 
 /* Suggestion Pills */

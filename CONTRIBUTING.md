@@ -17,6 +17,14 @@ To protect our core intellectual property and business strategy, we are **not** 
 - **Backend Integration**: Actual API implementations or database logic.
 - **Business Strategy**: Changes to pricing, revenue models, or partnership plans.
 
+## 🧭 Advanced Area: 3D Body Visualizer (Middle-Ground Guardrails)
+The 3D visualizer in this repo is intentionally a **UI/UX + 3D visuals showcase**:
+- You *can* contribute visual improvements, layout, interaction patterns, and mesh presentation.
+- You *can* contribute new **open-source** mesh variants (with clear provenance/licensing).
+- You **cannot** add or infer proprietary morphing logic, formulas, parameter mappings, or “body intelligence” computation.
+
+To help prevent scope drift, the 3D page includes a **“3D Designers Only” acknowledgement overlay**. This is a **guardrail**, not security.
+
 ## 🛠️ How to Contribute
 1. **Fork the Repository**: Create your own copy of the repository.
 2. **Create a Branch**: `git checkout -b feature/your-improvement-name`.
