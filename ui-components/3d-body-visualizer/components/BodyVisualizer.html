@@ -7,6 +7,18 @@
     <link rel="icon" href="data:,">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Set theme ASAP to avoid mismatched initial paint -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('lhp-theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', saved);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+
     <!-- Import map is REQUIRED because Three.js addons (OrbitControls/GLTFLoader) import `three` as a bare specifier. -->
     <script type="importmap">
       {
@@ -412,6 +424,30 @@ animate();
 </script>
 
 <style>
+:root {
+    --lhp-orange: #f79420;
+    --lhp-3d-bg: #0a0a0a;
+    --lhp-3d-panel-bg: #1e1e1e;
+    --lhp-3d-scene-bg: #1a1a1a;
+    --lhp-3d-text: #ffffff;
+    --lhp-3d-text-muted: #a3a3a3;
+    --lhp-3d-border: #333333;
+}
+
+[data-theme="light"] {
+    --lhp-3d-bg: #f5f5f5;
+    --lhp-3d-panel-bg: #ffffff;
+    --lhp-3d-scene-bg: #e8e8e8;
+    --lhp-3d-text: #111111;
+    --lhp-3d-text-muted: #4b5563;
+    --lhp-3d-border: #e5e7eb;
+}
+
+body {
+    background: var(--lhp-3d-bg);
+    color: var(--lhp-3d-text);
+}
+
 .lhp-back-link {
     position: fixed;
     top: 20px;
@@ -442,24 +478,24 @@ animate();
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: var(--lhp-3d-bg, #0a0a0a);
-    color: var(--lhp-3d-text, #ffffff);
+    background: var(--lhp-3d-bg);
+    color: var(--lhp-3d-text);
 }
 
 [data-theme="light"] .lhp-3d-visualizer-container {
-    background: var(--lhp-3d-bg, #f5f5f5);
-    color: var(--lhp-3d-text, #1a1a1a);
+    background: var(--lhp-3d-bg);
+    color: var(--lhp-3d-text);
 }
 
 .lhp-3d-viewport {
     flex: 1;
     position: relative;
-    background: var(--lhp-3d-scene-bg, #1a1a1a);
+    background: var(--lhp-3d-scene-bg);
     overflow: hidden;
 }
 
 [data-theme="light"] .lhp-3d-viewport {
-    background: var(--lhp-3d-scene-bg, #e8e8e8);
+    background: var(--lhp-3d-scene-bg);
 }
 
 .lhp-3d-viewport canvas {
@@ -469,8 +505,8 @@ animate();
 }
 
 .lhp-3d-controls-panel {
-    background: var(--lhp-3d-panel-bg, #1e1e1e);
-    border-top: 1px solid var(--lhp-3d-border, #333);
+    background: var(--lhp-3d-panel-bg);
+    border-top: 1px solid var(--lhp-3d-border);
     padding: 24px;
     max-height: 50vh;
     overflow-y: auto;
@@ -478,8 +514,8 @@ animate();
 }
 
 [data-theme="light"] .lhp-3d-controls-panel {
-    background: var(--lhp-3d-panel-bg, #ffffff);
-    border-top: 1px solid var(--lhp-3d-border, #e5e7eb);
+    background: var(--lhp-3d-panel-bg);
+    border-top: 1px solid var(--lhp-3d-border);
 }
 
 .lhp-3d-header {
