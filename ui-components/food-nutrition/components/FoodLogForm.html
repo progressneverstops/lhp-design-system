@@ -11,7 +11,7 @@
 -->
 
 <div class="lhp-food-log">
-    <h3>Log Nourishment</h3>
+    <h3 style="color: #000000;">Log Nourishment</h3>
     <p class="lhp-subtitle">Track what you eat and how it makes you feel</p>
 
     <form class="lhp-log-form">
@@ -274,5 +274,10 @@ document.querySelector('.lhp-log-form')?.addEventListener('submit', function(e) 
 .lhp-btn-submit:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(247, 148, 32, 0.4);
+}
+
+/* Force black text for specific headings */
+.lhp-food-log h3 {
+    color: #000000 !important;
 }
 </style>

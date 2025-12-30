@@ -12,7 +12,7 @@
 
 <div class="lhp-scanner">
     <div class="lhp-scanner-header">
-        <h3>Scan Food Item</h3>
+        <h3 style="color: #000000;">Scan Food Item</h3>
         <button class="lhp-close-btn" aria-label="Close scanner">&times;</button>
     </div>
 
@@ -298,5 +298,10 @@ document.querySelector('.lhp-flash-btn')?.addEventListener('click', function() {
 .lhp-submit-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(247, 148, 32, 0.3);
+}
+
+/* Force black text for specific headings */
+.lhp-scanner-header h3 {
+    color: #000000 !important;
 }
 </style>

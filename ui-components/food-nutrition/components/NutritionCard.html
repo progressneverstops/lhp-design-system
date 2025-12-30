@@ -13,7 +13,7 @@
 <div class="lhp-nutrition-card">
     <div class="lhp-nutrition-header">
         <div class="lhp-food-title-section">
-            <h3>Organic Avocado</h3>
+            <h3 style="color: #000000;">Organic Avocado</h3>
             <p class="lhp-food-category">Healthy Fats • Heart Support</p>
         </div>
         <div class="lhp-density-score">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="lhp-macros-section">
-        <h4 class="lhp-section-title">Macro Distribution</h4>
+        <h4 class="lhp-section-title" style="color: #000000;">Macro Distribution</h4>
         <div class="lhp-macro-grid">
             <div class="lhp-macro-item">
                 <div class="lhp-macro-header">
@@ -69,8 +69,8 @@
 
     <div class="lhp-timing-tip">
         <div class="lhp-tip-icon">☀️</div>
-        <div class="lhp-tip-content">
-            <strong>Optimal Consumption:</strong> Best enjoyed midday when your metabolic fire is strongest. Remember to fast from sunset to sunrise to allow for cellular repair.
+        <div class="lhp-tip-content" style="color: #000000;">
+            <strong style="color: #f79420;">Optimal Consumption:</strong> Best enjoyed midday when your metabolic fire is strongest. Remember to fast from sunset to sunrise to allow for cellular repair.
         </div>
     </div>
 </div>
@@ -253,5 +253,22 @@
 
 .lhp-tip-content strong {
     color: #f79420;
+}
+
+/* Force black text for specific elements */
+.lhp-food-title-section h3 {
+    color: #000000 !important;
+}
+
+.lhp-section-title {
+    color: #000000 !important;
+}
+
+.lhp-tip-content {
+    color: #000000 !important;
+}
+
+.lhp-tip-content strong {
+    color: #f79420 !important;
 }
 </style>
