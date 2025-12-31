@@ -39,6 +39,7 @@ This component is designed for **3D designers and UI/UX designers** who want to:
 │   └── BodyVisualizer.html    # Main component with mesh + safe controls + "3D Designers Only" acknowledgement
 ├── assets/
 │   └── meshes/                # Open-source base meshes shipped for designers to enhance
+├── ASSETS.md                  # Asset provenance & licensing (required for public safety)
 ├── examples/
 │   └── example-usage.html     # Showcase page
 └── README.md                   # This file
@@ -57,6 +58,9 @@ The component loads and displays the open-source base rigged mesh. The mesh rota
 The design system ships a small set of open-source base meshes in `assets/meshes/`. The component loads them from that local folder and lets designers switch between available variants.
 
 If a mesh fails to load, it falls back to a simple placeholder geometry.
+
+### Asset Provenance (Required)
+All meshes in `assets/meshes/` must have verifiable provenance and a clear license. See `ASSETS.md`.
 
 ### “3D Designers Only” Acknowledgement (Soft Gate)
 This repository is public. We use an acknowledgement overlay as a **scope guardrail**:
