@@ -3,29 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lighthouse Portal | Public Design System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Lighthouse Portal | Design System</title>
+    
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+        }
+      }
+    </script>
+
     <style>
         :root {
             --lhp-orange: #f79420;
-            --lhp-dark: #121212;
-            --lhp-card: #1e1e1e;
-            --lhp-text: #ffffff;
-            --lhp-text-muted: #888;
             --lhp-glass: rgba(255, 255, 255, 0.05);
+            --lhp-bg: #121212;
+            --lhp-text: #ffffff;
+            --lhp-text-muted: #a0a0a0;
+            --lhp-card-bg: #1e1e1e;
+            --lhp-silver: #C0C0C0;
         }
 
-        /* Light mode variables */
         [data-theme="light"] {
-            --lhp-dark: #f5f5f5;
-            --lhp-card: #ffffff;
+            --lhp-bg: #f5f5f5;
             --lhp-text: #1a1a1a;
-            --lhp-text-muted: #666;
+            --lhp-text-muted: #666666;
+            --lhp-card-bg: #ffffff;
             --lhp-glass: rgba(0, 0, 0, 0.05);
         }
 
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--lhp-bg);
+            color: var(--lhp-text);
+            margin: 0;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .hero {
+            padding: 120px 20px;
+            text-align: center;
+            background: radial-gradient(circle at top, #2a2a2a 0%, #121212 100%);
+            border-bottom: 1px solid var(--lhp-glass);
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
         [data-theme="light"] .hero {
-            background: radial-gradient(circle at top, #e8e8e8 0%, #f5f5f5 100%);
+            background: radial-gradient(circle at top, #ffffff 0%, #f0f0f0 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 0%, var(--lhp-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
 
         [data-theme="light"] .hero h1 {
@@ -34,149 +81,163 @@
             -webkit-text-fill-color: transparent;
         }
 
-        [data-theme="light"] .component-card {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        /* 3D Hero Visual with Silver Glow */
+        .hero-visual-3d {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.6;
         }
 
-        [data-theme="light"] .lhp-badge {
-            background: #ffffff;
-            border-color: #ddd;
+        .silver-glow-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            z-index: 0;
+            box-shadow: 0 0 50px rgba(192, 192, 192, 0.3), 0 0 100px rgba(192, 192, 192, 0.15);
+            animation: silverPulse 4s ease-in-out infinite alternate;
         }
 
-        body {
-            background-color: var(--lhp-dark);
-            color: var(--lhp-text);
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+        @keyframes silverPulse {
+            0% {
+                box-shadow: 0 0 30px rgba(192, 192, 192, 0.2), 0 0 60px rgba(192, 192, 192, 0.1);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                box-shadow: 0 0 60px rgba(192, 192, 192, 0.5), 0 0 120px rgba(192, 192, 192, 0.25);
+                transform: translate(-50%, -50%) scale(1.1);
+            }
         }
 
-        .hero {
-            padding: 80px 20px;
-            text-align: center;
-            background: radial-gradient(circle at top, #2a2a2a 0%, #121212 100%);
-            border-bottom: 1px solid var(--lhp-glass);
+        /* Recruitment Hook Badge */
+        .recruitment-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(247, 148, 32, 0.1);
+            border: 1px solid var(--lhp-orange);
+            color: var(--lhp-orange);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: bounce 2s infinite;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            background: linear-gradient(135deg, #fff 0%, var(--lhp-orange) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-5px);}
+            60% {transform: translateY(-3px);}
         }
 
-        .hero p {
-            color: var(--lhp-text-muted);
-            max-width: 700px;
-            margin: 20px auto;
-            font-size: 1.2rem;
+        .lhp-badge {
+            display: inline-block;
+            background: var(--lhp-glass);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--lhp-orange);
+            margin-bottom: 20px;
+            border: 1px solid rgba(247, 148, 32, 0.3);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 80px 20px;
         }
 
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            border-left: 4px solid var(--lhp-orange);
-            padding-left: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            font-weight: 800;
+            text-align: center;
         }
 
         .component-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
         }
 
         .component-card {
-            background: var(--lhp-card);
+            background-color: var(--lhp-card-bg);
             border: 1px solid var(--lhp-glass);
-            border-radius: 16px;
-            padding: 24px;
-            transition: transform 0.3s, border-color 0.3s;
+            border-radius: 20px;
+            padding: 40px;
             text-decoration: none;
-            color: inherit;
-            display: block;
+            color: var(--lhp-text);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .component-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             border-color: var(--lhp-orange);
-            background: rgba(247, 148, 32, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .component-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
 
         .component-card h3 {
+            font-size: 1.5rem;
             margin: 0 0 10px 0;
-            font-size: 1.4rem;
+            font-weight: 700;
         }
 
         .component-card p {
             color: var(--lhp-text-muted);
-            font-size: 0.95rem;
-            margin: 0;
+            margin: 0 0 20px 0;
+            font-size: 1rem;
         }
 
         .tag {
-            display: inline-block;
-            padding: 4px 10px;
             background: var(--lhp-glass);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            margin-top: 15px;
             color: var(--lhp-orange);
-            font-weight: 600;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid var(--lhp-glass);
-            color: var(--lhp-text-muted);
-            font-size: 0.9rem;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-main {
             display: inline-block;
             background: var(--lhp-orange);
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 30px;
+            color: #000;
+            padding: 16px 40px;
+            border-radius: 100px;
             text-decoration: none;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: opacity 0.2s;
+            font-weight: 800;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--lhp-orange);
         }
 
         .btn-main:hover {
-            opacity: 0.9;
+            background: transparent;
+            color: var(--lhp-orange);
+            transform: scale(1.05);
         }
-
-        /* Branding badge */
-        .lhp-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #000;
-            border: 1px solid #444;
-            padding: 6px 15px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-        }
-
-        .lhp-badge span { color: var(--lhp-orange); font-weight: bold; }
 
         /* Theme Toggle Styles */
         .theme-toggle-container {
@@ -191,7 +252,7 @@
             height: 50px;
             border-radius: 50%;
             border: 2px solid var(--lhp-orange);
-            background: var(--lhp-card);
+            background: var(--lhp-card-bg);
             color: var(--lhp-orange);
             cursor: pointer;
             display: flex;
@@ -205,34 +266,26 @@
 
         .theme-toggle-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(247, 148, 32, 0.4);
             background: var(--lhp-orange);
-            color: var(--lhp-dark);
+            color: #000;
         }
 
-        .theme-toggle-btn:focus {
-            outline: 3px solid var(--lhp-orange);
-            outline-offset: 2px;
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid var(--lhp-glass);
+            color: var(--lhp-text-muted);
         }
 
-        .theme-icon {
-            display: block;
-            transition: transform 0.3s ease;
+        footer a {
+            color: var(--lhp-text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
         }
 
-        .theme-toggle-btn:hover .theme-icon {
-            transform: rotate(15deg);
-        }
-
-        [data-theme="light"] .theme-toggle-btn {
-            background: #ffffff;
-            border-color: var(--lhp-orange);
+        footer a:hover {
             color: var(--lhp-orange);
-        }
-
-        [data-theme="light"] .theme-toggle-btn:hover {
-            background: var(--lhp-orange);
-            color: #ffffff;
         }
     </style>
 </head>
@@ -246,10 +299,21 @@
     </div>
 
     <section class="hero">
-        <div class="lhp-badge"><span>🕯️</span> Public Design System</div>
-        <h1>Lighthouse Portal</h1>
-        <p>A high-performance design system for holistic wellness, focused on body awareness, nutrient density, and behavioral tracking.</p>
-        <a href="#explore" class="btn-main">Explore Components</a>
+        <div class="silver-glow-container"></div>
+        <div class="hero-visual-3d" id="hero-3d-canvas"></div>
+        
+        <div class="hero-content">
+            <div class="recruitment-badge">
+                <span>🚀</span> We're Hiring Designers
+            </div>
+            <div class="lhp-badge"><span>🕯️</span> Public Design System</div>
+            <h1>Lighthouse Portal</h1>
+            <p>A high-performance design system for holistic wellness, focused on body awareness, nutrient density, and behavioral tracking.</p>
+            <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="#explore" class="btn-main">Explore Components</a>
+                <a href="https://github.com/your-repo-link" class="btn-main" style="background: var(--lhp-glass); border-color: var(--lhp-orange); color: var(--lhp-orange);">Contribute & Join Team</a>
+            </div>
+        </div>
     </section>
 
     <div class="container" id="explore">
@@ -316,13 +380,89 @@
 
     <footer>
         <p>&copy; Lighthouse Portal Inc. • Designed for clarity, health, and synthesis.</p>
-        <p style="font-size: 0.7rem; margin-top: 10px;">Licensed under PolyForm Noncommercial 1.0.0</p>
+        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px;">
+            <a href="ui-components/3d-body-visualizer/ASSETS.md">📦 Mesh Credits & Provenance</a>
+            <span style="color: var(--lhp-glass);">|</span>
+            <a href="IP_PROTECTION.md">🛡️ IP Policy</a>
+        </div>
     </footer>
 
-    <script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
         (function() {
             'use strict';
             
+            // 3D Hero Animation
+            const initHero3D = () => {
+                const container = document.getElementById('hero-3d-canvas');
+                if (!container) return;
+
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+                camera.position.set(0, 1.2, 4);
+
+                const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                // Lighting
+                const ambientLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2);
+                scene.add(ambientLight);
+
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+                directionalLight.position.set(5, 5, 5);
+                scene.add(directionalLight);
+
+                // Load Stylized Mesh
+                const loader = new GLTFLoader();
+                const meshPath = 'ui-components/3d-body-visualizer/assets/meshes/stylized_female_body_base_mesh.glb';
+                
+                let mesh = null;
+                loader.load(meshPath, (gltf) => {
+                    mesh = gltf.scene;
+                    
+                    // Center and scale
+                    const box = new THREE.Box3().setFromObject(mesh);
+                    const size = box.getSize(new THREE.Vector3());
+                    const scale = 2.2 / size.y;
+                    mesh.scale.setScalar(scale);
+                    mesh.position.y = -0.8;
+                    
+                    // Silver material properties for the "glow" extraction
+                    mesh.traverse((child) => {
+                        if (child.isMesh) {
+                            child.material.metalness = 0.9;
+                            child.material.roughness = 0.1;
+                            child.material.color.setHex(0xdddddd);
+                        }
+                    });
+
+                    scene.add(mesh);
+                }, undefined, (error) => {
+                    console.warn('Hero mesh failed to load (expected if mesh is not in correct path during development):', error);
+                });
+
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    if (mesh) {
+                        mesh.rotation.y += 0.005;
+                    }
+                    renderer.render(scene, camera);
+                };
+
+                const handleResize = () => {
+                    camera.aspect = container.clientWidth / container.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                };
+
+                window.addEventListener('resize', handleResize);
+                animate();
+            };
+
             // Get theme from localStorage or default to 'dark'
             const getTheme = () => {
                 const saved = localStorage.getItem('lhp-theme');
@@ -349,9 +489,10 @@
             };
             
             // Initialize on page load
-            const initTheme = () => {
+            const init = () => {
                 const theme = getTheme();
                 setTheme(theme);
+                initHero3D();
                 
                 // Add click handler
                 const toggleBtn = document.getElementById('theme-toggle');
@@ -362,13 +503,11 @@
             
             // Run when DOM is ready
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initTheme);
+                document.addEventListener('DOMContentLoaded', init);
             } else {
-                initTheme();
+                init();
             }
         })();
     </script>
-
 </body>
 </html>
-
