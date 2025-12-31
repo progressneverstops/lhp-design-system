@@ -28,7 +28,12 @@ To help prevent scope drift, the 3D page includes a **“3D Designers Only” ac
 ## 🛠️ How to Contribute
 1. **Fork the Repository**: Create your own copy of the repository.
 2. **Create a Branch**: `git checkout -b feature/your-improvement-name`.
-3. **Make Your Changes**: Follow the [Design Guidelines](./design-patterns/README.md) and [Design Tokens](./design-tokens/README.md).
+3. **Make Your Changes**: 
+   - Follow the [Design Patterns](./design-patterns/README.md) guidelines
+   - Use [Design Tokens](./design-tokens/README.md) for all styling
+   - Use terminology from [VOCABULARY.md](./VOCABULARY.md) consistently
+   - Follow the **Public Release Gate** in [IP_PROTECTION.md](./IP_PROTECTION.md) (required)
+   - Ensure WCAG AAA (visually) compliance
 4. **Test Your Changes**: Use the provided `examples/` folders to verify your UI changes.
 5. **Submit a Pull Request**: Provide a clear description of what you've improved and why.
 
@@ -37,6 +42,17 @@ To help prevent scope drift, the 3D page includes a **“3D Designers Only” ac
 - **Holistic Harmony**: Use vibrant, natural colors that reflect our "Food as Medicine" philosophy.
 - **User Agency**: Design should empower the user, not overwhelm them.
 - **Body Awareness**: Visualizations should help users feel more connected to their body's signals.
+
+## 📚 Vocabulary & Terminology
+
+**All contributors must use standard terminology** as defined in [VOCABULARY.md](./VOCABULARY.md). Key terms:
+
+- **Consumer** (not "user" or "client") - The end-user of the platform
+- **Wellness Client** - A business organization using LHP
+- **UI-only** - Components without proprietary algorithms
+- **Sanitized** - Code stripped of business logic and algorithms
+
+Using consistent vocabulary helps prevent scope drift and architectural misunderstandings.
 
 ## 📝 Code of Conduct
 Please be respectful and professional in all interactions. We aim to foster a collaborative and encouraging environment for all designers.

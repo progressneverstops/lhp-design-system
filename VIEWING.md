@@ -52,7 +52,7 @@ Then open **http://localhost:8000** in your browser.
 ## 🚀 For Developers
 
 This is a design system repository. All components are:
-- ✅ Accessible (WCAG AA)
+- ✅ Accessible (WCAG AAA visually)
 - ✅ Secure (input validation, confirmation dialogs)
 - ✅ Responsive (mobile-first)
 - ✅ Animated (smooth transitions)
