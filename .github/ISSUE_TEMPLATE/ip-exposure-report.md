@@ -1,22 +1,42 @@
 ---
-name: IP Exposure Report
-about: Report suspected leakage of proprietary logic, business strategy, or personal data
-title: "[IP] Potential exposure: <short description>"
-labels: ["security", "ip"]
-assignees: []
+name: 🔒 IP Exposure Report
+about: Report suspected intellectual property leakage
+title: '[SECURITY] Potential IP Exposure'
+labels: 'security, priority-high'
+assignees: ''
 ---
 
-## What appears exposed?
-- **Type**: (algorithm/formula/threshold, business strategy, personal data, endpoint/auth, schema/data model, asset license issue)
-- **Location(s)**: file path(s) + line(s) if known
+## ⚠️ CONFIDENTIAL - Handle with care
 
-## Why this is risky
-- What could a third party infer or reproduce from this?
+## 🔍 Location of Exposure
+<!-- Where did you find the potential IP leak? -->
+- **File(s)**: 
+- **Line(s)**: 
+- **Component**: 
 
-## Evidence (paste minimal)
-- Please paste only the minimum snippet needed to identify the issue.
+## 📝 Description
+<!-- What proprietary information appears to be exposed? -->
 
-## Suggested fix
-- Remove / replace / generalize / move to private repo / re-license asset
 
+## 🏷️ Category of Exposure
+- [ ] **Algorithm leak** - Formula, calculation, or scoring logic visible
+- [ ] **Threshold leak** - Specific numeric values that reveal methodology
+- [ ] **Business strategy** - Pricing, timelines, or partnership details
+- [ ] **Personal data** - Real user information (names, emails, etc.)
+- [ ] **Asset provenance** - Unlicensed or improperly attributed assets
+- [ ] **Other** - Describe below
+
+## 🛡️ Severity Assessment
+- [ ] 🔴 **Critical** - Core IP directly exposed, immediate action required
+- [ ] 🟠 **High** - Significant leak that could aid competitors
+- [ ] 🟡 **Medium** - Minor leak, low competitive risk
+- [ ] 🟢 **Low** - Cosmetic issue, no real IP risk
+
+## 💡 Suggested Fix
+<!-- How would you recommend fixing this? -->
+
+
+---
+
+**Note**: If this is a critical security issue, please also email `contact@lighthouse-portal.com` directly.
 

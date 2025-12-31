@@ -1,0 +1,17 @@
+# Lighthouse Portal Design System - Code Owners
+# These owners will be requested for review on all PRs.
+
+# Default owner for everything
+* @progressneverstops
+
+# IP-sensitive areas require explicit review
+/ui-components/3d-body-visualizer/ @progressneverstops
+/IP_PROTECTION.md @progressneverstops
+/design-patterns/ @progressneverstops
+
+# Asset provenance changes require review
+**/ASSETS.md @progressneverstops
+
+# Documentation changes
+*.md @progressneverstops
+

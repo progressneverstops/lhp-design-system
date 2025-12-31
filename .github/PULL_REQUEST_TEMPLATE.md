@@ -1,29 +1,58 @@
-# PR: UI/UX Change (Public Design System)
+## 📝 Description
+<!-- Briefly describe what this PR changes -->
 
-## Summary
-- **What changed**:
-- **Why**:
-- **Screenshots** (before/after):
 
-## Public Release Gate (Required)
-- [ ] **UI-only**: no algorithms, formulas, thresholds, constants, or tuning parameters
-- [ ] **No backend**: no real API endpoints, auth flows, tokens, DB details, or server URLs
-- [ ] **No private info**: no personal names/emails, no internal company details, no sensitive workflows
-- [ ] **Mock data only**: examples use fictional/placeholder data only
-- [ ] **No numeric guidance**: no “recommended X–Y” ranges that imply proprietary logic (unless clearly mock and approved)
+## 🎯 Type of Change
+- [ ] 🎨 UI/UX improvement (visual, interaction, layout)
+- [ ] ♿ Accessibility improvement (WCAG AAA compliance)
+- [ ] 🌗 Theme enhancement (light/dark mode)
+- [ ] 📦 New component variant
+- [ ] 🐛 Bug fix
+- [ ] 📚 Documentation update
 
-## Assets & Licensing (Required if assets changed)
-- [ ] I added **source + license** links for any new assets (meshes, images, icons, fonts)
-- [ ] Assets are not “found on the internet” without provenance
-- [ ] Any 3D meshes are explicitly licensed and attributable
+---
 
-## Accessibility & Quality
-- [ ] Meets WCAG AAA (visually) contrast expectations
-- [ ] Keyboard navigation and focus states remain usable
-- [ ] Responsive behavior verified (mobile + desktop)
+## ✅ Public Release Gate (Required)
 
-## Reviewer Rubric (Answerable)
-- [ ] A competitor **cannot** rebuild proprietary method from this PR
-- [ ] This PR describes **how it looks**, not **how it works**
+### A. "UI-only" Certification
+- [ ] No formulas, thresholds, weights, constants, or tuning parameters
+- [ ] No scoring/recommendation logic (only placeholder UI state)
+- [ ] No backend integration (no real endpoints, tokens, auth, DB references)
+- [ ] No real user data (names, emails, screenshots, exports)
 
+### B. Numeric Guidance Policy
+- [ ] No specific numeric thresholds revealed (e.g., "30-35ml/kg")
+- [ ] Any demo numbers are clearly labeled as mock/example
+- [ ] Numbers cannot be used to reverse-engineer proprietary methods
+
+### C. Asset Provenance & Licensing
+- [ ] Every new mesh/image/icon/font has a known source + license linked
+- [ ] No "found on the internet" assets
+- [ ] Attribution documented in relevant `ASSETS.md` or `README.md`
+
+### D. Dependency Hygiene
+- [ ] Dependencies are version-pinned (no "latest")
+- [ ] External CDN imports reviewed for stability
+
+---
+
+## 🔍 Final Reviewer Rubric
+
+Reviewers must answer **Yes** to proceed:
+
+| Question | Answer |
+|----------|--------|
+| Could a competitor rebuild LHP's proprietary method from this PR? | ❌ No |
+| Does this PR reveal "how it works" instead of "how it looks"? | ❌ No |
+| Are there any identifiable people/companies/clients in text or assets? | ❌ No |
+| Are all new assets licensed and attributable? | ✅ Yes |
+
+---
+
+## 📸 Screenshots/Preview
+<!-- Add screenshots or GIFs showing the change -->
+
+
+## 🔗 Related Issues
+<!-- Link any related issues: Fixes #123, Relates to #456 -->
 

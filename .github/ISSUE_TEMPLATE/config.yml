@@ -1,0 +1,12 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Read the Docs First
+    url: https://github.com/progressneverstops/lhp-design-system#readme
+    about: Please read the README and CONTRIBUTING guide before opening an issue.
+  - name: 🛡️ IP Protection Policy
+    url: https://github.com/progressneverstops/lhp-design-system/blob/main/IP_PROTECTION.md
+    about: Review our IP protection policy to understand what's allowed.
+  - name: 📖 Vocabulary Guide
+    url: https://github.com/progressneverstops/lhp-design-system/blob/main/VOCABULARY.md
+    about: Use standard terminology when describing issues.
+
