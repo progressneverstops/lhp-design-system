@@ -8,7 +8,7 @@ Lighthouse Portal is a holistic wellness platform designed to empower individual
 ## 📖 The Founder's Story
 The Lighthouse Portal was born from a deeply personal mission to transform how we approach health and wellness. 
 
-The journey began with a vision to create a system that addresses the "whole person"—not just tracking calories, but understanding the intricate connections between our environment, our habits (vices), our hydration, and our mental clarity. Inspired by the story of **brother Joshua** and the desire to build something that truly makes a difference, LHP has evolved from a small internal tool into a comprehensive platform.
+The journey began with a vision to create a system that addresses the "whole person"—not just tracking calories, but understanding the intricate connections between our environment, our habits (vices), our hydration, and our mental clarity. Inspired by personal experiences and the desire to build something that truly makes a difference, LHP has evolved from a small internal tool into a comprehensive platform.
 
 Our philosophy is simple: **Food as medicine first, body awareness second.** We emphasize seasonal eating, sun exposure for natural synthesis, and rhythmic fasting (sunset to sunrise). This design system is the visual manifestation of that philosophy.
 
@@ -28,9 +28,10 @@ This repository contains **UI components, design tokens, and UX documentation** 
 - **Personal Data**: All examples use mock data; no real user information is present.
 
 ## 🚀 Getting Started
-1. **Explore the Components**: Browse the `ui-components/` directory to see the building blocks of the LHP interface.
-2. **Read the Design Tokens**: Check `design-tokens/` for the core styling rules.
-3. **Contribute**: Read our [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how you can help improve the LHP experience.
+1. **Read the Vocabulary**: Start with [VOCABULARY.md](./VOCABULARY.md) to understand standard platform terminology.
+2. **Explore the Components**: Browse the `ui-components/` directory to see the building blocks of the LHP interface.
+3. **Read the Design Tokens**: Check `design-tokens/` for the core styling rules.
+4. **Contribute**: Read our [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how you can help improve the LHP experience.
 
 ## ⚖️ License
 This project is licensed under the **PolyForm Noncommercial 1.0.0** license. This is a source-available license that allows for non-commercial use and contributions, while protecting the commercial interests of Lighthouse Portal. See the [LICENSE](./LICENSE) file for details.
